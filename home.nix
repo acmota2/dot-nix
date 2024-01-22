@@ -6,8 +6,15 @@
     home.username = "acmota2";
     home.homeDirectory = "/home/acmota2";
 # hyprland stuff
+    programs.waybar.enable = true;
     wayland.windowManager.hyprland.enable = true;
     wayland.windowManager.hyprland.extraConfig = builtins.readFile ./hypr/hyprland.conf;
+    home.pointerCursor = {
+        gtk.enable = true;
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 16;
+    };
 
 # This value determines the Home Manager release that your configuration is
 # compatible with. This helps avoid breakage when a new Home Manager release
@@ -52,13 +59,11 @@
             source = ./dunst;
             recursive = true;
         };
-        ".config/nvim" = {
-            source = ./nvim;
-            recursive = true;
-        };
         ".zshrc".source = ./.zshrc;
+	".zprofile".source = ./.zprofile;
     };
 
+    # Hyprland shenanigans
 
     programs.git = {
         enable = true;
@@ -80,6 +85,13 @@
             packer-nvim
                 nvim-treesitter.withAllGrammars
         ];
+    };
+
+    home.sessionVariables = {
+        XCURSOR_SIZE = "24";
+        QT_QPA_PLATFORMTHEME = "qt5ct";
+        _JAVA_AWT_WM_NONREPARENTING="1";
+        XDG_CURRENT_DESKTOP="Hyprland";
     };
 
 # Home Manager can also manage your environment variables through
