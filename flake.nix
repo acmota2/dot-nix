@@ -24,6 +24,7 @@
                 modules = [
                     ./.
                     ./dev
+                    ./games
                     ./hardware/bluetooth.nix
                     ./hardware/brightness.nix
                     # ./swaylock
@@ -41,6 +42,7 @@
                 modules = [
                     ./.
                     ./dev
+                    ./games
                     ./hardware/bluetooth.nix
                     ./hardware/brightness.nix
                     # ./swaylock
