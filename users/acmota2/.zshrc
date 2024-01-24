@@ -47,9 +47,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias schlaf='systemctl suspend'
 alias byebye='shutdown -h now'
-alias ls='ls --color'
+alias ls='ls --color --group-directories-first'
 alias cp='cp -i'
-alias als='ls -la'
+alias als='ls -A'
+alias lals='ls -lA'
 alias relsh='source $HOME/.zshrc; print Shell reloaded'
 gitc() {
   git clone git@github.com:$1
