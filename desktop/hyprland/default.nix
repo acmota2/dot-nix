@@ -28,14 +28,14 @@
 
 # hyprland
         home.packages = with pkgs; [ hyprpaper grimblast ];
-        wayland.windowManager.hyprland = if nvidia then { 
+        wayland.windowManager.hyprland = if !nvidia then { 
             enable = true;
             extraConfig = builtins.readFile ./hypr/hyprland.conf;
         } else {
             enable = true;
-	    extraConfig = builtins.readFile ./hypr/hyprland.conf;
-	    nvidiaPatches = true;
-	};
+	        extraConfig = builtins.readFile ./hypr/hyprland.conf;
+	        nvidiaPatches = true;
+	    };
 
         home.pointerCursor = {
             gtk.enable = true;
