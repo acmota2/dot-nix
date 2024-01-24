@@ -16,12 +16,7 @@
         ];
 
 # waybar
-        programs.waybar = if nvidia then {
-            enable = true;
-            nvidiaPatches = true;
-        } else {
-            enable = true;
-        };
+        programs.waybar.enable = true;
         home.file = {
             ".config/waybar" = {
                 source = ./waybar;
@@ -33,10 +28,14 @@
 
 # hyprland
         home.packages = with pkgs; [ hyprpaper grimblast ];
-        wayland.windowManager.hyprland = { 
+        wayland.windowManager.hyprland = if nvidia then { 
             enable = true;
             extraConfig = builtins.readFile ./hypr/hyprland.conf;
-        };
+        } else {
+            enable = true;
+	    extraConfig = builtins.readFile ./hypr/hyprland.conf;
+	    nvidiaPatches = true;
+	};
 
         home.pointerCursor = {
             gtk.enable = true;

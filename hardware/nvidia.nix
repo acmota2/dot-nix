@@ -1,4 +1,4 @@
-{ pkgs, hyprland, home-manager, desktop, ... }:
+{ pkgs, hyprland, home-manager, desktop, config, ... }:
 {
     services.xserver.videoDrivers = ["nvidia"];
     hardware.opengl = {
