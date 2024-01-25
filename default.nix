@@ -18,6 +18,7 @@
     ] ++ extraImports;
 
     environment.systemPackages = with pkgs; [
+        file
         git
         neovim
         wget
