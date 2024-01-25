@@ -8,9 +8,15 @@
     # vim explorer
     {
         mode = "n";
-        key = "<leader>f";
+        key = "<leader>F";
         action = "<cmd>Ex<CR>";
     } 
+    # NERDTree
+    {
+        mode = "n";
+        key = "<leader>e";
+        action = "<cmd>NERDTree<CR>";
+    }
     # basically, Alt arrows of vscode re-imagined for vim
     {
         mode = "v";
