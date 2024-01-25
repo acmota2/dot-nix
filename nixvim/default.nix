@@ -11,10 +11,13 @@
         extraPlugins = with pkgs.vimPlugins; [
             nerdtree 
 	        telescope-nvim
-            tokyonight-nvim
             # falcon
         ];
-        colorscheme = "tokyonight-night";
+        globals.mapleader = " ";
+        colorschemes.tokyonight = {
+            enable = true;
+            style = "night";
+        };
         extraConfigLua = ''print("Let's code!")'';
     };
 }

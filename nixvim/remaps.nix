@@ -9,7 +9,7 @@
     {
         mode = "n";
         key = "<leader>f";
-        action = "<cmd>Ex";
+        action = "<cmd>Ex<CR>";
     } 
     # basically, Alt arrows of vscode re-imagined for vim
     {

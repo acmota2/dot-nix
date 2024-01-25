@@ -1,13 +1,11 @@
-{ pkgs, isPotato, ... }:
+{ pkgs, ... }:
 {
-    environment.systemPackages = with pkgs; let
-        minecraft = [ atlauncher ];
-    in if isPotato then
-        minecraft
-    else
-        minecraft ++ [
-            steam
-            lutris
-        ];
+    imports = [
+        ./minecraft
+    ];  
+    environment.systemPackages = with pkgs; [
+        steam
+        lutris
+    ];
 }
 
