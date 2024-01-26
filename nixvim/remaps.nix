@@ -21,12 +21,12 @@
     {
         mode = "v";
         key = "J";
-        action = ">+1<CR>gv=gv";
+        action = ":m >+1<CR>gv=gv";
     }
     {
         mode = "v";
         key = "K";
-        action = "<-2<CR>gv=gv";
+        action = ":m <-2<CR>gv=gv";
     }
     # n - next, N - previous (searching terms)
     {
