@@ -33,7 +33,7 @@
                 specialArgs = {
                     username = "acmota2";
                     hostname = "TheLightBeast";
-                    desktop = "kde";
+                            desktop = "hyprland";
                     isPotato = true;
                     nvidia = false;
                 } // inputs;
