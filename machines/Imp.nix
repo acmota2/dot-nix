@@ -6,7 +6,7 @@
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
     ];
 
 
@@ -15,6 +15,6 @@
       fsType = "ext4";
     };
 
-  swapDevices = [ /dev/disk/by-uuid/79b6eb49-e014-4870-8e91-a9ce3366ee3f ];
+  swapDevices = [ { device = "/dev/disk/by-uuid/79b6eb49-e014-4870-8e91-a9ce3366ee3f"; } ];
 }
 
