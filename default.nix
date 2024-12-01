@@ -18,6 +18,7 @@
     ] ++ extraImports;
 
     environment.systemPackages = with pkgs; [
+	firefox
         file
         git
         neovim
@@ -25,7 +26,6 @@
         curl
         kitty
         zsh
-        brave
         discord
         coreutils-full
         macchina

@@ -2,11 +2,12 @@
 {
     fonts.packages = with pkgs; [
         noto-fonts
-            noto-fonts-emoji
-            fira-code
-            fira-code-symbols
-            font-awesome
-            nerdfonts
+        noto-fonts-emoji
+        fira-code
+        fira-code-symbols
+	jetbrains-mono
+        font-awesome
+        nerdfonts
     ];
 
     environment.systemPackages = with pkgs; [ 

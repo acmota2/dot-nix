@@ -1,6 +1,10 @@
-{ home-manager, username, ...}:
+{ home-manager, username, pkgs, ...}:
 {
     home-manager.users.${username} = _: {
-        programs.enable
-    }
+    	home.file.".config/foot" = {
+	    source = "./.";
+	    recursive = true;
+	};
+    	home.packages = with pkgs; [ foot ];
+    };
 }
