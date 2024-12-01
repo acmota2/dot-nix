@@ -2,7 +2,7 @@
 {
     imports =
     let
-        extraImports = if desktop == "hyprland" then [ ./rofi ./dunst ] else [];
+        extraImports = if desktop == "hyprland" then [ ./wofi ./dunst ] else [];
     in [
         home-manager.nixosModules.home-manager
         ./base
