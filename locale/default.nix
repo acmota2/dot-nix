@@ -1,5 +1,5 @@
 {
-    time.timeZone = "Europe/Berlin";
+    time.timeZone = "Europe/Lisbon";
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
     	LC_ADDRESS = "pt_PT.UTF-8";
