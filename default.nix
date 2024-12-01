@@ -8,7 +8,7 @@
         ./base
         ./boot
         ./desktop/${desktop}
-        ./kitty
+        ./foot
         ./locale
         ./hardware
         ./machines/${hostname}.nix
