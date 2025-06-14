@@ -6,15 +6,16 @@
         ./boot
         ./desktop/${desktop}
 	./foot
-        ./kitty
-        ./locale
-	./machines
         ./hardware
+        ./locale
+	./macchina
+	./machines
+	./mako
   	./multimedia
         ./nixvim
+	./starship
         ./users
         ./wofi
-	./mako
     ];
 
     environment.systemPackages = with pkgs; [
