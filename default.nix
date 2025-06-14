@@ -5,6 +5,7 @@
         ./base
         ./boot
         ./desktop/${desktop}
+	./foot
         ./kitty
         ./locale
 	./machines
@@ -28,5 +29,7 @@
         discord
         coreutils-full
         macchina
+	zoxide
+	starship
     ];
 }

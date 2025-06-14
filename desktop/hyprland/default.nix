@@ -5,7 +5,7 @@
         noto-fonts-emoji
         jetbrains-mono
         font-awesome
-        nerdfonts
+	nerd-fonts.jetbrains-mono
     ];
 
     environment.systemPackages = with pkgs; [
@@ -55,7 +55,7 @@
                     recursive = true;
                 };
                 # session start
-                # ".zprofile".source = ./.zprofile;
+                ".zprofile".source = ./.zprofile;
             };
 
             pointerCursor = {
