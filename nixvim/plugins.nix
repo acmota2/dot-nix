@@ -1,8 +1,11 @@
 {
-    mini = {
+    lualine.enable = true;
+    nix.enable = true;
+    telescope = {
         enable = true;
-	modules.icons = true;
-	mockDevIcons = true;
+        settings.mappings = {
+            "<leader><leader>" = "telescope.builtin.planets{}";
+        };
     };
     lsp = {
         enable = true;
@@ -16,9 +19,32 @@
             };
             # hls.enable = true;
             clangd.enable = true;
+            nixd.enable = true;
             gopls.enable = true;
             zls.enable = true;
+            markdown_oxide.enable = true;
+            svelte.enable = true;
         };
+    };
+    conform-nvim = {
+      enable = true;
+      settings.formatters_by_ft = {
+        c = [ "clang-format" ];
+        cpp = [ "clang-format" ];
+        css = [ "prettierd" ];
+        graphql = [ "prettierd" ];
+        html = [ "prettierd" ];
+        javascript = [ "prettier" ];
+        javascriptreact = [ "prettier" ];
+        json = [ "prettierd" ];
+        lua = [ "stylua" ];
+        python = [ "isort" ];
+        rust = [ "rustfmt" ];
+        svelte = [ "svelte" ];
+        typescript = [ "prettierd" ];
+        typescriptreact = [ "prettierd" ];
+        yaml = [ "prettierd" ];
+      };
     };
     cmp = {
         enable = true;
@@ -31,4 +57,5 @@
         };
     };
     treesitter.enable = true;
+    web-devicons.enable = true;
 }
