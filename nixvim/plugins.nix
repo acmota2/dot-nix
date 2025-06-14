@@ -3,12 +3,10 @@
     nix.enable = true;
     telescope = {
         enable = true;
-        settings.mappings = {
-          n = {
-            "<leader>ff" = "require('telescope.builtin').find_files()";
-            "<leader>b" = "telescope.builtin.buffers()";
-            "<leader>fg" = "telescope.builtin.live_grep()";
-          };
+        keymaps = {
+          "<leader>ff" = "find_files";
+          "<leader>b" = "buffers";
+          "<leader>fg" = "live_grep";
         };
     };
     lsp = {
