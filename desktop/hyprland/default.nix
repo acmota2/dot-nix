@@ -1,10 +1,10 @@
-{ pkgs, hyprland, home-manager, username, nvidia, ... }:
+{ pkgs, hyprland, home-manager, username, ... }:
 {
     fonts.packages = with pkgs; [
         noto-fonts
         noto-fonts-emoji
-        fira-code
-        fira-code-symbols
+        jetbrains-mono
+        nerd-fonts.jetbrains-mono
         font-awesome
         nerdfonts
     ];
@@ -12,10 +12,15 @@
     environment.systemPackages = with pkgs; [
         grimblast
         hyprpaper
+        hypridle
+        hyprlock
         waybar
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
         xwayland
+        wl-clipboard-rs
+        wofi-emoji
+        cliphist
     ];
 
     services.dbus.enable = true;
@@ -51,35 +56,19 @@
                     recursive = true;
                 };
                 # session start
-                ".zprofile".source = ./.zprofile;
+                # ".zprofile".source = ./.zprofile;
             };
 
             pointerCursor = {
                 gtk.enable = true;
                 package = pkgs.bibata-cursors;
-                name = "Bibata-Modern-Classic";
+                name = "Bibata-Modern-Ice";
                 size = 16;
             }; 
 
-            sessionVariables = let
-                  nvidium = {
-                      "GBM_BACKEND" = "nvidia-drm";
-                      "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
-                      "ENABLE_VKBASALT" = "1";
-                      "LIBVA_DRIVER_NAME" = "nvidia";
-                      "XDG_SESSION_TYPE" = "wayland";
-                      "XDG_CURRENT_DESKTOP" = "Hyprland";
-                      "WLR_NO_HARDWARE_CURSORS" = "1";
-                      "WLR_RENDERER_ALLOW_SOFTWARE" = "1";
-                  };
-                  general = {
-                      "NIXOS_OZONE_WL" = "1";
-                  };
-                in
-                  if nvidia then 
-                      builtins.zipAttrsWith ( name: values: builtins.head values ) [ nvidium general ] 
-                  else
-                      general;
+            sessionVariables = {
+                "NIXOS_OZONE_WL" = "1";
+            };
         };
 
         # hyprland
