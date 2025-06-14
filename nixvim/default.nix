@@ -1,4 +1,4 @@
-{ nixvim, pkgs, ... }:
+{ nixvim, ... }:
 {
     imports = [
 	nixvim.nixosModules.nixvim
@@ -8,10 +8,6 @@
         keymaps = import ./remaps.nix;
         opts = import ./options.nix;
         plugins = import ./plugins.nix;
-        extraPlugins = with pkgs.vimPlugins; [ 
-	        telescope-nvim
-            	# falcon
-        ];
         globals.mapleader = " ";
         colorschemes.tokyonight = {
            	enable = true;
