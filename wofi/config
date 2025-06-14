@@ -1,0 +1,5 @@
+color=~/.config/wofi/colors
+allow-images=true
+location=center
+height=270
+width=480
