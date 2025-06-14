@@ -4,7 +4,11 @@
     telescope = {
         enable = true;
         settings.mappings = {
-            "<leader><leader>" = "telescope.builtin.planets{}";
+          n = {
+            "<leader>ff" = "require('telescope.builtin').find_files()";
+            "<leader>b" = "telescope.builtin.buffers()";
+            "<leader>fg" = "telescope.builtin.live_grep()";
+          };
         };
     };
     lsp = {
@@ -38,6 +42,7 @@
         javascriptreact = [ "prettier" ];
         json = [ "prettierd" ];
         lua = [ "stylua" ];
+        nix = [ "nixfmt" ];
         python = [ "isort" ];
         rust = [ "rustfmt" ];
         svelte = [ "svelte" ];
