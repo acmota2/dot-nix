@@ -7,15 +7,18 @@
         description = "acmota2";
     };
 
-    home-manager.users."acmota2" = _: {
-        programs.git = {
-            enable = true;
-            userName = "acmota2";
-            userEmail = "acmota2@gmail.com";
-            aliases = {
-                "ga" = "git add";
-            };
-        };
-        home.file.".zshrc".source = ./.zshrc;
+    home-manager = {
+	backupFileExtension = "bak";
+    	users."acmota2" = _: {
+        	programs.git = {
+			enable = true;
+			userName = "acmota2";
+		    	userEmail = "acmota2@gmail.com";
+		    	aliases = {
+				"ga" = "git add";
+		    	};
+		};
+        	home.file.".zshrc".source = ./.zshrc;
+	};
     };
 }
