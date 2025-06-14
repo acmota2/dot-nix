@@ -21,11 +21,11 @@
     outputs = { self, nixpkgs, ... }@inputs: {
         nixosConfigurations = {
             "EnderDragon" = nixpkgs.lib.nixosSystem {
-                system = "x86_64";
+                system = "x86_64-linux";
                 modules = [
                   ./.
                   ./dev
-                  ./games/minecraft/
+                  ./games/minecraft/.
                   ./hardware/bluetooth.nix
                 ];
                 specialArgs = {

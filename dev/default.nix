@@ -10,7 +10,7 @@
         python3
         elixir
         nodePackages.npm
-        nodejs_21
+        nodejs_22
         docker
         jdk21
         jdk17
