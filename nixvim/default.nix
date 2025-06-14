@@ -6,7 +6,7 @@
     programs.nixvim.config = {
 	enable = true;
         keymaps = import ./remaps.nix;
-        options = import ./options.nix;
+        opts = import ./options.nix;
         plugins = import ./plugins.nix;
         extraPlugins = with pkgs.vimPlugins; [ 
 	        telescope-nvim
@@ -15,7 +15,7 @@
         globals.mapleader = " ";
         colorschemes.tokyonight = {
            	enable = true;
-            	style = "night";
+            	settings.style = "night";
         };
 	extraConfigLua = ''print("Let's code!")'';
     };

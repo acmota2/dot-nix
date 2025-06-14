@@ -4,15 +4,17 @@
         extraGroups = [ "sound" ];
     };
     security.rtkit.enable = true;
-    hardware.pulseaudio.enable = false;
     environment.systemPackages = with pkgs; [ pulseaudio ];
-    services.pipewire = {
+    services = {
+    	pipewire = {
 	    enable = true;
 	    alsa = {
 	        enable = true;
             support32Bit = true;
 	    };
-        pulse.enable = true;
-        wireplumber.enable = true;
+            pulse.enable = true;
+            wireplumber.enable = true;
+	};
+    	pulseaudio.enable = false;
     };
 }
