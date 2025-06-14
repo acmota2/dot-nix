@@ -1,7 +1,7 @@
 { pkgs, home-manager, username, ... }:
 {
 	home-manager.users.${username} = _: { 
-		home.file.".config/macchina/config" = {
+		home.file.".config/macchina" = {
 			source = ./config;
 			recursive = true;
 		};
