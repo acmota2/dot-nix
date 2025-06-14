@@ -17,7 +17,7 @@
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
         xwayland
-        wl-clipboard-rs
+        wl-clipboard
         wofi-emoji
         cliphist
     ];
