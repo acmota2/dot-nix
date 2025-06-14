@@ -4,7 +4,6 @@
         noto-fonts
         noto-fonts-emoji
         jetbrains-mono
-        nerd-fonts.jetbrains-mono
         font-awesome
         nerdfonts
     ];

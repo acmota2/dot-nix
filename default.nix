@@ -1,19 +1,20 @@
 { pkgs, home-manager, desktop, username, hostname, ... }:
 {
-    imports = let
-        extraImports = if desktop == "hyprland" then [ ./wofi ./dunst ] else [];
-    in [
+    imports = [
         home-manager.nixosModules.home-manager
         ./base
         ./boot
         ./desktop/${desktop}
         ./kitty
         ./locale
+	./machines
         ./hardware
-  	    ./multimedia
+  	./multimedia
         ./nixvim
         ./users
-    ] ++ extraImports;
+        ./wofi
+	./mako
+    ];
 
     environment.systemPackages = with pkgs; [
         file
@@ -23,7 +24,7 @@
         curl
         kitty
         zsh
-        brave
+        firefox
         discord
         coreutils-full
         macchina

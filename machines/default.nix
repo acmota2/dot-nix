@@ -1,6 +1,6 @@
 { pkgs, hostname, ... }:
 {
     imports = [
-        ./${hostname}.nix
+        /etc/nixos/hardware-configuration.nix
     ];
 }

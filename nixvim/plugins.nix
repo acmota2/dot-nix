@@ -5,7 +5,6 @@
     lsp = {
         enable = true;
         servers = {
-            rnix-lsp.enable = true;
             tsserver.enable = true;
             lua-ls.enable = true;
             rust-analyzer = {
@@ -21,13 +20,6 @@
     };
     nvim-cmp = {
         enable = true;
-        sources = [
-            {name = "path";}
-            {name = "nvim_lsp";}
-            {name = "cmp_tabnine";}
-            {name = "luasnip";}
-            {name = "neorg";}
-        ];
         mapping = {
             "<C-b>" = "cmp.mapping.scroll_docs(-4)";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
