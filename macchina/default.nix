@@ -1,10 +1,10 @@
 { pkgs, home-manager, username, ... }:
 {
 	home-manager.users.${username} = _: { 
-		home.file.".config/dunst" = {
+		home.file.".config/mako/config" = {
 			source = ./.;
 			recursive = true;
 		};
-		home.packages = with pkgs; [ dunst ];
+		home.packages = with pkgs; [ mako ];
 	};
 }

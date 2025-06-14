@@ -1,8 +1,7 @@
 { pkgs, home-manager, desktop, username, hostname, ... }:
 {
-    imports =
-    let
-        extraImports = if desktop == "hyprland" then [ ./rofi ./dunst ] else [];
+    imports = let
+        extraImports = if desktop == "hyprland" then [ ./wofi ./dunst ] else [];
     in [
         home-manager.nixosModules.home-manager
         ./base
@@ -11,8 +10,7 @@
         ./kitty
         ./locale
         ./hardware
-        ./machines/${hostname}.nix
-	    ./multimedia
+  	    ./multimedia
         ./nixvim
         ./users
     ] ++ extraImports;
