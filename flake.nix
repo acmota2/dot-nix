@@ -25,54 +25,16 @@
                 modules = [
                   ./.
                   ./dev
-                  ./games/minecraft/.
+                  ./games
                   ./hardware/bluetooth.nix
                 ];
                 specialArgs = {
                   username = "acmota2";
                   hostname = "EnderDragon";
                   desktop = "hyprland";
-                  nvidia = false;
+                  graphics = "amd";
                 } // inputs;
             };
-/*
-      "TheLightBeast" = nixpkgs.lib.nixosSystem {
-                system = "x86_64";
-                modules = [
-                    ./.
-                    ./dev
-                    ./games/minecraft
-                    ./hardware/bluetooth.nix
-                    ./hardware/brightness.nix
-                    # ./swaylock
-                ];
-                specialArgs = {
-                    username = "acmota2";
-                    hostname = "TheLightBeast";
-                    desktop = "hyprland";
-                    isPotato = true;
-                    nvidia = false;
-                } // inputs;
-            };
-            "TheChonkyBeast" = nixpkgs.lib.nixosSystem {
-                system = "x86_64";
-                modules = [
-                    ./.
-                    ./dev
-                    ./games
-                    ./hardware/bluetooth.nix
-                    ./hardware/brightness.nix
-                    # ./swaylock
-                ];
-                specialArgs = {
-                    username = "acmota2";
-                    hostname = "TheChonkyBeast";
-                    desktop = "hyprland";
-                    isPotato = false;
-                    nvidia = true;
-                } // inputs;
-            };
-      */
         };
     };
 }
