@@ -2,15 +2,15 @@
     description = "My machines";
 
     inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
         home-manager = {
-            url = "github:nix-community/home-manager/release-23.11";
+            url = "github:nix-community/home-manager/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         nixvim = {
-            url = "github:nix-community/nixvim/nixos-23.11";
+            url = "github:nix-community/nixvim/nixos-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland = {
@@ -20,7 +20,23 @@
 
     outputs = { self, nixpkgs, ... }@inputs: {
         nixosConfigurations = {
-            "TheLightBeast" = nixpkgs.lib.nixosSystem {
+            "EnderDragon" = nixpkgs.lib.nixosSystem {
+                system = "x86_64";
+                modules = [
+                  ./.
+                  ./dev
+                  ./games/minecraft/
+                  ./hardware/bluetooth.nix
+                ];
+                specialArgs = {
+                  username = "acmota2";
+                  hostname = "EnderDragon";
+                  desktop = "hyprland";
+                  nvidia = false;
+                } // inputs;
+            };
+/*
+      "TheLightBeast" = nixpkgs.lib.nixosSystem {
                 system = "x86_64";
                 modules = [
                     ./.
@@ -33,7 +49,7 @@
                 specialArgs = {
                     username = "acmota2";
                     hostname = "TheLightBeast";
-                            desktop = "hyprland";
+                    desktop = "hyprland";
                     isPotato = true;
                     nvidia = false;
                 } // inputs;
@@ -56,6 +72,7 @@
                     nvidia = true;
                 } // inputs;
             };
+      */
         };
     };
 }

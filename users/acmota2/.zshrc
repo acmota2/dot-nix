@@ -3,7 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
-export ZDOTDIR="$HOME/.config/zsh/"
+export ZDOTDIR=~
 
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -11,7 +11,7 @@ bindkey -e
 zstyle :compinstall filename '$HOME/.zshrc'
 # End of lines added by compinstall
 
-# autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit
 autoload -Uz vcs_info
 
 # Format the vcs_info_msg_0_ variable
@@ -47,10 +47,9 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias schlaf='systemctl suspend'
 alias byebye='shutdown -h now'
-alias ls='ls --color --group-directories-first'
+alias ls='ls --color'
 alias cp='cp -i'
-alias als='ls -A'
-alias lals='ls -lA'
+alias als='ls -la'
 alias relsh='source $HOME/.zshrc; print Shell reloaded'
 gitc() {
   git clone git@github.com:$1
@@ -58,5 +57,22 @@ gitc() {
 mkcd() {
   mkdir $1 ; cd $1
 }
+++() {
+  foot -e $@ &
+}
 
 [ -f "/home/acmota2/.ghcup/env" ] && source "/home/acmota2/.ghcup/env" # ghcup-env%
+
+eval "$(zoxide init --cmd cd zsh)"
+
+
+# pnpm
+export PNPM_HOME="/home/acmota2/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+eval "$(starship init zsh)"
+

@@ -2,14 +2,14 @@
 {
     fonts.packages = with pkgs; [
         noto-fonts
-            noto-fonts-emoji
-            fira-code
-            fira-code-symbols
-            font-awesome
-            nerdfonts
+        noto-fonts-emoji
+        fira-code
+        fira-code-symbols
+        font-awesome
+        nerdfonts
     ];
 
-    environment.systemPackages = with pkgs; [ 
+    environment.systemPackages = with pkgs; [
         grimblast
         hyprpaper
         waybar
@@ -61,24 +61,25 @@
                 size = 16;
             }; 
 
-            sessionVariables = let 
-                nvidium = {
-                    "GBM_BACKEND" = "nvidia-drm";
-                    "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
-                    "ENABLE_VKBASALT" = "1";
-                    "LIBVA_DRIVER_NAME" = "nvidia";
-                    "XDG_SESSION_TYPE" = "wayland";
-                    "XDG_CURRENT_DESKTOP" = "Hyprland";
-                    "WLR_NO_HARDWARE_CURSORS" = "1";
-                    "WLR_RENDERER_ALLOW_SOFTWARE" = "1";
-                };
-                general = {
-                    "NIXOS_OZONE_WL" = "1";
-                };
-                in if nvidia then 
-                    builtins.zipAttrsWith ( name: values: builtins.head values ) [ nvidium general ] 
-                else
-                    general;
+            sessionVariables = let
+                  nvidium = {
+                      "GBM_BACKEND" = "nvidia-drm";
+                      "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
+                      "ENABLE_VKBASALT" = "1";
+                      "LIBVA_DRIVER_NAME" = "nvidia";
+                      "XDG_SESSION_TYPE" = "wayland";
+                      "XDG_CURRENT_DESKTOP" = "Hyprland";
+                      "WLR_NO_HARDWARE_CURSORS" = "1";
+                      "WLR_RENDERER_ALLOW_SOFTWARE" = "1";
+                  };
+                  general = {
+                      "NIXOS_OZONE_WL" = "1";
+                  };
+                in
+                  if nvidia then 
+                      builtins.zipAttrsWith ( name: values: builtins.head values ) [ nvidium general ] 
+                  else
+                      general;
         };
 
         # hyprland

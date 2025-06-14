@@ -2,12 +2,12 @@
 {
     nixpkgs.config.allowUnfree = true;
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    system.stateVersion = "23.11";
+    system.stateVersion = "25.05";
 
     programs.zsh.enable = true;
 
     home-manager.users.${username} = {
-        home.stateVersion = "23.11";
+        home.stateVersion = "25.05";
         nixpkgs.config.allowUnfree = true;
     };
 }
