@@ -1,26 +1,28 @@
 {
-    bufferline = {
+    mini = {
         enable = true;
+	modules.icons = true;
+	mockDevIcons = true;
     };
     lsp = {
         enable = true;
         servers = {
-            tsserver.enable = true;
-            lua-ls.enable = true;
-            rust-analyzer = {
+            ts_ls.enable = true;
+            lua_ls.enable = true;
+            rust_analyzer = {
                 enable = true;
                 installCargo = false;
                 installRustc = false;
             };
-            hls.enable = true;
+            # hls.enable = true;
             clangd.enable = true;
             gopls.enable = true;
             zls.enable = true;
         };
     };
-    nvim-cmp = {
+    cmp = {
         enable = true;
-        mapping = {
+        settings.mapping = {
             "<C-b>" = "cmp.mapping.scroll_docs(-4)";
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<C-Space>" = "cmp.mapping.complete()";
