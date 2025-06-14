@@ -1,12 +1,8 @@
-{ nvidia, ... }:
+{ graphics, ... }:
 {
-    imports = let
-        base = [
-            ./sound.nix
-            ./network.nix
-        ];
-        in if nvidia then
-            base ++ [ ./nvidia.nix ]
-        else
-            base;
+    imports = [
+      ./sound.nix
+      ./network.nix
+      ./${graphics}.nix
+    ];
 }
