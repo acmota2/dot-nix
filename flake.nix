@@ -26,11 +26,12 @@
           system = "x86_64-linux";
           modules = [
             ./.
-            ./shell
+            ./boot/kernel-mod
             ./dev
             ./games
             ./hardware/bluetooth.nix
             ./hardware/nfs.nix
+            ./shell
           ];
           specialArgs = {
             username = "acmota2";
