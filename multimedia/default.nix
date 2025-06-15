@@ -1,1 +1,9 @@
-{ pkgs, ... }: { environment.systemPackages = with pkgs; [ gimp musescore ]; }
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    audacity
+    gimp
+    muse-sounds-manager
+    musescore
+  ];
+}
