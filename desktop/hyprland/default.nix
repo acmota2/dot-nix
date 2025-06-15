@@ -13,6 +13,18 @@
     nerd-fonts.jetbrains-mono
   ];
 
+  environment.systemPackages = with pkgs; [
+    cliphist
+    grimblast
+    hyprpaper
+    hypridle
+    xwayland
+    wl-clipboard
+    wofi-emoji
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
+  ];
+
   services.dbus.enable = true;
 
   xdg.portal = {
@@ -32,18 +44,6 @@
       (import ./settings.nix inputs)
       ./binds.nix
       ./rules.nix
-    ];
-
-    home.packages = with pkgs; [
-      cliphist
-      grimblast
-      hyprpaper
-      hypridle
-      xwayland
-      wl-clipboard
-      wofi-emoji
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
     ];
 
     wayland.windowManager.hyprland = {
