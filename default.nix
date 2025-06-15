@@ -25,13 +25,15 @@
     git
     wget
     curl
-    kitty
     zsh
     firefox
     discord
     coreutils-full
+    killall
+    tmux
     macchina
     zoxide
     starship
+    htop
   ];
 }
