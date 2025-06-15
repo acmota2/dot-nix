@@ -1,0 +1,54 @@
+16:38:59.358 [ATL-Logging-Thread] INFO  - Organising filesystem
+
+16:38:59.360 [ATL-Logging-Thread] INFO  - ATLauncher Version: 3.4.38.2 [b6f3b1ac61b9be9f3d4573d01dc291077f7ad130]
+
+16:38:59.360 [ATL-Logging-Thread] INFO  - App Arguments: ["--working-dir","**USERSDIR**","--no-launcher-update","version"]
+
+16:38:59.361 [ATL-Logging-Thread] INFO  - JVM Arguments: []
+
+16:38:59.368 [ATL-Logging-Thread] INFO  - Java Version: Java 21 (21.0.7)
+
+16:38:59.369 [ATL-Logging-Thread] INFO  - Java Path: /nix/store/qagnl38l96xcbx17ll0v9zswhcl1nqw6-openjdk-21.0.7+6/lib/openjdk
+
+16:38:59.371 [ATL-Logging-Thread] INFO  - 64 Bit Java: true
+
+16:38:59.371 [ATL-Logging-Thread] INFO  - RAM Available: 31168MB
+
+16:38:59.372 [ATL-Logging-Thread] INFO  - Launcher Directory: **USERSDIR**
+
+16:38:59.434 [ATL-Logging-Thread] INFO  - GPU: Navi 22 [Radeon RX 6700/6700 XT/6750 XT / 6800M/6850M XT] (Advanced Micro Devices, Inc. [AMD/ATI] (0x1002)) unknown 16640MB VRAM
+
+16:38:59.435 [ATL-Logging-Thread] INFO  - GPU: Raphael (Advanced Micro Devices, Inc. [AMD/ATI] (0x1002)) unknown 258MB VRAM
+
+16:38:59.507 [ATL-Logging-Thread] INFO  - CPU: AMD Ryzen 7 7700X 8-Core Processor 8 cores/16 threads
+
+16:38:59.507 [ATL-Logging-Thread] INFO  - Operating System: NixOS (25.05 (Warbler) build 6.12.33)
+
+16:38:59.508 [ATL-Logging-Thread] INFO  - Bitness: 64
+
+16:38:59.508 [ATL-Logging-Thread] INFO  - Uptime: 18258
+
+16:38:59.511 [ATL-Logging-Thread] INFO  - Manufacturer: GNU/Linux
+
+16:38:59.511 [ATL-Logging-Thread] INFO  - Showing splash screen and loading everything
+
+16:38:59.512 [ATL-Logging-Thread] INFO  - Checking for updated files!
+
+16:39:02.710 [ATL-Logging-Thread] INFO  - Launcher finished loading everything
+
+16:39:02.714 [ATL-Logging-Thread] INFO  - Launcher opening
+
+16:39:02.714 [ATL-Logging-Thread] INFO  - Made By Bob*
+
+16:39:02.714 [ATL-Logging-Thread] INFO  - *(Not Actually)
+
+16:39:02.717 [ATL-Logging-Thread] INFO  - Setting up Bottom Bar
+
+16:39:02.744 [ATL-Logging-Thread] INFO  - Finished Setting up Bottom Bar
+
+16:39:02.745 [ATL-Logging-Thread] INFO  - Setting up Tabs
+
+16:39:02.881 [ATL-Logging-Thread] INFO  - Finished Setting up Tabs
+
+16:39:02.886 [ATL-Logging-Thread] INFO  - Showing Launcher
+
