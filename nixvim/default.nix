@@ -6,7 +6,9 @@
     globals.mapleader = ",";
     keymaps = import ./remaps.nix;
     opts = import ./options.nix;
-    plugins = import ./plugins.nix;
+    plugins = import ./plugins.nix {
+      pkgs = pkgs;
+    };
     colorschemes.tokyonight = {
       enable = true;
       settings.style = "night";
