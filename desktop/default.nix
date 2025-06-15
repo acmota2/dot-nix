@@ -2,7 +2,11 @@
 {
   imports =
     let
-      desktopImport = [ ./${desktop} ];
+      desktopImport = [
+        ./${desktop}
+        ./wofi
+        ./foot
+      ];
     in
     if desktop != "hyprland" then desktopImport else desktopImport ++ [ ./tiling/mako ];
 
