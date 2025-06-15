@@ -13,23 +13,17 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  environment.systemPackages = with pkgs; [
-    cliphist
-    grimblast
-    hyprpaper
-    hypridle
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    xwayland
-    wl-clipboard
-    wofi-emoji
-  ];
-
   services.dbus.enable = true;
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
   };
 
   home-manager.users.${username} = _: {
@@ -38,6 +32,18 @@
       (import ./settings.nix inputs)
       ./binds.nix
       ./rules.nix
+    ];
+
+    home.packages = with pkgs; [
+      cliphist
+      grimblast
+      hyprpaper
+      hypridle
+      xwayland
+      wl-clipboard
+      wofi-emoji
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
     ];
 
     wayland.windowManager.hyprland = {
@@ -65,7 +71,7 @@
           recursive = true;
         };
         # session start
-        # ".zprofile".source = ./.zprofile;
+        ".zprofile".source = ./.zprofile;
       };
 
       pointerCursor = {
