@@ -16,6 +16,7 @@
     ./multimedia
     ./nixvim
     ./starship
+    ./tmux
     ./users
     ./wofi
   ];
@@ -30,7 +31,6 @@
     discord
     coreutils-full
     killall
-    tmux
     macchina
     zoxide
     starship
