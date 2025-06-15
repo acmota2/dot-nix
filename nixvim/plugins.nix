@@ -30,23 +30,26 @@
     };
     conform-nvim = {
       enable = true;
-      settings.formatters_by_ft = {
-        c = [ "clang-format" ];
-        cpp = [ "clang-format" ];
-        css = [ "prettierd" ];
-        graphql = [ "prettierd" ];
-        html = [ "prettierd" ];
-        javascript = [ "prettier" ];
-        javascriptreact = [ "prettier" ];
-        json = [ "prettierd" ];
-        lua = [ "stylua" ];
-        nix = [ "nixfmt" ];
-        python = [ "isort" ];
-        rust = [ "rustfmt" ];
-        svelte = [ "svelte" ];
-        typescript = [ "prettierd" ];
-        typescriptreact = [ "prettierd" ];
-        yaml = [ "prettierd" ];
+      settings = {
+        formatters_by_ft = {
+          c = [ "clang-format" ];
+          cpp = [ "clang-format" ];
+          css = [ "prettierd" ];
+          graphql = [ "prettierd" ];
+          html = [ "prettierd" ];
+          javascript = [ "prettier" ];
+          javascriptreact = [ "prettier" ];
+          json = [ "prettierd" ];
+          lua = [ "stylua" ];
+          nix = [ "nixfmt" ];
+          python = [ "isort" ];
+          rust = [ "rustfmt" ];
+          svelte = [ "svelte" ];
+          typescript = [ "prettierd" ];
+          typescriptreact = [ "prettierd" ];
+          yaml = [ "prettierd" ];
+        };
+        format_on_save.__raw = "{ }";
       };
     };
     cmp = {
