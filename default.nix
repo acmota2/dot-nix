@@ -1,24 +1,33 @@
-{ pkgs, home-manager, desktop, ... }: {
-  imports = [
-    home-manager.nixosModules.home-manager
-    ./base
-    ./boot
-    ./desktop/${desktop}
-    ./dev
-    ./dev/languages.nix
-    ./foot
-    ./hardware
-    ./locale
-    ./macchina
-    ./machines
-    ./mako
-    ./multimedia
-    ./nixvim
-    ./starship
-    ./tmux
-    ./users
-    ./wofi
-  ];
+{
+  pkgs,
+  home-manager,
+  desktop,
+  ...
+}:
+{
+  imports =
+    let
+      guiPackages = [
+        ./desktop
+        ./foot
+        home-manager.nixosModules.home-manager
+      ];
+      defaults = [
+        ./base
+        ./boot
+        ./dev
+        ./dev/languages.nix
+        ./hardware
+        ./locale
+        ./macchina
+        ./machines
+        ./nixvim
+        ./starship
+        ./tmux
+        ./users
+      ];
+    in
+    if desktop != null then defaults ++ guiPackages else defaults;
 
   environment.systemPackages = with pkgs; [
     file
@@ -26,8 +35,6 @@
     wget
     curl
     zsh
-    firefox
-    discord
     coreutils-full
     killall
     macchina
