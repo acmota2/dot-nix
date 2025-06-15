@@ -1,4 +1,5 @@
-{ pkgs, nixvim, ... }: {
+{ pkgs, nixvim, ... }:
+{
   imports = [ nixvim.nixosModules.nixvim ];
   programs.nixvim = {
     enable = true;
@@ -11,6 +12,10 @@
       settings.style = "night";
     };
     extraConfigLua = ''print("Let's code!")'';
-    extraPackages = with pkgs; [ nixfmt-rfc-style prettierd isort ];
+    extraPackages = with pkgs; [
+      nixfmt-rfc-style
+      prettierd
+      isort
+    ];
   };
 }
