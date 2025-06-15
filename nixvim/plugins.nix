@@ -1,3 +1,4 @@
+{ pkgs }:
 {
   lualine.enable = true;
   nix.enable = true;
@@ -63,11 +64,35 @@
         "<CR>" = "cmp.mapping.confirm({ select = true })";
       };
       autoEnableSources = true;
-      sources =
-        [ { name = "nvim_lsp"; } { name = "path"; } { name = "buffer"; } ];
+      sources = [
+        { name = "nvim_lsp"; }
+        { name = "path"; }
+        { name = "buffer"; }
+      ];
     };
   };
   markdown-preview.enable = true;
-  treesitter.enable = true;
+  treesitter = {
+    enable = true;
+    grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      bash
+      json
+      lua
+      make
+      markdown
+      nix
+      rust
+      svelte
+      typescript
+      tsx
+      toml
+      vim
+      yaml
+    ];
+    settings = {
+      autoInstall = true;
+      highlight.enable = true;
+    };
+  };
   web-devicons.enable = true;
 }
