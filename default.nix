@@ -1,5 +1,4 @@
-{ pkgs, home-manager, desktop, ... }:
-{
+{ pkgs, home-manager, desktop, ... }: {
   imports = [
     home-manager.nixosModules.home-manager
     ./base

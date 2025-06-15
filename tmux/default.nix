@@ -1,12 +1,8 @@
-{ pkgs, home-manager, username, ... }:
-{
+{ pkgs, username, ... }: {
   programs.tmux = {
     enable = true;
     clock24 = true;
-    plugins = [
-      pkgs.tmuxPlugins.tokyo-night-tmux
-      pkgs.tmuxPlugins.sensible
-    ];
+    plugins = [ pkgs.tmuxPlugins.tokyo-night-tmux pkgs.tmuxPlugins.sensible ];
   };
 
   home-manager.users.${username} = _: {

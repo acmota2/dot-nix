@@ -1,10 +1,7 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   hardware = {
     graphics = {
-      extraPackages = with pkgs; [
-        amdvlk
-      ];
+      extraPackages = with pkgs; [ amdvlk ];
       enable = true;
       enable32Bit = true;
     };

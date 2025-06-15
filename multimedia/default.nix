@@ -1,8 +1,1 @@
-{ pkgs, ... }:
-{
-    environment.systemPackages = with pkgs;
-    [
-        gimp
-        musescore
-    ];
-}
+{ pkgs, ... }: { environment.systemPackages = with pkgs; [ gimp musescore ]; }
