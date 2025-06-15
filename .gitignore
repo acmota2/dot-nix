@@ -1,1 +1,4 @@
 hardware-confiuration.nix
+.env
+.env.*
+

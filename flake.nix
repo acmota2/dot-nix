@@ -13,22 +13,32 @@
       url = "github:nix-community/nixvim/nixos-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = { url = "github:hyprwm/hyprland"; };
-  };
-
-  outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations = {
-      "EnderDragon" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./. ./shell ./dev ./games ./hardware/bluetooth.nix ];
-        specialArgs = {
-          username = "acmota2";
-          hostname = "EnderDragon";
-          desktop = "hyprland";
-          graphics = "amd";
-        } // inputs;
-      };
+    hyprland = {
+      url = "github:hyprwm/hyprland";
     };
   };
-}
 
+  outputs =
+    { nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations = {
+        "EnderDragon" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./.
+            ./shell
+            ./dev
+            ./games
+            ./hardware/bluetooth.nix
+            ./hardware/nfs.nix
+          ];
+          specialArgs = {
+            username = "acmota2";
+            hostname = "EnderDragon";
+            desktop = "hyprland";
+            graphics = "amd";
+          } // inputs;
+        };
+      };
+    };
+}
