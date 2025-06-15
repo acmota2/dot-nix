@@ -9,12 +9,13 @@
     let
       guiPackages = [
         ./desktop
-        ./foot
-        home-manager.nixosModules.home-manager
+        ./desktop/${desktop}
       ];
       defaults = [
+        home-manager.nixosModules.home-manager
         ./base
         ./boot
+        ./desktop/${desktop}
         ./dev
         ./dev/languages.nix
         ./hardware
@@ -30,14 +31,14 @@
     if desktop != null then defaults ++ guiPackages else defaults;
 
   environment.systemPackages = with pkgs; [
+    coreutils-full
+    curl
     file
     git
-    wget
-    curl
-    zsh
-    coreutils-full
+    htop
     killall
     macchina
-    htop
+    wget
+    zsh
   ];
 }

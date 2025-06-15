@@ -1,4 +1,10 @@
-{ pkgs, hyprland, username, ... }: {
+{
+  pkgs,
+  hyprland,
+  username,
+  ...
+}:
+{
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-emoji
@@ -8,17 +14,15 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    cliphist
     grimblast
     hyprpaper
     hypridle
-    hyprlock
-    waybar
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     xwayland
     wl-clipboard
     wofi-emoji
-    cliphist
   ];
 
   services.dbus.enable = true;
@@ -36,7 +40,14 @@
   home-manager.users.${username} = _: {
     imports = [ hyprland.homeManagerModules.default ];
 
-    programs.waybar.enable = true;
+    services = {
+      hyprpaper.enable = true;
+      hypridle.enable = true;
+    };
+    programs = {
+      waybar.enable = true;
+      hyprlock.enable = true;
+    };
     home = {
       file = {
         # waybar cfg
@@ -57,16 +68,35 @@
         gtk.enable = true;
         package = pkgs.bibata-cursors;
         name = "Bibata-Modern-Ice";
-        size = 16;
+        size = 24;
       };
 
-      sessionVariables = { "NIXOS_OZONE_WL" = "1"; };
+      sessionVariables = {
+        "NIXOS_OZONE_WL" = "1";
+      };
     };
 
+    gtk = {
+      enable = true;
+      theme = {
+        package = pkgs.adwaita-qt6;
+        name = "Adwaita:dark";
+      };
+
+      iconTheme = {
+        package = pkgs.adwaita-icon-theme;
+        name = "Adwaita";
+      };
+
+      font = {
+        package = pkgs.source-sans;
+        name = "SouceSans3";
+        size = 11;
+      };
+    };
     # hyprland
     wayland.windowManager.hyprland = {
       extraConfig = builtins.readFile ./hypr/hyprland.conf;
     };
-
   };
 }
