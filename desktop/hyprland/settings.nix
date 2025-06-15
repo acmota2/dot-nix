@@ -5,24 +5,24 @@
     "$terminal" = "footclient";
     "$terminalWindow" = "footclient";
     "$menu" = "wofi -S drun,run";
-    monitor = [
-      "DP-1,2560x1440@180.00,0x0,1,bitdepth,10"
-    ];
     /*
-        monitor = map (
-          settings:
-          let
-            inherit (settings)
-              port
-              resolution
-              rr
-              scale
-              extra
-              ;
-          in
-          "${port},${resolution}@${rr}.00,0x0,${scale},${extra}"
-        ) monitors;
+      monitor = [
+        "DP-1,2560x1440@180.00,0x0,1,bitdepth,10"
+      ];
     */
+    monitor = map (
+      settings:
+      let
+        inherit (settings)
+          port
+          resolution
+          rr
+          scale
+          extra
+          ;
+      in
+      "${port},${resolution}@${rr}.00,0x0,${scale},${extra}"
+    ) monitors;
     # workspace = builtins.genList (i: "${toString i}") 9;
 
     exec-once = [
