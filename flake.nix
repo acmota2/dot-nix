@@ -24,6 +24,7 @@
                 system = "x86_64-linux";
                 modules = [
                   ./.
+                  ./shell
                   ./dev
                   ./games
                   ./hardware/bluetooth.nix
