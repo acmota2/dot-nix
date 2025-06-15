@@ -1,0 +1,136 @@
+$menu=wofi -S drun,run
+$mod=SUPER
+$terminal=footclient
+$terminalWindow=footclient
+animations {
+  bezier=myBezier, 0.05, 0.9, 0.1, 1.05
+  animation=windows,1, 4, myBezier
+  animation=windowsOut,1, 4, default, popin 80%
+  animation=border,1, 10, default
+  animation=borderangle,1, 8, default
+  animation=fade,1, 4, default
+  animation=workspaces,1, 4, default
+  enabled=true
+}
+
+cursor {
+  no_hardware_cursors=true
+}
+
+decoration {
+  blur {
+    enabled=true
+    passes=1
+    size=3
+  }
+  rounding=5
+}
+
+dwindle {
+  preserve_split=true
+  pseudotile=true
+}
+
+ecosystem {
+  no_donation_nag=true
+  no_update_news=true
+}
+
+experimental {
+  xx_color_management_v4=true
+}
+
+general {
+  allow_tearing=false
+  border_size=1
+  col.active_border=rgba(007184ee) rgba(008194ee) 60deg
+  col.inactive_border=rgba(333333aa)
+  gaps_in=3
+  gaps_out=10
+}
+
+gestures {
+  workspace_swipe=0
+}
+
+input {
+  touchpad {
+    natural_scroll=false
+  }
+  follow_mouse=1
+  kb_layout=us,us
+  kb_options=lv3:menu_switch
+  kb_variant=intl,
+  repeat_delay=300
+  sensitivity=0
+}
+
+misc {
+  force_default_wallpaper=0
+}
+bind=$mod, F, exec, firefox
+bind=, Print, exec, grimblast copy area
+bind=$mod, code:10, workspace, 1
+bind=$mod SHIFT, code:10, movetoworkspace, 1
+bind=$mod, code:11, workspace, 2
+bind=$mod SHIFT, code:11, movetoworkspace, 2
+bind=$mod, code:12, workspace, 3
+bind=$mod SHIFT, code:12, movetoworkspace, 3
+bind=$mod, code:13, workspace, 4
+bind=$mod SHIFT, code:13, movetoworkspace, 4
+bind=$mod, code:14, workspace, 5
+bind=$mod SHIFT, code:14, movetoworkspace, 5
+bind=$mod, code:15, workspace, 6
+bind=$mod SHIFT, code:15, movetoworkspace, 6
+bind=$mod, code:16, workspace, 7
+bind=$mod SHIFT, code:16, movetoworkspace, 7
+bind=$mod, code:17, workspace, 8
+bind=$mod SHIFT, code:17, movetoworkspace, 8
+bind=$mod, code:18, workspace, 9
+bind=$mod SHIFT, code:18, movetoworkspace, 9
+bind=$mod SHIFT, C, exit,
+bind=$mod, return, exec, $terminal
+bind=$mod, D, exec, $menu
+bind=$mod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
+bind=$mod, E, exec, wofi-emoji
+bind=$mod SHIFT, Q, killactive
+bind=$mod, left, movefocus, l
+bind=$mod, right, movefocus, r
+bind=$mod, up, movefocus, u
+bind=$mod, down, movefocus, d
+bind=$mod SHIFT, left, movewindow, l
+bind=$mod SHIFT, right, movewindow, r
+bind=$mod SHIFT, up, movewindow, u
+bind=$mod SHIFT, down, movewindow, d
+bind=ALT SHIFT, right, resizeactive, 10 0
+bind=ALT SHIFT, up, resizeactive, 0 -10
+bind=ALT SHIFT, down, resizeactive, 0 10
+bind=ALT SHIFT, left, resizeactive, -10 0
+bind=$mod, F, fullscreen, 0
+bind=$mod, A, togglefloating,
+bind=$mod, S, togglespecialworkspace, magic
+bind=$mod SHIFT, S, movetoworkspace, special:magic
+bind=$mod, mouse_down, workspace, e+1
+bind=$mod, mouse_up, workspace, e-1
+bind=$mod SHIFT, P, exec, grimblast copy area
+bind=ALT SHIFT, P, exec, grimblast copy screen
+binde=, XF86MonBrightnessUp, exec, brightnessctl set 5%+
+binde=, XF86MonBrightnessDown, exec, brightnessctl set 5%-
+binde=, XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindl=, XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindl=, XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindm=$mod, mouse:272, movewindow
+bindm=$mod, mouse:273, resizewindow
+exec-once=foot --server
+exec-once=tmux
+exec-once=waybar
+exec-once=mako
+exec-once=hyprpaper
+exec-once=blueman-applet
+exec-once=wl-paste --type text --watch cliphist store
+exec-once=wl-paste --type image --watch cliphist store
+monitor=DP-1,2560x1440@180.00,0x0,1,bitdepth,10
+windowrulev2=opacity 0.8 0.6, class:^($terminalWindow)$
+windowrulev2=animation slide down, title:^($terminalWindow)$
+windowrulev2=stayfocused, title:^()$,class:^(steam)$
+windowrulev2=minsize 1 1, title:^()$,class:^(steam)$
