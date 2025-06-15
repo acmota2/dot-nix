@@ -32,8 +32,6 @@
     coreutils-full
     killall
     macchina
-    zoxide
-    starship
     htop
   ];
 }
