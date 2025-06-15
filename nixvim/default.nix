@@ -1,9 +1,6 @@
-{ nixvim, ... }:
-{
-  imports = [
-    nixvim.nixosModules.nixvim
-  ];
-  programs.nixvim= {
+{ pkgs, nixvim, ... }: {
+  imports = [ nixvim.nixosModules.nixvim ];
+  programs.nixvim = {
     enable = true;
     globals.mapleader = ",";
     keymaps = import ./remaps.nix;
@@ -14,5 +11,6 @@
       settings.style = "night";
     };
     extraConfigLua = ''print("Let's code!")'';
+    extraPackages = with pkgs; [ nixfmt prettierd isort ];
   };
 }

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   system.userActivationScripts.zshrc = "touch .zshrc";
   environment.shells = [ pkgs.zsh ];
   programs.zsh = {
@@ -13,15 +12,13 @@
       edit = "sudo -e";
       schlaf = "systemctl suspend";
       ".." = "cd ..";
-      "..." =  "cd ../..";
+      "..." = "cd ../..";
       "...." = "cd ../../..";
     };
 
     histSize = 1000;
     histFile = "$HOME/.zsh_history";
-    setOptions = [
-      "HIST_IGNORE_ALL_DUPS"
-    ];
+    setOptions = [ "HIST_IGNORE_ALL_DUPS" ];
     interactiveShellInit = ''
       zstyle ':completion:*' menu select
 

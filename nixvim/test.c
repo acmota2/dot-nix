@@ -1,5 +1,3 @@
 #include <stdio.h>
 
-int main(void) {
-    puts("Hello, world!");
-}
+int main(void) { puts("Hello, world!"); }
