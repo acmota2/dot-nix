@@ -38,6 +38,12 @@
             hostname = "EnderDragon";
             desktop = "hyprland";
             graphics = "amd";
+            monitors =
+              let
+                monitorList = import ./monitors;
+                inherit (monitorList) aoc;
+              in
+              [ aoc ];
           } // inputs;
         };
       };
