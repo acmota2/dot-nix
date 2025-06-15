@@ -11,6 +11,6 @@
       settings.style = "night";
     };
     extraConfigLua = ''print("Let's code!")'';
-    extraPackages = with pkgs; [ nixfmt prettierd isort ];
+    extraPackages = with pkgs; [ nixfmt-rfc-style prettierd isort ];
   };
 }

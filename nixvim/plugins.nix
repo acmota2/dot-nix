@@ -41,7 +41,7 @@
         javascriptreact = [ "prettierd" ];
         json = [ "prettierd" ];
         lua = [ "stylua" ];
-        nix = [ "nixfmt-classic" ];
+        nix = [ "nixfmt" ];
         python = [ "isort" ];
         rust = [ "rustfmt" ];
         svelte = [ "pettierd" ];
