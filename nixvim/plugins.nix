@@ -8,6 +8,10 @@
       "<leader>ff" = "find_files";
       "<leader>b" = "buffers";
       "<leader>fg" = "live_grep";
+      "<leader>e" = "file_browser";
+    };
+    extensions.file-browser = {
+      enable = true;
     };
   };
   lsp = {
