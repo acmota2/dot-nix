@@ -8,7 +8,7 @@ This configuration is automatically enabled for normal users.
 
 ## Hyprland
 
-- [hyprland](./desktop//hyprland/default.nix)
+- [hyprland files](./desktop//hyprland)
 - [hypridle](./desktop/hyprland/hypridle/default.nix)
 - [hyprlock](./desktop/hyprland/hyprlock/default.nix)
 - [waybar](./desktop/hyprland/waybar/default.nix)
