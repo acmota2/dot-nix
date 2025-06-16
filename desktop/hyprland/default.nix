@@ -53,12 +53,21 @@
       portalPackage = null;
     };
     services = {
-      hyprpaper.enable = true;
-      hypridle.enable = true;
+      hyprpaper = {
+        enable = true;
+        settings = import ./hyprpaper;
+      };
+      hypridle = {
+        enable = true;
+        settings = import ./hypridle;
+      };
     };
     programs = {
       waybar.enable = true;
-      hyprlock.enable = true;
+      hyprlock = {
+        enable = true;
+        settings = import ./hyprlock;
+      };
     };
 
     home = {
@@ -66,11 +75,6 @@
         # waybar cfg
         ".config/waybar" = {
           source = ./waybar;
-          recursive = true;
-        };
-        # hyrpaper config
-        ".config/hypr" = {
-          source = ./hypr;
           recursive = true;
         };
         # session start
