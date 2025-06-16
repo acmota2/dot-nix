@@ -1,4 +1,4 @@
-{ pkgs, nixvim, ... }:
+{ pkgs, nixvim, ... }@inputs:
 {
   imports = [ nixvim.nixosModules.nixvim ];
   programs.nixvim = {
@@ -6,9 +6,7 @@
     globals.mapleader = ",";
     keymaps = import ./remaps.nix;
     opts = import ./options.nix;
-    plugins = import ./plugins.nix {
-      pkgs = pkgs;
-    };
+    plugins = import ./plugins.nix inputs;
     colorschemes.tokyonight = {
       enable = true;
       settings.style = "night";
