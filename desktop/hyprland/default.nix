@@ -63,7 +63,11 @@
       };
     };
     programs = {
-      waybar.enable = true;
+      waybar = {
+        enable = true;
+        settings = import ./waybar;
+        style = builtins.readFile ./waybar/style.css;
+      };
       hyprlock = {
         enable = true;
         settings = import ./hyprlock;
@@ -71,15 +75,7 @@
     };
 
     home = {
-      file = {
-        # waybar cfg
-        ".config/waybar" = {
-          source = ./waybar;
-          recursive = true;
-        };
-        # session start
-        ".zprofile".source = ./.zprofile;
-      };
+      file.".zprofile".source = ./.zprofile;
 
       pointerCursor = {
         gtk.enable = true;
