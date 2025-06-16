@@ -31,6 +31,7 @@
             ./games
             ./hardware/bluetooth.nix
             ./hardware/nfs.nix
+            ./multimedia
             ./shell
           ];
           specialArgs = {
