@@ -11,9 +11,9 @@ This configuration is automatically enabled for normal users.
 Uses the normal hyprland files instead of using Nix confiurations directly to maintain compatibility across other machines that still don't use  NixOS.
 
 - [Nix code for hyprland](./desktop/hyprland/default.nix)
-- [hyprland](./desktop/hyprland/hypr/hyprland.conf)
-- [hypridle](./desktop/hyprland/hypr/hypridle.conf)
-- [hyprlock](./desktop/hyprland/hypr/hyprlock.conf)
-- [waybar](./desktop/hyprland/waybar/config)
+- [hyprland](./desktop/hyprland/hypr/hyprland/default.nix)
+- [hypridle](./desktop/hyprland/hypr/hypridle/default.nix)
+- [hyprlock](./desktop/hyprland/hypr/hyprlock/default.nix)
+- [waybar](./desktop/hyprland/waybar/default.nix)
 
 
