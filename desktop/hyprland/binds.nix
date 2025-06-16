@@ -33,6 +33,7 @@ in
       "$mod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
       "$mod, E, exec, wofi-emoji"
       "$mod, P, exec, wofi-power-menu"
+      "$mod, L, exec, hyprlock"
       "$mod SHIFT, Q, killactive"
       # move between windows
       "$mod, left, movefocus, l"
