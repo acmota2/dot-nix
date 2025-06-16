@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, lib, ... }:
 {
   lualine.enable = true;
   nix.enable = true;
@@ -16,6 +16,27 @@
   };
   lsp = {
     enable = true;
+    keymaps = {
+      lspBuf = {
+        "<leader>r" = "rename";
+        "gd" = "definition";
+      };
+    };
+    # this is the correct option after 25.05
+    #keymaps = [
+    /*
+      {
+        # mode = [ "n" ];
+        key = "<leader>r";
+        lspBufAction = "rename";
+      }
+        {
+          mode = "n";
+          action = ''require('telescope.builtin').lsp_definitions'';
+          key = "gd";
+        }
+    */
+    #];
     servers = {
       ts_ls.enable = true;
       lua_ls.enable = true;
