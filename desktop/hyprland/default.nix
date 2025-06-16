@@ -6,11 +6,11 @@
 }@inputs:
 {
   fonts.packages = with pkgs; [
+    font-awesome
+    jetbrains-mono
+    nerd-fonts.jetbrains-mono
     noto-fonts
     noto-fonts-emoji
-    jetbrains-mono
-    font-awesome
-    nerd-fonts.jetbrains-mono
   ];
 
   environment.systemPackages = with pkgs; [
@@ -21,6 +21,7 @@
     xwayland
     wl-clipboard
     wofi-emoji
+    wofi-power-menu
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
   ];
