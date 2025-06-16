@@ -3,7 +3,7 @@
   hyprland,
   username,
   ...
-}: # @inputs:
+}@inputs:
 {
   fonts.packages = with pkgs; [
     noto-fonts
@@ -42,16 +42,16 @@
   home-manager.users.${username} = _: {
     imports = [
       hyprland.homeManagerModules.default
-      # (import ./settings.nix inputs)
-      # ./binds.nix
-      # ./rules.nix
+      (import ./settings.nix inputs)
+      ./binds.nix
+      ./rules.nix
     ];
-    /*
-        wayland.windowManager.hyprland = {
-          enable = true;
-          xwayland.enable = true;
-        };
-    */
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      package = null;
+      portalPackage = null;
+    };
     services = {
       hyprpaper.enable = true;
       hypridle.enable = true;
@@ -60,12 +60,7 @@
       waybar.enable = true;
       hyprlock.enable = true;
     };
-    /*
-      wayland.windowManager.hyprland = {
-        enable = true;
-        systemd.enable = true;
-      };
-    */
+
     home = {
       file = {
         # waybar cfg
