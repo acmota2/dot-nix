@@ -1,9 +1,10 @@
-#window {
+window {
   background-color: rgba(51, 51, 51, 0.75);
   border-radius: 5px;
   border: 2px;
   border-color: rgba(0, 113, 148, 0.75);
   font-family: "JetBrainsMono";
+  margin: 0px;
 }
 
 #entry {
@@ -19,6 +20,11 @@
   border-color: #008194;
 }
 
+#inner-box {
+  margin: 0px;
+  border: none;
+}
+
 #input:focus {
   border-color: rgba(0, 113, 132, 0.93);
 }
@@ -29,4 +35,9 @@
   border-color: rgba(51, 51, 51, 0.75);
   background-color: rgba(51, 51, 51, 0.9);
   font-size: 20px;
+}
+
+#outer-box {
+  margin: 0px;
+  border: none;
 }
