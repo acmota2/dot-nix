@@ -100,8 +100,8 @@
     gtk = {
       enable = true;
       theme = {
-        package = pkgs.flat-remix-gtk;
-        name = "Flat-Remix-GTK-Grey-Darkest";
+        name = "Adwaita-dark";
+        package = pkgs.gnome-themes-extra;
       };
       iconTheme = {
         package = pkgs.adwaita-icon-theme;
