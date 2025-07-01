@@ -1,7 +1,13 @@
-{ pkgs, username, ... }: {
-  users.users.${username} = { extraGroups = [ "sound" ]; };
+{ pkgs, username, ... }:
+{
+  users.users.${username} = {
+    extraGroups = [ "sound" ];
+  };
   security.rtkit.enable = true;
-  environment.systemPackages = with pkgs; [ pulseaudio ];
+  environment.systemPackages = with pkgs; [
+    pulseaudio
+    pavucontrol
+  ];
   services = {
     pipewire = {
       enable = true;
