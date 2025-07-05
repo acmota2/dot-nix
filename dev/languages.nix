@@ -1,9 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     go
     python3
     elixir
-    nodePackages.npm
+    pnpm
     nodejs_22
     jdk21
     rustup
