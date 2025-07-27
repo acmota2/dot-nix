@@ -1,12 +1,13 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    go
-    python3
+    clang
     elixir
-    pnpm
-    nodejs_22
+    go
     jdk21
+    nodejs_22
+    pnpm
+    python3
     rustup
   ];
 }

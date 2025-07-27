@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   lualine.enable = true;
   nix.enable = true;
@@ -12,6 +12,16 @@
     };
     extensions.file-browser = {
       enable = true;
+    };
+  };
+  ts-autotag = {
+    enable = true;
+    settings = {
+      opts = {
+        enable_close = true;
+        enable_close_on_slash = false;
+        enable_rename = true;
+      };
     };
   };
   lsp = {
