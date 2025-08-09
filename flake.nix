@@ -56,6 +56,7 @@
             ./hardware/bluetooth.nix
             ./hardware/brightness.nix
             ./hardware/nfs.nix
+            ./hardware/tlp.nix
             ./multimedia
             ./shell
           ];
