@@ -39,6 +39,7 @@
             hostname = "EnderDragon";
             desktop = "hyprland";
             graphics = "amd";
+            hdr = true;
             monitors =
               let
                 monitorList = import ./monitors;
@@ -65,6 +66,7 @@
             hostname = "Allay";
             desktop = "hyprland";
             graphics = "intel";
+            hdr = false;
             monitors =
               let
                 monitorList = import ./monitors;
