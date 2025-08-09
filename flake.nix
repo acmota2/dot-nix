@@ -47,6 +47,31 @@
               [ aoc ];
           } // inputs;
         };
+        "Allay" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./.
+            ./boot/kernel-mod
+            ./dev
+            ./hardware/bluetooth.nix
+            ./hardware/brightness.nix
+            ./hardware/nfs.nix
+            ./multimedia
+            ./shell
+          ];
+          specialArgs = {
+            username = "acmota2";
+            hostname = "Allay";
+            desktop = "hyprland";
+            graphics = "intel";
+            monitors =
+              let
+                monitorList = import ./monitors;
+                inherit (monitorList) t480;
+              in
+              [ t480 ];
+          } // inputs;
+        };
       };
     };
 }
