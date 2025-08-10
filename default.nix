@@ -38,7 +38,9 @@
     htop
     killall
     macchina
+    unzip
     wget
+    zip
     zsh
   ];
 }

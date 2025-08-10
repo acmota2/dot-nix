@@ -73,6 +73,7 @@
         css = [ "prettierd" ];
         graphql = [ "prettierd" ];
         html = [ "prettierd" ];
+        htmldjango = [ "prettierd" ];
         javascript = [ "prettierd" ];
         javascriptreact = [ "prettierd" ];
         json = [ "prettierd" ];
@@ -80,7 +81,7 @@
         nix = [ "nixfmt" ];
         python = [ "isort" ];
         rust = [ "rustfmt" ];
-        svelte = [ "pettierd" ];
+        svelte = [ "prettierd" ];
         typescript = [ "prettierd" ];
         typescriptreact = [ "prettierd" ];
         yaml = [ "prettierd" ];
