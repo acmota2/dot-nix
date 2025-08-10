@@ -161,7 +161,7 @@
         warning = 30;
         critical = 15;
       };
-      format = "{icon} ";
+      format = "{icon} {capacity}%";
       format-charging = "{capacity}% ";
       format-plugged = "{capacity}% ";
       format-alt = "{time} {capacity}% {icon}";
@@ -181,13 +181,13 @@
     network = {
       # "interface"= "wlp2*"; // (Optional) To force the use of this interface
       # "format-wifi"= "{essid} ({signalStrength}%) ";
-      format-wifi = "({signalStrength}%) ";
+      format-wifi = "[{signalStrength}%] ";
       # "format-ethernet"= "{ipaddr}/{cidr} ";
-      format-ethernet = "{cidr} ";
-      tooltip-format = "{ifname}: {gwaddr} ";
-      format-linked = "{ifname} (No IP) ";
-      format-disconnected = "Disconnected ⚠";
-      format-alt = "{ifname}: {ipaddr}/{cidr}";
+      format-ethernet = "[ ] 󰛳";
+      tooltip-format = "{ifname}: {essid} 󰲝";
+      format-linked = "[ ] 󰱓";
+      format-disconnected = "[ ] 󰅛";
+      # format-alt = "{ifname}: {ipaddr}/{cidr}";
     };
     pulseaudio = {
       # "scroll-step"= 1; // %, can be a float
