@@ -1,4 +1,2 @@
-hardware-confiuration.nix
-.env
-.env.*
-
+machines/hardware-configuration.nix
+.env.local
