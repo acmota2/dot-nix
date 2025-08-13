@@ -1,7 +1,6 @@
 {
   pkgs,
   hyprland,
-  username,
   ...
 }:
 let
@@ -9,37 +8,39 @@ let
 in
 {
   # based on https://itsfoss.com/hyprpaper-hyprland/
-  systemd.timers."wallpaper-control" = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnUnitActiveSec = "1m";
-      OnBootSec = "5m";
-      OnCalendar = [
-        "*-*-* 7:00:00"
-        "*-*-* 19:00:00"
-      ];
-      Unit = "wallpaper-control.service";
+  systemd.user = {
+    timers."wallpaper-control" = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnUnitActiveSec = "1m";
+        OnBootSec = "5m";
+        OnCalendar = [
+          "*-*-* 7:00:00"
+          "*-*-* 19:00:00"
+          "*-*-* *:10:00"
+        ];
+        Persistent = true;
+        Unit = "wallpaper-control.service";
+      };
     };
-  };
 
-  systemd.services."wallpaper-control" = {
-    script = ''
-      !/bin/sh
+    services."wallpaper-control" = {
+      script = ''
+        set -eu
+        TIME=$(date +%H)
 
-      TIME=$(date +%H)
+        if [ $TIME -ge 7 ] && [ $TIME -lt 19 ]; then
+          WLP=$(ls ~/pictures | grep hot | shuf -n 1)
+        else 
+          WLP=$(ls ~/pictures | grep cold | shuf -n 1)
+        fi
 
-      if [ $TIME -ge 7 ] && [ $TIME -lt 19 ]; then
-        WLP=$(ls ~/pictures | grep hot | shuf -n 1)
-      else 
-        WLP=$(ls ~/pictures | grep cold | shuf -n 1)
-      fi
-
-      ${hypr}/bin/hyprctl hyprpaper preload $WLP
-      ${hypr}/bin/hyprctl hyprpaper wallpaper $WLP
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      User = "${username}";
+        ${hypr}/usr/bin/hyprctl hyprpaper preload $WLP
+        ${hypr}/usr/bin/hyprctl hyprpaper wallpaper $WLP
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+      };
     };
   };
 }
