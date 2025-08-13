@@ -5,6 +5,10 @@
   ...
 }@inputs:
 {
+  imports = [
+    (import ./hyprpaper/wallpaper-control.nix inputs)
+  ];
+
   fonts.packages = with pkgs; [
     font-awesome
     jetbrains-mono
@@ -70,6 +74,7 @@
         settings = import ./hypridle;
       };
     };
+
     programs = {
       waybar = {
         enable = true;
