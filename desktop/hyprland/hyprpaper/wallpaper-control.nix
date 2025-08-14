@@ -1,6 +1,7 @@
 {
   pkgs,
   hyprland,
+  username,
   ...
 }:
 let
@@ -9,7 +10,7 @@ in
 {
   # based on https://itsfoss.com/hyprpaper-hyprland/
   systemd.user = {
-    timers."wallpaper-control" = {
+    timers.wallpaper-control = {
       wantedBy = [ "timers.target" ];
       timerConfig = {
         OnUnitActiveSec = "1m";
@@ -24,9 +25,11 @@ in
       };
     };
 
-    services."wallpaper-control" = {
+    services.wallpaper-control = {
+      path = [
+        hypr
+      ];
       script = ''
-        set -eu
         TIME=$(date +%H)
 
         if [ $TIME -ge 7 ] && [ $TIME -lt 19 ]; then
@@ -35,11 +38,14 @@ in
           WLP=$(ls ~/pictures | grep cold | shuf -n 1)
         fi
 
-        ${hypr}/usr/bin/hyprctl hyprpaper preload $WLP
-        ${hypr}/usr/bin/hyprctl hyprpaper wallpaper $WLP
+        hyprctl --instance 0 dispatch exec hyprctl hyprpaper preload "/home/${username}/pictures/$WLP"
+        hyprctl --instance 0 dispatch exec ${hypr}/bin/hyprctl hyprpaper wallpaper ",/home/${username}/pictures/$WLP"
       '';
       serviceConfig = {
         Type = "oneshot";
+        ProtectSystem = "full";
+        ProtectHome = true;
+        NoNewPriviliges = true;
       };
     };
   };

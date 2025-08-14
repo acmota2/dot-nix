@@ -55,7 +55,7 @@
     imports = [
       hyprland.homeManagerModules.default
       (import ./settings.nix inputs)
-      ./binds.nix
+      (import ./binds.nix inputs)
       ./rules.nix
     ];
 

@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 let
   workspaceBinds = builtins.concatLists (
     builtins.genList (
@@ -10,6 +11,10 @@ let
         "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
       ]
     ) 9
+  );
+
+  wallpaper-choose = pkgs.writeShellScript "wallpaper-spawn" (
+    builtins.readFile ./hyprpaper/wallpaper-spawn.sh
   );
 in
 {
@@ -26,6 +31,7 @@ in
       "$mod, P, exec, wofi-power-menu"
       "$mod, L, exec, hyprlock"
       "$mod SHIFT, Q, killactive"
+      "$mod, W, exec, ${wallpaper-choose}"
       # move between windows
       "$mod, left, movefocus, l"
       "$mod, right, movefocus, r"
