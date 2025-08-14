@@ -5,10 +5,6 @@
   ...
 }@inputs:
 {
-  imports = [
-    (import ./hyprpaper/wallpaper-control.nix inputs)
-  ];
-
   fonts.packages = with pkgs; [
     font-awesome
     jetbrains-mono
@@ -55,7 +51,7 @@
     imports = [
       hyprland.homeManagerModules.default
       (import ./settings.nix inputs)
-      ./binds.nix
+      (import ./binds.nix inputs)
       ./rules.nix
     ];
 
