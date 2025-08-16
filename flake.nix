@@ -29,6 +29,7 @@
             ./boot/kernel-mod
             ./dev
             ./games
+            ./games/minecraft
             ./hardware/bluetooth.nix
             ./hardware/nfs.nix
             ./multimedia
@@ -46,7 +47,8 @@
                 inherit (monitorList) aoc;
               in
               [ aoc ];
-          } // inputs;
+          }
+          // inputs;
         };
         "Allay" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -54,6 +56,7 @@
             ./.
             ./boot/kernel-mod
             ./dev
+            ./games
             ./hardware/bluetooth.nix
             ./hardware/brightness.nix
             ./hardware/nfs.nix
@@ -73,7 +76,8 @@
                 inherit (monitorList) t480;
               in
               [ t480 ];
-          } // inputs;
+          }
+          // inputs;
         };
       };
     };
