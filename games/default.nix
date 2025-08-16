@@ -1,6 +1,9 @@
-{ pkgs, ... }: {
-  imports = [ ./minecraft ];
-  environment.systemPackages = with pkgs; [ steam lutris ];
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    steam
+    lutris
+  ];
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -8,4 +11,3 @@
     localNetworkGameTransfers.openFirewall = true;
   };
 }
-
