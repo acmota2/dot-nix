@@ -2,7 +2,7 @@
   background = [
     {
       monitor = "";
-      path = "~/pictures/dawn2.jpg";
+      path = "~/pictures/covao da ametade cold.jpg";
       color = "rgba(25, 20, 20, 1.0)";
       blur_passes = 2;
     }
@@ -20,7 +20,6 @@
       halign = "right";
       valign = "bottom";
     }
-
     {
       monitor = "";
       text = "$TIME";
