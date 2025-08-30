@@ -15,14 +15,14 @@
 
   environment.systemPackages = with pkgs; [
     cliphist
-    grimblast
-    hyprpaper
     hypridle
-    xwayland
+    hyprpaper
+    hyprshot
     wl-clipboard
     wofi-emoji
     wofi-power-menu
     xdg-desktop-portal-gtk
+    xwayland
   ];
 
   services.dbus.enable = true;

@@ -43,10 +43,10 @@ in
       "$mod SHIFT, up, movewindow, u"
       "$mod SHIFT, down, movewindow, d"
       # resize windows
-      "ALT SHIFT, right, resizeactive, 10 0"
-      "ALT SHIFT, up, resizeactive, 0 -10"
-      "ALT SHIFT, down, resizeactive, 0 10"
-      "ALT SHIFT, left, resizeactive, -10 0"
+      "ALT SHIFT, right, resizeactive, 25 0"
+      "ALT SHIFT, up, resizeactive, 0 -25"
+      "ALT SHIFT, down, resizeactive, 0 25"
+      "ALT SHIFT, left, resizeactive, -25 0"
       # fullscreen window
       "$mod, F, fullscreen, 0"
       "$mod, A, togglefloating,"
@@ -56,9 +56,10 @@ in
       # Scroll through existing workspaces with mod + scroll
       "$mod, mouse_down, workspace, e+1"
       "$mod, mouse_up, workspace, e-1"
-      # grimblast
-      "$mod SHIFT, P, exec, grimblast copy area"
-      "ALT SHIFT, P, exec, grimblast copy screen"
+      # hyprshot
+      "$mod, PRINT, exec, hyprshot -m window --clipboard-only"
+      ", PRINT, exec, hyprshot -m output --clipboard-only"
+      "$mod SHIFT, PRINT, exec, hyprshot -m region --clipboard-only"
     ];
     binde = [
       # bightness keys
