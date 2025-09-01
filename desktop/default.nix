@@ -10,14 +10,16 @@
     in
     if desktop != "hyprland" then desktopImport else desktopImport ++ [ ./tiling/mako ];
 
-  programs.firefox = {
+  programs.chromium = {
     enable = true;
-    policies.DisableTelemetry = true;
-    policies.Homepage.StartPage = "https://home.voldemota.xyz";
+    extensions = [
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
+    ];
   };
 
   environment.systemPackages = [
     pkgs.discord
     pkgs.spotify
+    pkgs.brave
   ];
 }
