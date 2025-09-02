@@ -5,20 +5,7 @@
     "$terminal" = "footclient";
     "$terminalWindow" = "footclient";
     "$menu" = "wofi -S drun,run";
-    monitor = map (
-      settings:
-      let
-        inherit (settings)
-          port
-          resolution
-          rr
-          scale
-          extra
-          ;
-      in
-      "${port},${resolution}@${rr}.00,0x0,${scale},${extra}"
-    ) monitors;
-    # workspace = builtins.genList (i: "${toString i}") 9;
+    monitor = monitors;
 
     exec-once = [
       "foot --server"

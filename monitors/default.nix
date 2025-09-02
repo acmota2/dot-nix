@@ -1,16 +1,20 @@
 {
-  aoc = {
-    resolution = "2560x1440";
-    scale = "1";
-    port = "DP-1";
-    rr = "180";
-    extra = "bitdepth,10"; # according to Hyprland wiki
-  };
-  t480 = {
-    resolution = "1920x1080";
-    scale = "1";
-    port = "eDP-1";
-    rr = "60";
-    extra = "";
-  };
+  /*
+    aoc = {
+      output = "DP-1";
+      mode = "2560x1440@180";
+      scale = "1";
+      position = "0x0";
+      supports_wide_color = 1;
+      supports_hdr = 1;
+    };
+    t480 = {
+      output = "eDP-1";
+      mode = "1920x1080@60";
+      scale = "1";
+      position = "0x0";
+    };
+  */
+  aoc = "DP-2,2560x1440@180,0x0,1,bitdepth,10,vrr,3"; # ,cm,hdr,sdrbrightness,1.5,sdrsaturation,1";
+  t480 = "eDP-1,1920x1080@60,0x0";
 }
