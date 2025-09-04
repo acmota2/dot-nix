@@ -38,6 +38,7 @@
     htop
     killall
     macchina
+    p7zip
     unzip
     wget
     zip

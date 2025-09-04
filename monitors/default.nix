@@ -16,5 +16,5 @@
     };
   */
   aoc = "DP-2,2560x1440@180,0x0,1,bitdepth,10,vrr,3"; # ,cm,hdr,sdrbrightness,1.5,sdrsaturation,1";
-  t480 = "eDP-1,1920x1080@60,0x0";
+  t480 = "eDP-1,1920x1080@60,0x0,1";
 }
