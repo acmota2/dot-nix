@@ -2,6 +2,7 @@
   pkgs,
   home-manager,
   desktop,
+  isWsl,
   ...
 }:
 {
@@ -11,22 +12,25 @@
         ./desktop
         ./desktop/${desktop}
       ];
-      defaults = [
+      base = [
         home-manager.nixosModules.home-manager
         ./base
-        ./boot
-        ./desktop/${desktop}
         ./dev
         ./dev/languages.nix
-        ./hardware
         ./locale
         ./macchina
-        ./machines
         ./nixvim
+        ./shell
         ./starship
         ./tmux
         ./users
       ];
+      machineBase = [
+        ./boot
+        ./hardware
+        ./machines
+      ];
+      defaults = if isWsl then base else base ++ machineBase;
     in
     if desktop != null then defaults ++ guiPackages else defaults;
 

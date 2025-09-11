@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, userEmail, ... }:
+{
   users.users."acmota2" = {
     shell = pkgs.zsh;
     isNormalUser = true;
@@ -14,8 +15,10 @@
         git = {
           enable = true;
           userName = "acmota2";
-          userEmail = "acmota2@gmail.com";
-          aliases = { "ga" = "git add"; };
+          userEmail = "${userEmail}";
+          aliases = {
+            "ga" = "git add";
+          };
         };
         fzf = {
           enable = true;
@@ -34,4 +37,3 @@
     };
   };
 }
-

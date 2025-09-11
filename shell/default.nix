@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   system.userActivationScripts.zshrc = "touch .zshrc";
   environment.shells = [ pkgs.zsh ];
   programs.zsh = {
