@@ -1,9 +1,4 @@
-{
-  pkgs,
-  gitEmail,
-  gitUser,
-  ...
-}:
+{ config, pkgs, ... }:
 {
   users.users.acmota2 = {
     shell = pkgs.zsh;
@@ -19,8 +14,8 @@
         zsh.enable = true;
         git = {
           enable = true;
-          userName = "${gitUser}";
-          userEmail = "${gitEmail}";
+          userName = "${config.sops.secrets.gitUser.path}";
+          userEmail = "${config.sops.secrets.gitEmail.path}";
           aliases = {
             "ga" = "git add";
             "gc" = "git clone";

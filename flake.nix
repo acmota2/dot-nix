@@ -18,7 +18,7 @@
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { nixpkgs, sops-nix, ... }@inputs:
     let
       defaultUser = {
         gitEmail = "acmota2@gmail.com";
@@ -38,6 +38,9 @@
             ./hardware/bluetooth.nix
             ./hardware/nfs.nix
             ./multimedia
+            ./sops
+            sops-nix.nixosModules.sops
+
           ];
           specialArgs = {
             desktop = "hyprland";
@@ -66,6 +69,8 @@
             ./hardware/nfs.nix
             ./hardware/tlp.nix
             ./multimedia
+            ./sops
+            sops-nix.nixosModules.sops
           ];
           specialArgs = {
             desktop = "hyprland";
@@ -89,7 +94,9 @@
           system = "x86_64-linux";
           modules = [
             ./.
+            ./sops
             ./wsl
+            sops-nix.nixosModules.sops
           ];
           specialArgs = {
             desktop = null;
