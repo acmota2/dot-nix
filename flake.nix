@@ -2,22 +2,30 @@
   description = "My machines";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/hyprland";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/hyprland";
+    sops-nix.url = "github:Mic92/sops-nix";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs =
     { nixpkgs, ... }@inputs:
+    let
+      defaultUser = {
+        gitEmail = "acmota2@gmail.com";
+        gitUser = "acmota2";
+        username = "acmota2";
+      };
+    in
     {
       nixosConfigurations = {
         "EnderDragon" = nixpkgs.lib.nixosSystem {
@@ -43,10 +51,9 @@
                 inherit (monitorList) aoc;
               in
               [ aoc ];
-            userEmail = "acmota2@gmail.com";
-            username = "acmota2";
           }
-          // inputs;
+          // inputs
+          // defaultUser;
         };
         "Allay" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -75,7 +82,8 @@
             userEmail = "acmota2@gmail.com";
             username = "acmota2";
           }
-          // inputs;
+          // inputs
+          // defaultUser;
         };
         "Squid" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -85,9 +93,10 @@
           ];
           specialArgs = {
             desktop = null;
+            gitEmail = "acmota2@gmail.com";
+            gitUser = "acmota2";
             hostname = "Squid";
             isWsl = true;
-            userEmail = "acmota2@gmail.com";
             username = "acmota2";
           }
           // inputs;

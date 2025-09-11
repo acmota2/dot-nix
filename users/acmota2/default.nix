@@ -1,10 +1,15 @@
-{ pkgs, userEmail, ... }:
 {
-  users.users."acmota2" = {
+  pkgs,
+  gitEmail,
+  gitUser,
+  ...
+}:
+{
+  users.users.acmota2 = {
     shell = pkgs.zsh;
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    description = "acmota2";
+    description = "A normal user";
   };
 
   home-manager = {
@@ -14,10 +19,11 @@
         zsh.enable = true;
         git = {
           enable = true;
-          userName = "acmota2";
-          userEmail = "${userEmail}";
+          userName = "${gitUser}";
+          userEmail = "${gitEmail}";
           aliases = {
             "ga" = "git add";
+            "gc" = "git clone";
           };
         };
         fzf = {
