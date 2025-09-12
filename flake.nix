@@ -100,8 +100,8 @@
           ];
           specialArgs = {
             desktop = null;
-            gitEmail = "acmota2@gmail.com";
-            gitUser = "acmota2";
+            gitEmail = null;
+            gitUser = null;
             hostname = "Squid";
             isWsl = true;
             username = "acmota2";

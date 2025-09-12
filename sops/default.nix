@@ -7,12 +7,9 @@
 
   sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
 
-  sops.secrets = {
-    gitUser = {
-      owner = "${username}";
-    };
-    gitEmail = {
-      owner = "${username}";
-    };
+  sops.secrets.git-config = {
+    format = "ini";
+    owner = "${username}";
+    sopsFile = ../secrets/git-config.ini;
   };
 }

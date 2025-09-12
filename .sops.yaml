@@ -1,7 +1,9 @@
 keys:
-  - &primary age184ftm4s9hy99yl9l9hvy0a2y2qa8c6hkq9velwclsjggsfdh033qjv2606
+  - &Allay age184ftm4s9hy99yl9l9hvy0a2y2qa8c6hkq9velwclsjggsfdh033qjv2606
+  - &Squid age1k37dllktx6jpcc3q3z9yrm64x4t5s9mrmnk9hzqthqfaj9d6s36szpvhsq
 creation_rules:
-  - path_regex: secrets/secrets.yaml$
+  - path_regex: secrets/[^/]+\.(yaml|json|ini)$
     key_groups:
       - age:
-          - *primary
+          - *Allay
+          - *Squid
