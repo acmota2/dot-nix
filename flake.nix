@@ -81,6 +81,7 @@
             default
             ++ sops
             ++ [
+              ./aws
               ./wsl
             ];
           specialArgs = {
