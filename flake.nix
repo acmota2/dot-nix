@@ -22,91 +22,92 @@
         gitUser = "acmota2";
         username = "acmota2";
       };
-    in
-    {
-      nixosConfigurations = {
-        "EnderDragon" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./.
-            ./boot/kernel-mod
-            ./games
-            ./games/minecraft
-            ./hardware/bluetooth.nix
-            ./hardware/nfs.nix
-            ./multimedia
-            ./sops
-            ./virtualization/podman.nix
-            sops-nix.nixosModules.sops
 
-          ];
+      default = [ ./. ];
+
+      machineModules = [
+        ./boot/kernel-mod
+        ./hardware/nfs.nix
+        ./multimedia
+        ./virtualization/podman.nix
+      ];
+
+      sops = [
+        ./sops
+        sops-nix.nixosModules.sops
+      ];
+
+      mySystems = {
+        EnderDragon = {
+          modules =
+            default
+            ++ machineModules
+            ++ [
+              ./games
+              ./games/minecraft
+              ./hardware/bluetooth.nix
+            ];
+
           specialArgs = {
             desktop = "hyprland";
             graphics = "amd";
             hdr = true;
-            hostname = "EnderDragon";
-            isWsl = false;
-            monitors =
-              let
-                monitorList = import ./monitors;
-                inherit (monitorList) aoc;
-              in
-              [ aoc ];
-          }
-          // inputs
-          // defaultUser;
+            monitors = (import ./monitors).aoc;
+          };
         };
-        "Allay" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./.
-            ./boot/kernel-mod
-            ./games
-            ./hardware/bluetooth.nix
-            ./hardware/brightness.nix
-            ./hardware/nfs.nix
-            ./hardware/tlp.nix
-            ./multimedia
-            ./sops
-            ./virtualization/podman.nix
-            sops-nix.nixosModules.sops
-          ];
+
+        Allay = {
+          modules =
+            default
+            ++ machineModules
+            ++ sops
+            ++ [
+              ./games
+              ./hardware/bluetooth.nix
+              ./hardware/brightness.nix
+              ./hardware/tlp.nix
+            ];
+
           specialArgs = {
             desktop = "hyprland";
             graphics = "intel";
             hdr = false;
-            hostname = "Allay";
-            isWsl = false;
-            monitors =
-              let
-                monitorList = import ./monitors;
-                inherit (monitorList) t480;
-              in
-              [ t480 ];
-            userEmail = "acmota2@gmail.com";
-            username = "acmota2";
-          }
-          // inputs
-          // defaultUser;
+            monitors = (import ./monitors).t480;
+          };
         };
-        "Squid" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./.
-            ./sops
-            ./wsl
-            sops-nix.nixosModules.sops
-          ];
+
+        Squid = {
+          modules =
+            default
+            ++ sops
+            ++ [
+              ./wsl
+            ];
           specialArgs = {
             desktop = null;
             gitEmail = null;
             gitUser = null;
-            hostname = "Squid";
-            isWsl = true;
-            username = "acmota2";
-          }
-          // inputs;
+          };
         };
       };
+    in
+    {
+      nixosConfigurations = nixpkgs.lib.mapAttrs (
+        hostname: config:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs =
+            inputs
+            // defaultUser
+            // config.specialArgs
+            // {
+              inherit hostname;
+            }
+            // {
+              isWsl = nixpkgs.lib.elem ./wsl config.modules;
+            };
+          modules = config.modules;
+        }
+      ) mySystems;
     };
 }
