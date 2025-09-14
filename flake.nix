@@ -36,6 +36,7 @@
             ./hardware/nfs.nix
             ./multimedia
             ./sops
+            ./virtualization/podman.nix
             sops-nix.nixosModules.sops
 
           ];
@@ -67,6 +68,7 @@
             ./hardware/tlp.nix
             ./multimedia
             ./sops
+            ./virtualization/podman.nix
             sops-nix.nixosModules.sops
           ];
           specialArgs = {
