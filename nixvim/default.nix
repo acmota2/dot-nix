@@ -3,6 +3,10 @@
   imports = [ nixvim.nixosModules.nixvim ];
   programs.nixvim = {
     enable = true;
+    diagnostic.settings = {
+      virtual_lines.current_line = false;
+      virtual_text = true;
+    };
     globals.mapleader = ",";
     keymaps = import ./remaps.nix;
     opts = import ./options.nix;

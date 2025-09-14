@@ -117,9 +117,6 @@
   markdown-preview.enable = true;
   treesitter = {
     enable = true;
-    grammarPackages = with pkgs.vimPlugins.nvim-treesitter; [
-      withAllGrammars
-    ];
     settings = {
       autoInstall = true;
       highlight.enable = true;
