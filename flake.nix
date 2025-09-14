@@ -9,10 +9,7 @@
     hyprland.url = "github:hyprwm/hyprland";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
     sops-nix.url = "github:Mic92/sops-nix";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };

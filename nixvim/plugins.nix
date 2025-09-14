@@ -24,8 +24,11 @@
       };
     };
   };
+  lsp-lines.enable = true;
+  lsp-status.enable = true;
   lsp = {
     enable = true;
+    inlayHints = true;
     keymaps = {
       lspBuf = {
         "<leader>r" = "rename";
@@ -48,8 +51,6 @@
     */
     #];
     servers = {
-      ts_ls.enable = true;
-      lua_ls.enable = true;
       rust_analyzer = {
         enable = true;
         installCargo = false;
@@ -57,11 +58,17 @@
       };
       # hls.enable = true;
       clangd.enable = true;
-      nixd.enable = true;
       gopls.enable = true;
-      zls.enable = true;
+      html.enable = true;
+      htmx.enable = true;
+      hyprls.enable = true;
+      lua_ls.enable = true;
       markdown_oxide.enable = true;
+      nixd.enable = true;
+      pylsp.enable = true;
       svelte.enable = true;
+      ts_ls.enable = true;
+      zls.enable = true;
     };
   };
   conform-nvim = {
@@ -79,7 +86,7 @@
         json = [ "prettierd" ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
-        python = [ "isort" ];
+        python = [ "black" ];
         rust = [ "rustfmt" ];
         svelte = [ "prettierd" ];
         typescript = [ "prettierd" ];
@@ -110,20 +117,8 @@
   markdown-preview.enable = true;
   treesitter = {
     enable = true;
-    grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-      bash
-      json
-      lua
-      make
-      markdown
-      nix
-      rust
-      svelte
-      typescript
-      tsx
-      toml
-      vim
-      yaml
+    grammarPackages = with pkgs.vimPlugins.nvim-treesitter; [
+      withAllGrammars
     ];
     settings = {
       autoInstall = true;
