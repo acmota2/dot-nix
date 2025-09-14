@@ -4,7 +4,7 @@
   programs.nixvim = {
     enable = true;
     diagnostic.settings = {
-      virtual_lines.current_line = false;
+      virtual_lines.current_line = true;
       virtual_text = true;
     };
     globals.mapleader = ",";
