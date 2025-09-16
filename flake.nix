@@ -102,11 +102,15 @@
     {
       homeConfigurations = {
         "acmota2" = home-manager.lib.homeManagerConfiguration {
-          inherit system;
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
+            ./aws
             ./home
+            ./macchina
+            ./nixvim
+            ./starship
           ];
+          extraSpecialArgs = defaultUser // inputs // { isHomeManager = true; };
         };
       };
       nixosConfigurations = nixpkgs.lib.mapAttrs (
@@ -122,6 +126,7 @@
             }
             // {
               isWsl = nixpkgs.lib.elem ./wsl config.modules;
+              isHomeManager = false;
             };
           modules = config.modules;
         }

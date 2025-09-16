@@ -1,6 +1,11 @@
-{ pkgs, nixvim, ... }@inputs:
 {
-  imports = [ nixvim.nixosModules.nixvim ];
+  isHomeManager,
+  pkgs,
+  nixvim,
+  ...
+}@inputs:
+{
+  imports = if isHomeManager then [ nixvim.homeModules.nixvim ] else [ nixvim.nixosModules.nixvim ];
   programs.nixvim = {
     enable = true;
     diagnostic.settings = {

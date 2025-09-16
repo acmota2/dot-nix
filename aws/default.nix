@@ -1,6 +1,11 @@
-{ pkgs, username, ... }:
 {
-  home-manager.users."${username}" = _: {
+  pkgs,
+  username,
+  isHomeManager,
+  ...
+}:
+let
+  awsConfig = {
     home.sessionVariables = {
       AWS_VAULT_BACKEND = "pass";
       GPG_TTY = "$TTY";
@@ -20,4 +25,5 @@
       pinentry.package = pkgs.pinentry-curses;
     };
   };
-}
+in
+if isHomeManager then awsConfig else { home-manager.users.${username} = _: awsConfig; }
