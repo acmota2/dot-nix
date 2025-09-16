@@ -1,4 +1,9 @@
-{ nixos-wsl, username, ... }:
+{
+  hostname,
+  nixos-wsl,
+  username,
+  ...
+}:
 {
   imports = [
     nixos-wsl.nixosModules.default
@@ -10,4 +15,5 @@
       };
     }
   ];
+  networking.hostName = "${hostname}";
 }
