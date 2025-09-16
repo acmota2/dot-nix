@@ -15,7 +15,12 @@
   };
 
   outputs =
-    { nixpkgs, sops-nix, ... }@inputs:
+    {
+      home-manager,
+      nixpkgs,
+      sops-nix,
+      ...
+    }@inputs:
     let
       defaultUser = {
         gitEmail = "acmota2@gmail.com";
@@ -36,6 +41,8 @@
         ./sops
         sops-nix.nixosModules.sops
       ];
+
+      system = "x86_64-linux";
 
       mySystems = {
         EnderDragon = {
@@ -93,10 +100,19 @@
       };
     in
     {
+      homeConfigurations = {
+        "acmota2" = home-manager.lib.homeManagerConfiguration {
+          inherit system;
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [
+            ./home
+          ];
+        };
+      };
       nixosConfigurations = nixpkgs.lib.mapAttrs (
         hostname: config:
         nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs =
             inputs
             // defaultUser
