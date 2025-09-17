@@ -109,15 +109,15 @@
             ./macchina
             ./nixvim
             ./starship
+            ./utils
           ];
           extraSpecialArgs = defaultUser // inputs // { isHomeManager = true; };
         };
       };
       nixosConfigurations = nixpkgs.lib.mapAttrs (
         hostname: config:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs =
+        let
+          preSpecial =
             inputs
             // defaultUser
             // config.specialArgs
@@ -128,6 +128,10 @@
               isWsl = nixpkgs.lib.elem ./wsl config.modules;
               isHomeManager = false;
             };
+        in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = preSpecial // (import ./utils preSpecial);
           modules = config.modules;
         }
       ) mySystems;
