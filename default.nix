@@ -15,6 +15,7 @@
       base = [
         home-manager.nixosModules.home-manager
         ./base
+        ./btop
         ./dev
         ./dev/languages.nix
         ./locale
@@ -35,11 +36,11 @@
     if desktop != null then defaults ++ guiPackages else defaults;
 
   environment.systemPackages = with pkgs; [
+    btop
     coreutils-full
     curl
     file
     git
-    htop
     killall
     macchina
     p7zip
