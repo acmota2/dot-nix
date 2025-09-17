@@ -17,4 +17,7 @@
   ];
   networking.hostName = "${hostname}";
   programs.nix-ld.enable = true;
+  home-manager.users.${username} = _: {
+    home.sessionVariables.EDITOR = "nvim";
+  };
 }
