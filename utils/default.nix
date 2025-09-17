@@ -1,14 +1,25 @@
-{ username, ... }:
+{ lib }:
 {
   homeOrNixos =
     {
       isHomeManager,
+      username,
       options,
       optionalHome ? { },
       optionalNixos ? { },
     }:
     if isHomeManager then
-      options // optionalHome
+      lib.mkMerge [
+        options
+        optionalHome
+      ]
     else
-      { home.users.${username} = _: options // optionalNixos; };
+      {
+        home-manager.users.${username} =
+          _:
+          lib.mkMerge [
+            options
+            optionalNixos
+          ];
+      };
 }

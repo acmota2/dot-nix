@@ -1,11 +1,13 @@
 {
+  isHomeManager,
+  myUtils,
   pkgs,
   username,
-  isHomeManager,
   ...
 }:
-let
-  awsConfig = {
+myUtils.homeOrNixos {
+  inherit isHomeManager username;
+  options = {
     home.sessionVariables = {
       AWS_VAULT_BACKEND = "pass";
       GPG_TTY = "$TTY";
@@ -25,5 +27,4 @@ let
       pinentry.package = pkgs.pinentry-curses;
     };
   };
-in
-if isHomeManager then awsConfig else { home-manager.users.${username} = _: awsConfig; }
+}

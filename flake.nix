@@ -28,6 +28,8 @@
         username = "acmota2";
       };
 
+      myUtils = import ./utils { lib = nixpkgs.lib; };
+
       default = [ ./. ];
 
       machineModules = [
@@ -109,30 +111,24 @@
             ./macchina
             ./nixvim
             ./starship
-            ./utils
           ];
           extraSpecialArgs = defaultUser // inputs // { isHomeManager = true; };
         };
       };
       nixosConfigurations = nixpkgs.lib.mapAttrs (
         hostname: config:
-        let
-          preSpecial =
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = config.modules;
+          specialArgs =
             inputs
             // defaultUser
             // config.specialArgs
             // {
-              inherit hostname;
-            }
-            // {
+              inherit hostname myUtils;
               isWsl = nixpkgs.lib.elem ./wsl config.modules;
               isHomeManager = false;
             };
-        in
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = preSpecial // (import ./utils preSpecial);
-          modules = config.modules;
         }
       ) mySystems;
     };

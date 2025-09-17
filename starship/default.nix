@@ -1,12 +1,12 @@
-{ isHomeManager, username, ... }:
-let
-  starshipConfig = {
+{
+  isHomeManager,
+  myUtils,
+  username,
+  ...
+}:
+myUtils.homeOrNixos {
+  inherit isHomeManager username;
+  options = {
     home.file.".config/starship.toml".source = ./starship.toml;
   };
-in
-if isHomeManager then
-  starshipConfig
-else
-  {
-    home-manager.users.${username} = _: starshipConfig;
-  }
+}
