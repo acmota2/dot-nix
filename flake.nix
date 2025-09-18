@@ -110,6 +110,7 @@
             ./home
             ./macchina
             ./nixvim
+            ./shell
             ./starship
           ];
           extraSpecialArgs =
