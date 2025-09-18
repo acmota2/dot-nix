@@ -13,6 +13,8 @@
     description = "A normal user";
   };
 
+  programs.zsh.enable = true;
+
   home-manager = {
     backupFileExtension = "bak";
     users."acmota2" =
