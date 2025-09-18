@@ -19,5 +19,5 @@ if [ $IS_NIXOS -eq 0 ]; then
             ;;
     esac
 else
-    nix run home-manager -- --flake .#$USERNAME
+    nix run home-manager -- switch --flake .#$USERNAME
 fi

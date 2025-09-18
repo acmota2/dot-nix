@@ -112,7 +112,13 @@
             ./nixvim
             ./starship
           ];
-          extraSpecialArgs = defaultUser // inputs // { isHomeManager = true; };
+          extraSpecialArgs =
+            defaultUser
+            // inputs
+            // {
+              inherit myUtils;
+              isHomeManager = true;
+            };
         };
       };
       nixosConfigurations = nixpkgs.lib.mapAttrs (
