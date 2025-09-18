@@ -112,6 +112,7 @@
             ./nixvim
             ./shell
             ./starship
+            ./user
           ];
           extraSpecialArgs =
             defaultUser
