@@ -46,6 +46,8 @@
 
       system = "x86_64-linux";
 
+      monitors = import ./desktop/hyprland/monitors;
+
       mySystems = {
         EnderDragon = {
           modules =
@@ -61,7 +63,7 @@
             desktop = "hyprland";
             graphics = "amd";
             hdr = true;
-            monitors = (import ./monitors).aoc;
+            monitors = (import ./desktop/hyprland/monitors).aoc;
           };
         };
 
@@ -81,7 +83,10 @@
             desktop = "hyprland";
             graphics = "intel";
             hdr = false;
-            monitors = (import ./monitors).t480;
+            monitors = [
+              monitors.t480
+              monitors.aoc-t480
+            ];
           };
         };
 
