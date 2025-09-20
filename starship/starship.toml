@@ -12,7 +12,7 @@ $rust\
 $golang\
 $php\
 [](fg:#212736 bg:#1d2230)\
-$time\
+${custom.nix_shell}\
 [ ](fg:#1d2230)\
 \n$character"""
 
@@ -27,6 +27,13 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
+
+[custom.nix_shell]
+command = "echo ''"
+style = "bg:#1d2230 fg:#ffffff"
+when = "env | grep IN_NIX_SHELL > /dev/null"
+format = "[ $output ]($style)"
+disabled = false
 
 [git_branch]
 symbol = ""
