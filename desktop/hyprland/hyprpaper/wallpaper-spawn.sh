@@ -4,7 +4,7 @@ TIME=$(date +%H)
 
 if [ $TIME -ge 7 ] && [ $TIME -lt 19 ]; then
     WLP=$(ls ~/pictures | grep hot | shuf -n 1)
-else 
+else
     WLP=$(ls ~/pictures | grep cold | shuf -n 1)
 fi
 
