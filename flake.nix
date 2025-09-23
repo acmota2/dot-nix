@@ -12,6 +12,7 @@
     nixvim.url = "github:nix-community/nixvim";
     sops-nix.url = "github:Mic92/sops-nix";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    walker.url = "github:abenz1267/walker";
   };
 
   outputs =

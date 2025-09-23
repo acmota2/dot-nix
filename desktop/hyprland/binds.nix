@@ -26,6 +26,7 @@ in
       # execute shortcuts
       "$mod, return, exec, $terminal"
       "$mod, D, exec, $menu"
+      "$mod SHIFT, d, exec, walker"
       "$mod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
       "$mod, E, exec, wofi-emoji"
       "$mod, P, exec, wofi-power-menu"

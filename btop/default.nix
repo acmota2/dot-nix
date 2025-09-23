@@ -11,7 +11,7 @@ myUtils.homeOrNixos {
     home.packages = [ pkgs.btop ];
     programs.btop = {
       enable = true;
-      themes.tokyonight = builtins.readFile ./themes/tokyonight.theme;
+      themes.tokyonight = builtins.lib.readFile ./themes/tokyonight.theme;
       settings.color_theme = "tokyonight";
     };
   };

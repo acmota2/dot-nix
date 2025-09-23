@@ -4,8 +4,9 @@
     let
       desktopImport = [
         ./${desktop}
-        ./wofi
         ./foot
+        ./walker
+        ./wofi
       ];
     in
     if desktop != "hyprland" then desktopImport else desktopImport ++ [ ./tiling/mako ];
