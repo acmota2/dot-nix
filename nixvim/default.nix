@@ -22,9 +22,10 @@
     };
     extraConfigLua = ''print("Let's code!")'';
     extraPackages = with pkgs; [
+      isort
       nixfmt-rfc-style
       prettierd
-      isort
+      shfmt
     ];
   };
 }

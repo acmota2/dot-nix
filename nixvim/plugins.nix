@@ -75,6 +75,7 @@
     enable = true;
     settings = {
       formatters_by_ft = {
+        bash = [ "shfmt" ];
         c = [ "clang-format" ];
         cpp = [ "clang-format" ];
         css = [ "prettierd" ];
@@ -88,10 +89,12 @@
         nix = [ "nixfmt" ];
         python = [ "black" ];
         rust = [ "rustfmt" ];
+        sh = [ "shfmt" ];
         svelte = [ "prettierd" ];
         typescript = [ "prettierd" ];
         typescriptreact = [ "prettierd" ];
         yaml = [ "prettierd" ];
+        zsh = [ "shfmt" ];
       };
       format_on_save.__raw = "{ }";
     };
