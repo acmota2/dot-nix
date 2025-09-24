@@ -1,7 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 {
   lualine.enable = true;
   nix.enable = true;
+  copilot-vim.enable = true;
+  copilot-chat.enable = true;
   telescope = {
     enable = true;
     keymaps = {
