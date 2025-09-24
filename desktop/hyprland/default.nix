@@ -98,6 +98,12 @@
       };
     };
 
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
+
     gtk = {
       enable = true;
       theme = {
@@ -114,6 +120,12 @@
         name = "SouceSans3";
         size = 11;
       };
+    };
+
+    qt = {
+      enable = true;
+      platformTheme.name = "gtk";
+      style.name = "adwaita-dark";
     };
   };
 }
