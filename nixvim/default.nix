@@ -8,6 +8,7 @@
   imports = if isHomeManager then [ nixvim.homeModules.nixvim ] else [ nixvim.nixosModules.nixvim ];
   programs.nixvim = {
     enable = true;
+    nixpkgs.config.allowUnfree = true;
     diagnostic.settings = {
       virtual_lines.current_line = true;
       virtual_text = true;
