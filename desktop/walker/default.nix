@@ -6,6 +6,9 @@
 {
   imports =
     if isHomeManager then [ walker.homeManagerModules.default ] else [ walker.nixosModules.default ];
+  environment.systemPackages = [
+    walker.packages.x86_64-linux.default
+  ];
   programs.walker = {
     enable = true;
     runAsService = true;
@@ -55,7 +58,6 @@
         ];
       };
     };
-
     theme.style = builtins.readFile ./style.css;
   };
 }
