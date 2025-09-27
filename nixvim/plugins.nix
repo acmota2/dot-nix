@@ -2,9 +2,15 @@
 {
   lualine.enable = true;
   nix.enable = true;
-  copilot-lua.enable = true;
+  copilot-vim.enable = true;
   copilot-chat.enable = true;
-  comment.enable = true;
+  comment = {
+    enable = true;
+    settings.mappings = {
+      basic = true;
+      extra = true;
+    };
+  };
   telescope = {
     enable = true;
     keymaps = {
