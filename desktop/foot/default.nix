@@ -6,7 +6,7 @@
       settings = {
         main = {
           dpi-aware = "yes";
-          font = "JetBrainsMono:size=12";
+          font = "JetBrainsMono:size=10";
           font-size-adjustment = "1px";
         };
         cursor = {
