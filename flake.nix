@@ -58,6 +58,7 @@
               ./games
               ./games/minecraft
               ./hardware/bluetooth.nix
+              ./multimedia/video.nix
             ];
 
           specialArgs = {
