@@ -65,7 +65,10 @@
             desktop = "hyprland";
             graphics = "amd";
             hdr = true;
-            monitors = (import ./desktop/hyprland/monitors).aoc;
+            monitors = [
+              monitors.aoc
+              monitors.portable
+            ];
           };
         };
 
