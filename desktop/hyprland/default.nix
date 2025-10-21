@@ -84,7 +84,7 @@
     };
 
     home = {
-      file.".zprofile".source = ./.zprofile;
+      # file.".zprofile".source = ./.zprofile;
 
       pointerCursor = {
         gtk.enable = true;
