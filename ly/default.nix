@@ -1,8 +1,6 @@
 _: {
-  programs.hyprland.enable = true;
   services = {
     xserver.enable = true;
-    x11Support = false;
     displayManager = {
       enable = true;
       ly = {
@@ -12,7 +10,10 @@ _: {
           animation = "doom";
           auth_fails = 5;
           bigclock = "english";
+          clock = "%c";
+          hide_borders = true;
         };
+        x11Support = false;
       };
     };
   };
