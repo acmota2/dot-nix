@@ -4,11 +4,11 @@
   inputs = {
     home-manager.url = "github:nix-community/home-manager/master";
     hyprland.url = "github:hyprwm/hyprland";
-    stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixvim.url = "github:nix-community/nixvim/main";
     sops-nix.url = "github:Mic92/sops-nix";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     walker.url = "github:abenz1267/walker";
   };
 
