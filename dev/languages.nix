@@ -2,12 +2,12 @@
 {
   environment.systemPackages = with pkgs; [
     clang
-    elixir
+    # elixir
     go
-    jdk21
+    jdk24
     nodejs_22
     pnpm
-    python3
+    python314
     rustup
   ];
 }

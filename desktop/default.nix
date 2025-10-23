@@ -5,7 +5,7 @@
       desktopImport = [
         ./${desktop}
         ./foot
-        ./walker
+        # ./walker
         ./wofi
       ];
     in

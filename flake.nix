@@ -2,11 +2,11 @@
   description = "My machines";
 
   inputs = {
-    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     hyprland.url = "github:hyprwm/hyprland";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nixvim.url = "github:nix-community/nixvim/main";
+    nixvim.url = "github:nix-community/nixvim/nixos-25.05";
     sops-nix.url = "github:Mic92/sops-nix";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     walker.url = "github:abenz1267/walker";

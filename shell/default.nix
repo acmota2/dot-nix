@@ -23,6 +23,7 @@ myUtils.homeOrNixos {
           "...." = "cd ../../..";
         };
         historySize = 1000;
+        historyFile = "~/.histfile";
       };
       readline = {
         enable = true;

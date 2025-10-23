@@ -8,8 +8,8 @@ let
   userConfig =
     if gitUser != null && gitEmail != null then
       {
-        email = "${gitEmail}";
-        name = "${gitUser}";
+        userEmail = "${gitEmail}";
+        userName = "${gitUser}";
       }
     else
       {
@@ -22,28 +22,25 @@ in
     VISUAL = "nvim";
   };
   programs = {
-    zsh.enable = true;
     git = {
       enable = true;
-      settings = {
-        aliases = {
-          "ga" = "git add";
-          "gc" = "git clone";
-        };
-        user = userConfig;
+      aliases = {
+        "ga" = "git add";
+        "gc" = "git clone";
       };
-    };
+    }
+    // userConfig;
     fzf = {
       enable = true;
-      enableZshIntegration = true;
+      enableBashIntegration = true;
     };
     starship = {
       enable = true;
-      enableZshIntegration = true;
+      enableBashIntegration = true;
     };
     zoxide = {
       enable = true;
-      enableZshIntegration = true;
+      enableBashIntegration = true;
       options = [ "--cmd cd" ];
     };
   };
