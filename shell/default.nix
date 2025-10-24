@@ -29,6 +29,7 @@ myUtils.homeOrNixos {
         enable = true;
         variables = {
           bell-style = "none";
+          show-all-if-ambiguous = "on";
         };
         bindings = {
           "\\e[H" = "beginning-of-line"; # Home key
@@ -38,6 +39,7 @@ myUtils.homeOrNixos {
           "\\e[1;5D" = "backward-word"; # Ctrl+Left
           "\\e\\C-?" = "backward-kill-word"; # Ctrl+Backspace
           "\\e[3;5~" = "kill-word"; # Ctrl+Del
+          "\\C-i" = "menu-complete"; # Tab
           "\\e[Z" = "menu-complete-backward"; # Shift+Tab
         };
       };
