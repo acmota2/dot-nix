@@ -37,7 +37,7 @@ myUtils.homeOrNixos {
           "\\e[3~" = "delete-char"; # Delete key
           "\\e[1;5C" = "forward-word"; # Ctrl+Right
           "\\e[1;5D" = "backward-word"; # Ctrl+Left
-          "\\e\\C-?" = "backward-kill-word"; # Ctrl+Backspace
+          "\\C-h?" = "backward-kill-word"; # Ctrl+Backspace
           "\\e[3;5~" = "kill-word"; # Ctrl+Del
           "\\C-i" = "menu-complete"; # Tab
           "\\e[Z" = "menu-complete-backward"; # Shift+Tab
