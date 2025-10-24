@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     steam
-    lutris
+    # lutris-free
   ];
   programs.steam = {
     enable = true;
