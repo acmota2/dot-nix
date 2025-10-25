@@ -8,8 +8,8 @@ let
   userConfig =
     if gitUser != null && gitEmail != null then
       {
-        email = "${gitEmail}";
-        name = "${gitUser}";
+        userEmail = "${gitEmail}";
+        userName = "${gitUser}";
       }
     else
       {
@@ -24,13 +24,11 @@ in
   programs = {
     git = {
       enable = true;
-      settings = {
-        aliases = {
-          "ga" = "git add";
-          "gc" = "git clone";
-        };
-        user = userConfig;
-      };
+      aliases = {
+        "ga" = "git add";
+        "gc" = "git clone";
+      }
+      // userConfig;
     };
   };
 }

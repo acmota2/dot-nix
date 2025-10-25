@@ -122,12 +122,11 @@
       };
     };
 
-    # wait for fix
-    # qt = {
-    #   enable = true;
-    #   platformTheme.name = "gtk";
-    #   style.name = "adwaita-dark";
-    #   style.package = pkgs.adwaita-qt6;
-    # };
+    qt = {
+      enable = true;
+      platformTheme.name = "gtk";
+      style.name = "adwaita-dark";
+      style.package = pkgs.adwaita-qt6;
+    };
   };
 }

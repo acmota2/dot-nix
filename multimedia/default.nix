@@ -1,13 +1,9 @@
-{ pkgs, stable, ... }:
-let
-  system = pkgs.stdenv.hostPlatform.system;
-  pkgs-stable = stable.legacyPackages.${system};
-in
+{ pkgs, ... }:
 {
-  environment.systemPackages = [
-    pkgs.audacity
-    pkgs.gimp
-    pkgs.muse-sounds-manager
-    pkgs-stable.musescore
+  environment.systemPackages = with pkgs; [
+    audacity
+    gimp
+    muse-sounds-manager
+    musescore
   ];
 }
