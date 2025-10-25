@@ -1,7 +1,7 @@
-{ pkgs, ... }@inputs:
+{ pkgs, shell, ... }@inputs:
 {
   users.users.acmota2 = {
-    shell = pkgs.bash;
+    shell = pkgs.${shell};
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     description = "André Mota";

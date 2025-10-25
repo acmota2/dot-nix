@@ -32,18 +32,5 @@ in
         user = userConfig;
       };
     };
-    fzf = {
-      enable = true;
-      enableBashIntegration = true;
-    };
-    starship = {
-      enable = true;
-      enableBashIntegration = true;
-    };
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-      options = [ "--cmd cd" ];
-    };
   };
 }
