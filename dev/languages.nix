@@ -4,7 +4,7 @@
     clang
     # elixir
     go
-    jdk24
+    jdk
     nodejs_22
     pnpm
     python314

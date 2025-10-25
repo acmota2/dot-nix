@@ -4,10 +4,8 @@
     shell = pkgs.bash;
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    description = "A normal user";
+    description = "André Mota";
   };
-
-  programs.zsh.enable = true;
 
   home-manager = {
     backupFileExtension = "bak";

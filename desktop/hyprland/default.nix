@@ -21,8 +21,6 @@
     wl-clipboard
     wofi-emoji
     wofi-power-menu
-    xdg-desktop-portal-gtk
-    xwayland
   ];
 
   services.dbus.enable = true;
@@ -48,6 +46,7 @@
       pkgs.xdg-desktop-portal-gtk
     ];
   };
+
   home-manager.users.${username} = _: {
     imports = [
       hyprland.homeManagerModules.default
@@ -60,8 +59,9 @@
       enable = true;
       package = null;
       portalPackage = null;
-      systemd.enable = false;
+      systemd.variables = [ "--all" ];
     };
+
     services = {
       hyprpaper = {
         enable = true;
@@ -86,8 +86,6 @@
     };
 
     home = {
-      # file.".zprofile".source = ./.zprofile;
-
       pointerCursor = {
         gtk.enable = true;
         package = pkgs.bibata-cursors;

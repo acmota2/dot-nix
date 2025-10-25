@@ -8,8 +8,8 @@ let
   userConfig =
     if gitUser != null && gitEmail != null then
       {
-        userEmail = "${gitEmail}";
-        userName = "${gitUser}";
+        email = "${gitEmail}";
+        name = "${gitUser}";
       }
     else
       {
@@ -24,12 +24,14 @@ in
   programs = {
     git = {
       enable = true;
-      aliases = {
-        "ga" = "git add";
-        "gc" = "git clone";
+      settings = {
+        aliases = {
+          "ga" = "git add";
+          "gc" = "git clone";
+        };
+        user = userConfig;
       };
-    }
-    // userConfig;
+    };
     fzf = {
       enable = true;
       enableBashIntegration = true;

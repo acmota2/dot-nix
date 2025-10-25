@@ -2,14 +2,17 @@
   description = "My machines";
 
   inputs = {
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland.url = "github:hyprwm/hyprland";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nixvim.url = "github:nix-community/nixvim/nixos-25.05";
+    nixvim.url = "github:nix-community/nixvim";
     sops-nix.url = "github:Mic92/sops-nix";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    walker.url = "github:abenz1267/walker";
+    stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    # walker.url = "github:abenz1267/walker";
   };
 
   outputs =
