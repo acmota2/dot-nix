@@ -7,7 +7,7 @@
     jdk
     nodejs_22
     pnpm
-    python314
+    python3
     rustup
   ];
 }
