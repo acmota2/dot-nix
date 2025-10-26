@@ -18,6 +18,7 @@
       "<leader>b" = "buffers";
       "<leader>fg" = "live_grep";
       "<leader>e" = "file_browser";
+      "<leader>y" = "yaml";
     };
     extensions.file-browser = {
       enable = true;
@@ -77,6 +78,7 @@
       pylsp.enable = true;
       svelte.enable = true;
       ts_ls.enable = true;
+      yamlls.enable = true;
       zls.enable = true;
     };
   };

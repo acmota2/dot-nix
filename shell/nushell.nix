@@ -17,6 +17,11 @@ myUtils.homeOrNixos {
           edit = "sudo -e";
           schlaf = "systemctl suspend";
         };
+        extraConfig = ''
+          $env.config = {
+            show_banner: false
+          }
+        '';
       };
       starship = {
         enable = true;

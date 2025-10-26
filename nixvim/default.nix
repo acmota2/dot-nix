@@ -27,6 +27,7 @@
       nixfmt-rfc-style
       prettierd
       shfmt
+      yaml-language-server
     ];
   };
 }
