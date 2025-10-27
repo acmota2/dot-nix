@@ -21,6 +21,8 @@ myUtils.homeOrNixos {
           $env.config = {
             show_banner: false
           }
+          $env.EDITOR = "nvim"
+          $env.VISUAL = "nvim"
         '';
       };
       starship = {
