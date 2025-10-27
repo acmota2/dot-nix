@@ -37,7 +37,7 @@
       machineModules = [
         ./boot/kernel-mod
         ./hardware/nfs.nix
-        ./ly
+        # ./ly
         ./multimedia
         ./virtualization/podman.nix
       ];
