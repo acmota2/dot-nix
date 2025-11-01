@@ -1,5 +1,5 @@
 {
   splash = true;
-  preload = [ "~/pictures/dawn2 hot.jpg" ];
-  wallpaper = [ ",~/pictures/dawn2 hot.jpg" ];
+  preload = [ "~/pictures/penide cold.jpg" ];
+  wallpaper = [ ",~/pictures/penide cold.jpg" ];
 }
