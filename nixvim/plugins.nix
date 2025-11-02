@@ -1,9 +1,26 @@
 { ... }:
 {
-  lualine.enable = true;
-  nix.enable = true;
-  copilot-vim.enable = true;
-  copilot-chat.enable = true;
+  cmp = {
+    enable = true;
+    settings = {
+      mapping = {
+        "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+        "<C-f>" = "cmp.mapping.scroll_docs(4)";
+        "<C-Space>" = "cmp.mapping.complete()";
+        "<C-e>" = "cmp.mapping.abort()";
+        "<CR>" = "cmp.mapping.confirm({ select = true })";
+      };
+      autoEnableSources = true;
+      sources = [
+        { name = "nvim_lsp"; }
+        { name = "path"; }
+        { name = "buffer"; }
+      ];
+      cmp-nvim-lsp.enable = true;
+      cmp-path.enable = true;
+      cmp-buffer.enable = true;
+    };
+  };
   comment = {
     enable = true;
     settings.mappings = {
@@ -11,77 +28,8 @@
       extra = true;
     };
   };
-  telescope = {
-    enable = true;
-    keymaps = {
-      "<leader>ff" = "find_files";
-      "<leader>b" = "buffers";
-      "<leader>fg" = "live_grep";
-      "<leader>e" = "file_browser";
-      "<leader>y" = "yaml";
-    };
-    extensions.file-browser = {
-      enable = true;
-    };
-  };
-  ts-autotag = {
-    enable = true;
-    settings = {
-      opts = {
-        enable_close = true;
-        enable_close_on_slash = false;
-        enable_rename = true;
-      };
-    };
-  };
-  lsp-lines.enable = true;
-  lsp-status.enable = true;
-  lsp = {
-    enable = true;
-    inlayHints = true;
-    keymaps = {
-      lspBuf = {
-        "<leader>r" = "rename";
-        "gd" = "definition";
-      };
-    };
-    # this is the correct option after 25.05
-    #keymaps = [
-    /*
-      {
-        # mode = [ "n" ];
-        key = "<leader>r";
-        lspBufAction = "rename";
-      }
-        {
-          mode = "n";
-          action = ''require('telescope.builtin').lsp_definitions'';
-          key = "gd";
-        }
-    */
-    #];
-    servers = {
-      rust_analyzer = {
-        enable = true;
-        installCargo = false;
-        installRustc = false;
-      };
-      # hls.enable = true;
-      clangd.enable = true;
-      gopls.enable = true;
-      html.enable = true;
-      htmx.enable = true;
-      hyprls.enable = true;
-      lua_ls.enable = true;
-      markdown_oxide.enable = true;
-      nixd.enable = true;
-      pylsp.enable = true;
-      svelte.enable = true;
-      ts_ls.enable = true;
-      yamlls.enable = true;
-      zls.enable = true;
-    };
-  };
+  copilot-vim.enable = true;
+  copilot-chat.enable = true;
   conform-nvim = {
     enable = true;
     settings = {
@@ -110,25 +58,63 @@
       format_on_save.__raw = "{ }";
     };
   };
-  cmp = {
+  helm.enable = true;
+  lsp-lines.enable = true;
+  lsp-status = {
     enable = true;
-    settings = {
-      mapping = {
-        "<C-b>" = "cmp.mapping.scroll_docs(-4)";
-        "<C-f>" = "cmp.mapping.scroll_docs(4)";
-        "<C-Space>" = "cmp.mapping.complete()";
-        "<C-e>" = "cmp.mapping.abort()";
-        "<CR>" = "cmp.mapping.confirm({ select = true })";
+    settings.diagnostics = false;
+  };
+  lsp-signature.enable = true;
+  lsp = {
+    enable = true;
+    inlayHints = true;
+    keymaps = {
+      lspBuf = {
+        "<leader>r" = "rename";
+        "gd" = "definition";
       };
-      autoEnableSources = true;
-      sources = [
-        { name = "nvim_lsp"; }
-        { name = "path"; }
-        { name = "buffer"; }
-      ];
+    };
+    servers = {
+      rust_analyzer = {
+        enable = true;
+        installCargo = false;
+        installRustc = false;
+      };
+      # hls.enable = true;
+      clangd.enable = true;
+      gopls.enable = true;
+      html.enable = true;
+      htmx.enable = true;
+      hyprls.enable = true;
+      lua_ls.enable = true;
+      markdown_oxide.enable = true;
+      nixd.enable = true;
+      pylsp.enable = true;
+      svelte.enable = true;
+      ts_ls.enable = true;
+      yamlls.enable = true;
+      zls.enable = true;
     };
   };
+  lualine.enable = true;
   markdown-preview.enable = true;
+  nix.enable = true;
+  nix-develop.enable = true;
+  oil.enable = true;
+  telescope = {
+    enable = true;
+    keymaps = {
+      "<leader>ff" = "find_files";
+      "<leader>b" = "buffers";
+      "<leader>fg" = "live_grep";
+      "<leader>e" = "file_browser";
+      "<leader>u" = "undo";
+    };
+    extensions = {
+      file-browser.enable = true;
+      undo.enable = true;
+    };
+  };
   treesitter = {
     enable = true;
     settings = {
@@ -136,5 +122,18 @@
       highlight.enable = true;
     };
   };
+  trouble.enable = true;
+  ts-autotag = {
+    enable = true;
+    settings = {
+      opts = {
+        enable_close = true;
+        enable_close_on_slash = false;
+        enable_rename = true;
+      };
+    };
+  };
+  vim-surround.enable = true;
   web-devicons.enable = true;
+  yaml-schema-detect.enable = true;
 }

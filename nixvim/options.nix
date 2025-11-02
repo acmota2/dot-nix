@@ -3,13 +3,13 @@
   number = true;
   relativenumber = true;
   # tab stuff
-  shiftwidth = 4;
-  softtabstop = 4;
-  tabstop = 4;
+  shiftwidth = 2;
+  softtabstop = 2;
+  tabstop = 2;
   expandtab = true;
   smartindent = true;
   # search
-  hlsearch = false;
+  hlsearch = true;
   incsearch = true;
   # colors
   termguicolors = true;

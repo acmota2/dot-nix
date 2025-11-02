@@ -11,12 +11,18 @@
     key = "<leader>F";
     action = "<cmd>Ex<CR>";
   }
+  {
+    mode = "n";
+    key = "<leader>o";
+    action = "<cmd>Oil<CR>";
+  }
   # NERDTree
-  /* {
-         mode = "n";
-         key = "<leader>e";
-         action = "<cmd>NERDTree<CR>";
-     }
+  /*
+    {
+        mode = "n";
+        key = "<leader>e";
+        action = "<cmd>NERDTree<CR>";
+    }
   */
   # basically, Alt arrows of vscode re-imagined for vim
   {

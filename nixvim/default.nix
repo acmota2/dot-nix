@@ -9,14 +9,14 @@
   programs.nixvim = {
     enable = true;
     nixpkgs.config.allowUnfree = true;
-    diagnostic.settings = {
-      virtual_lines.current_line = true;
-      virtual_text = true;
-    };
     globals.mapleader = ",";
     keymaps = import ./remaps.nix;
     opts = import ./options.nix;
     plugins = import ./plugins.nix inputs;
+    diagnostic.settings = {
+      virtual_lines.current_line = true;
+      virtual_text = true;
+    };
     colorschemes.tokyonight = {
       enable = true;
       settings.style = "night";
