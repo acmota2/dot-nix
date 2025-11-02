@@ -26,7 +26,7 @@
       defaultUser = {
         gitEmail = "acmota2@gmail.com";
         gitUser = "acmota2";
-        shell = "nushell";
+        shell = "bash";
         username = "acmota2";
       };
 

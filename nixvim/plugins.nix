@@ -58,6 +58,7 @@
       format_on_save.__raw = "{ }";
     };
   };
+  diffview.enable = true;
   helm.enable = true;
   lsp-lines.enable = true;
   lsp-status = {
