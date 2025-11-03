@@ -71,7 +71,7 @@
     inlayHints = true;
     keymaps = {
       lspBuf = {
-        "<leader>r" = "rename";
+        "<leader>rn" = "rename";
         "gd" = "definition";
       };
     };
@@ -101,18 +101,30 @@
   markdown-preview.enable = true;
   nix.enable = true;
   nix-develop.enable = true;
-  oil.enable = true;
+  oil = {
+    enable = true;
+    settings = {
+      buf_options = {
+        buflisted = true;
+      };
+      cleanup_delay_ms = false;
+      view_options = {
+        show_hidden = true;
+      };
+    };
+  };
+  spectre.enable = true;
   telescope = {
     enable = true;
     keymaps = {
       "<leader>ff" = "find_files";
       "<leader>b" = "buffers";
-      "<leader>fg" = "live_grep";
-      "<leader>e" = "file_browser";
+      "<leader>rg" = "live_grep";
+      # "<leader>e" = "file_browser";
       "<leader>u" = "undo";
     };
     extensions = {
-      file-browser.enable = true;
+      # file-browser.enable = true;
       undo.enable = true;
     };
   };
@@ -123,7 +135,20 @@
       highlight.enable = true;
     };
   };
-  trouble.enable = true;
+  trouble = {
+    enable = true;
+    settings = {
+      use_diagnostic_signs = true;
+      keys = {
+        "<leader>xx" = "toggle";
+        "<leader>xw" = "workspace_diagnostics";
+        "<leader>xd" = "document_diagnostics";
+        "<leader>xq" = "quickfix";
+        "<leader>xl" = "loclist";
+        "gr" = "lsp_references";
+      };
+    };
+  };
   ts-autotag = {
     enable = true;
     settings = {
