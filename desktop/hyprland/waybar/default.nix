@@ -183,10 +183,10 @@
       # "format-wifi"= "{essid} ({signalStrength}%) ";
       format-wifi = "[{signalStrength}%] ";
       # "format-ethernet"= "{ipaddr}/{cidr} ";
-      format-ethernet = "[ ] 󰛳";
-      tooltip-format = "{ifname}: {essid} 󰲝";
-      format-linked = "[ ] 󰱓";
-      format-disconnected = "[ ] 󰅛";
+      format-ethernet = "󰛳";
+      tooltip-format = "[ {ifname} ] {essid} 󰲝";
+      format-linked = "󰱓";
+      format-disconnected = "󰅛";
       # format-alt = "{ifname}: {ipaddr}/{cidr}";
     };
     pulseaudio = {
