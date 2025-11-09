@@ -23,7 +23,7 @@ myUtils.homeOrNixos {
           "...." = "cd ../../..";
         };
         historySize = 1000;
-        historyFile = "~/.histfile";
+        historyFile = "/home/${username}/.histfile";
       };
       fzf = {
         enable = true;
