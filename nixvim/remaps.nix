@@ -17,6 +17,11 @@
   }
   {
     mode = "n";
+    key = "<leader>nt";
+    action = "<cmd>Neotree toggle<CR>";
+  }
+  {
+    mode = "n";
     key = "<leader>/";
     action = "<cmd>nohlsearch<CR>";
     options = {
@@ -29,13 +34,13 @@
     mode = "v";
     key = "J";
     options.silent = true;
-    action = "<cmd>lua vim.cmd(\"m '>+\" .. vim.v.count1 .. \"<CR>gv=gv\")<CR>";
+    action = ":'<,'>m '>+<C-R>v<CR>gv=gv";
   }
   {
     mode = "v";
     key = "K";
     options.silent = true;
-    action = "<cmd>lua vim.cmd(\"m '<-\" .. (vim.v.count1 + 1) .. \"<CR>gv=gv\")<CR>";
+    action = ":'<,'>m '<-2<C-R>v<CR>gv=gv";
   }
   # n - next, N - previous (searching terms)
   {

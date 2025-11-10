@@ -99,6 +99,7 @@
   };
   lualine.enable = true;
   markdown-preview.enable = true;
+  neo-tree.enable = true;
   nix.enable = true;
   nix-develop.enable = true;
   oil = {
