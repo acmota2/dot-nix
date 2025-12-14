@@ -24,7 +24,7 @@ in
   programs = {
     git = {
       enable = true;
-      aliases = {
+      settings.aliases = {
         "ga" = "git add";
         "gc" = "git clone";
       }

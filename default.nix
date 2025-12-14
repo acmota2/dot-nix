@@ -41,11 +41,9 @@
     curl
     file
     git
-    killall
     macchina
     p7zip
     unzip
-    wget
     zip
     zsh
   ];
