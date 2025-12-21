@@ -3,7 +3,10 @@
   users.users.acmota2 = {
     shell = pkgs.${shell};
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "audio"
+    ];
     description = "André Mota";
   };
 
