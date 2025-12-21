@@ -16,7 +16,7 @@
         path = "/home/${username}/pictures/covao da ametade cold.jpg";
         fit = "fill";
       };
-      widget.clock = {
+      "widget.clock" = {
         format = "%H:%M";
         timezone = "Europe/Berlin";
       };
