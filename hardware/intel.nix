@@ -4,8 +4,8 @@
     graphics = {
       enable = true;
       extraPackages = with pkgs; [
-        vaapiIntel
-        intel-media-driver # LIBVA_DRIVER_NAME=iHD
+        intel-vaapi-driver
+        intel-media-driver
         libvdpau-va-gl
       ];
     };
