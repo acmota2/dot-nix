@@ -93,6 +93,7 @@
             monitors = [
               monitors.t480
               monitors.aoc-t480
+              monitors.acer
             ];
           };
         };

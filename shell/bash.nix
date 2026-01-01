@@ -25,19 +25,8 @@ myUtils.homeOrNixos {
         historySize = 1000;
         historyFile = "/home/${username}/.histfile";
       };
-      fzf = {
-        enable = true;
-        enableBashIntegration = true;
-      };
-      starship = {
-        enable = true;
-        enableBashIntegration = true;
-      };
-      zoxide = {
-        enable = true;
-        enableBashIntegration = true;
-        options = [ "--cmd cd" ];
-      };
+      direnv.enableBashIntegration = true;
+      fzf.enableBashIntegration = true;
       readline = {
         enable = true;
         variables = {
@@ -56,6 +45,8 @@ myUtils.homeOrNixos {
           "\\e[Z" = "menu-complete-backward"; # Shift+Tab
         };
       };
+      starship.enableBashIntegration = true;
+      zoxide.enableBashIntegration = true;
     };
   };
 }
