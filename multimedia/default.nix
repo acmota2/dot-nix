@@ -5,5 +5,6 @@
     gimp
     muse-sounds-manager
     musescore
+    vlc
   ];
 }
