@@ -5,7 +5,6 @@
   };
   security.rtkit.enable = true;
   environment.systemPackages = with pkgs; [
-    pulseaudio
     pavucontrol
   ];
   services = {
@@ -18,6 +17,5 @@
       pulse.enable = true;
       wireplumber.enable = true;
     };
-    pulseaudio.enable = false;
   };
 }

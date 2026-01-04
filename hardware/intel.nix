@@ -16,7 +16,8 @@
     initrd.kernelModules = [ "i915" ];
     kernelParams = [
       "i915.enable_guc=3"
-      "enable_fbc=1"
+      "i915.enable_psr=1"
+      "i915.enable_dc=2"
       "fastboot=1"
     ];
   };
