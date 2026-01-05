@@ -7,16 +7,16 @@
 myUtils.homeOrNixos {
   inherit isHomeManager username;
   options = {
-    home.file.".bashprofile".text = ''
-      if [ -z \"$\{WAYLAND_DISPLAY\}" ] && [ \"$\{XDG_VTNR\}" -eq 1 ]; then
-        exec start-hyprland
-      fi
-    '';
     programs = {
       atuin.enableBashIntegration = true;
       bash = {
         enable = true;
         enableCompletion = true;
+        initExtra = ''
+          if [ -z "$\{WAYLAND_DISPLAY\}" ] && [ "$\{XDG_VTNR\}" -eq 1 ]; then
+            exec start-hyprland > /dev/null 2>&1
+          fi
+        '';
         shellAliases = {
           ls = "ls --color";
           als = "ls -la";

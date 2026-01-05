@@ -1,14 +1,6 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 {
   environment.etc."regreet/background.jpg".source = ../../backgrounds/covao-da-ametade-cold.jpg;
-
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = "${pkgs.regreet}/bin/regreet";
-      user = "greeter";
-    };
-  };
 
   programs.regreet = {
     enable = true;

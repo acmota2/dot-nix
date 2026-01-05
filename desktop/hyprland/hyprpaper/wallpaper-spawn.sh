@@ -1,12 +1,12 @@
 #!/bin/sh
 
+PICDIR="$HOME/pictures"
 TIME=$(date +%H)
 
-if [ $TIME -ge 7 ] && [ $TIME -lt 19 ]; then
-  WLP=$(ls ~/pictures | grep -E .*hot.jpg | shuf -n 1)
+if [ "$TIME" -ge 7 ] && [ "$TIME" -lt 19 ]; then
+  WLP=$(find "$PICDIR" -maxdepth 1 -name '*hot.jpg' | shuf -n 1)
 else
-  WLP=$(ls ~/pictures | grep -E .*cold.jpg | shuf -n 1)
+  WLP=$(find "$PICDIR" -maxdepth 1 -name '*cold.jpg' | shuf -n 1)
 fi
 
-hyprctl hyprpaper preload ~/pictures/$WLP
-hyprctl hyprpaper wallpaper ,~/pictures/$WLP
+hyprctl hyprpaper wallpaper ",$WLP"
