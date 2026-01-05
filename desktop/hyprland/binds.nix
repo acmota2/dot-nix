@@ -67,12 +67,12 @@ in
       ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
       ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
       # volume keys
-      ", XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +2%"
+      ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+"
     ];
     bindl = [
       # more volume keys
-      ", XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -2%"
-      ", XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
+      ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+      ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     ];
     bindm = [
       # Move/resize windows with mod + LMB/RMB and dragging"
