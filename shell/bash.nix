@@ -7,6 +7,11 @@
 myUtils.homeOrNixos {
   inherit isHomeManager username;
   options = {
+    home.file.".bashprofile".text = ''
+      if [ -z \"$\{WAYLAND_DISPLAY\}" ] && [ \"$\{XDG_VTNR\}" -eq 1 ]; then
+        exec start-hyprland
+      fi
+    '';
     programs = {
       atuin.enableBashIntegration = true;
       bash = {

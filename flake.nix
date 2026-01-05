@@ -37,7 +37,6 @@
       machineModules = [
         ./boot/kernel-mod
         ./hardware/nfs.nix
-        ./display-manager/regreet
         ./multimedia
         ./virtualization/podman.nix
       ];

@@ -62,6 +62,11 @@
       systemd.variables = [ "--all" ];
     };
 
+    home.file."pictures/" = {
+      source = ../../backgrounds;
+      recursive = true;
+    };
+
     services = {
       hyprpaper = {
         enable = true;
