@@ -2,7 +2,7 @@
   background = [
     {
       monitor = "";
-      path = "~/pictures/covao da ametade cold.jpg";
+      path = "~/pictures/covao-da-ametade-cold.jpg";
       color = "rgba(25, 20, 20, 1.0)";
       blur_passes = 2;
     }
