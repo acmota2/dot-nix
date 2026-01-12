@@ -1,6 +1,6 @@
 {
   fileSystems."/mnt/data" = {
-    device = "nfs.voldemota.xyz:/general";
+    device = "nas.home.voldemota.xyz:/general";
     fsType = "nfs";
     options = [
       "noauto"
