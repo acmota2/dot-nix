@@ -39,10 +39,12 @@
         cpp = [ "clang-format" ];
         css = [ "prettierd" ];
         graphql = [ "prettierd" ];
-        html = [ "prettierd" ];
-        htmldjango = [ "prettierd" ];
-        javascript = [ "prettierd" ];
-        javascriptreact = [ "prettierd" ];
+        go = [ "gofmt" ];
+        htmlmixed = [ "biome" ];
+        html = [ "biome" ];
+        htmldjango = [ "biome" ];
+        javascript = [ "biome" ];
+        javascriptreact = [ "biome" ];
         json = [ "prettierd" ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
