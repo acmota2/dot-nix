@@ -38,11 +38,11 @@
         c = [ "clang-format" ];
         cpp = [ "clang-format" ];
         css = [ "prettierd" ];
-        graphql = [ "prettierd" ];
         go = [ "gofmt" ];
-        htmlmixed = [ "biome" ];
+        graphql = [ "prettierd" ];
         html = [ "biome" ];
         htmldjango = [ "biome" ];
+        htmlmixed = [ "biome" ];
         javascript = [ "biome" ];
         javascriptreact = [ "biome" ];
         json = [ "prettierd" ];
@@ -51,6 +51,7 @@
         python = [ "black" ];
         rust = [ "rustfmt" ];
         sh = [ "shfmt" ];
+        sql = [ "sqlfmt" ];
         svelte = [ "prettierd" ];
         typescript = [ "prettierd" ];
         typescriptreact = [ "prettierd" ];
