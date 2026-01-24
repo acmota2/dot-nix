@@ -59,7 +59,8 @@
       enable = true;
       package = null;
       portalPackage = null;
-      systemd.variables = [ "--all" ];
+      systemd.enable = false;
+      # systemd.variables = [ "--all" ];
     };
 
     home.file."pictures/" = {
