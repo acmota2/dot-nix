@@ -1,5 +1,6 @@
 { ... }:
 {
+  colorizer.enable = true;
   cmp = {
     enable = true;
     settings = {
@@ -64,9 +65,11 @@
   llm = {
     enable = true;
     settings = {
+      accept_keymap = "<c-j>";
       backend = "ollama";
       model = "codellama:7b";
       url = "http://localhost:11434";
+      fim.enabled = false;
     };
   };
   lsp-lines.enable = true;
