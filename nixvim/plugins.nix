@@ -28,8 +28,6 @@
       extra = true;
     };
   };
-  copilot-vim.enable = true;
-  copilot-chat.enable = true;
   conform-nvim = {
     enable = true;
     settings = {
@@ -63,6 +61,14 @@
   };
   diffview.enable = true;
   helm.enable = true;
+  llm = {
+    enable = true;
+    settings = {
+      backend = "ollama";
+      model = "codellama:7b";
+      url = "http://localhost:11434";
+    };
+  };
   lsp-lines.enable = true;
   lsp-status = {
     enable = true;
