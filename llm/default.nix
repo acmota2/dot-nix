@@ -1,4 +1,5 @@
-_: {
+{ pkgs, ... }:
+{
   services = {
     open-webui.enable = true;
     ollama = {
@@ -11,4 +12,6 @@ _: {
       ];
     };
   };
+  environment.systemPackages = [ pkgs.ollama-rocm ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
 }
