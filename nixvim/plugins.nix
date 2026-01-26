@@ -36,7 +36,7 @@
         bash = [ "shfmt" ];
         c = [ "clang-format" ];
         cpp = [ "clang-format" ];
-        css = [ "prettierd" ];
+        css = [ "biome" ];
         go = [ "gofmt" ];
         graphql = [ "prettierd" ];
         html = [ "biome" ];
@@ -51,9 +51,9 @@
         rust = [ "rustfmt" ];
         sh = [ "shfmt" ];
         sql = [ "sqlfmt" ];
-        svelte = [ "prettierd" ];
-        typescript = [ "prettierd" ];
-        typescriptreact = [ "prettierd" ];
+        svelte = [ "biome" ];
+        typescript = [ "biome" ];
+        typescriptreact = [ "biome" ];
         yaml = [ "prettierd" ];
         zsh = [ "shfmt" ];
       };

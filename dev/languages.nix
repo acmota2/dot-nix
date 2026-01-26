@@ -5,7 +5,7 @@
     # elixir
     go
     jdk
-    nodejs_22
+    nodejs_24
     pnpm
     python3
     rustup
