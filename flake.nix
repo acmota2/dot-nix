@@ -59,7 +59,6 @@
             ++ [
               ./games
               ./games/minecraft
-              ./llm
               ./hardware/bluetooth.nix
               ./multimedia/video.nix
             ];
