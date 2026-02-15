@@ -39,6 +39,7 @@
     btop
     coreutils-full
     curl
+    deluge
     file
     git
     macchina
