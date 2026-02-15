@@ -4,8 +4,9 @@
     shell = pkgs.${shell};
     isNormalUser = true;
     extraGroups = [
-      "wheel"
       "audio"
+      "input"
+      "wheel"
     ];
     description = "André Mota";
   };

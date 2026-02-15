@@ -1,8 +1,8 @@
-_: {
+{ pkgs, ... }:
+{
   services.netbird = {
     enable = true;
-    clients = {
-      home.port = 51821;
-    };
   };
+
+  environment.systemPackages = [ pkgs.netbird ];
 }

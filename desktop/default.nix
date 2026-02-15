@@ -22,5 +22,6 @@
     pkgs.discord
     pkgs.spotify
     pkgs.brave
+    pkgs.wl-clicker
   ];
 }
