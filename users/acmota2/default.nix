@@ -5,7 +5,7 @@
     isNormalUser = true;
     extraGroups = [
       "audio"
-      "input"
+      "ydotool"
       "wheel"
     ];
     description = "André Mota";

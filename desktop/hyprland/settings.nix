@@ -1,4 +1,4 @@
-{ monitors, hdr, ... }:
+{ monitors, ... }:
 {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
