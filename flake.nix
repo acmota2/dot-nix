@@ -20,6 +20,7 @@
       home-manager,
       nixpkgs,
       sops-nix,
+      unstable,
       ...
     }@inputs:
     let
@@ -149,6 +150,7 @@
               inherit hostname myUtils;
               isWsl = nixpkgs.lib.elem ./wsl config.modules;
               isHomeManager = false;
+              unstable = unstable.legacyPackages.${system};
             };
         }
       ) mySystems;

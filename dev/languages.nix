@@ -1,13 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    clang
+  environment.systemPackages = [
+    pkgs.clang
     # elixir
-    go
-    jdk
-    nodejs_24
-    pnpm
-    python3
-    rustup
+    unstable.go
+    pkgs.jdk
+    pkgs.nodejs_24
+    unstable.pnpm
+    unstable.python3
+    unstable.rustup
   ];
 }
