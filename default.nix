@@ -1,8 +1,9 @@
 {
-  pkgs,
-  home-manager,
   desktop,
+  dot-nvim,
+  home-manager,
   isWsl,
+  pkgs,
   ...
 }:
 {
@@ -20,7 +21,7 @@
         ./dev/languages.nix
         ./locale
         ./macchina
-        ./nixvim
+        # ./nixvim
         ./shell
         ./starship
         ./tmux
@@ -40,6 +41,7 @@
     coreutils-full
     curl
     deluge
+    dot-nvim
     file
     git
     macchina

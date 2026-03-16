@@ -10,6 +10,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixvim.url = "github:nix-community/nixvim";
+    dot-nix-neovim.url = "github:acmota2/dot-nix-neovim";
     sops-nix.url = "github:Mic92/sops-nix";
     unstable.url = "github:NixOS/nixpkgs/nixos-25.11";
     # walker.url = "github:abenz1267/walker";
@@ -17,6 +18,7 @@
 
   outputs =
     {
+      dot-nix-neovim,
       home-manager,
       nixpkgs,
       sops-nix,
@@ -49,6 +51,8 @@
       ];
 
       system = "x86_64-linux";
+
+      dot-nvim = dot-nix-neovim.packages.${system}.default;
 
       monitors = import ./desktop/hyprland/monitors;
 
@@ -147,7 +151,7 @@
             // defaultUser
             // config.specialArgs
             // {
-              inherit hostname myUtils;
+              inherit hostname myUtils dot-nvim;
               isWsl = nixpkgs.lib.elem ./wsl config.modules;
               isHomeManager = false;
               unstable = unstable.legacyPackages.${system};
