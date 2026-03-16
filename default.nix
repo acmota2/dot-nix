@@ -19,9 +19,9 @@
         ./btop
         ./dev
         ./dev/languages.nix
+        ./lix
         ./locale
         ./macchina
-        # ./nixvim
         ./shell
         ./starship
         ./tmux
