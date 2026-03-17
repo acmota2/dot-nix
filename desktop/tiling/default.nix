@@ -20,7 +20,7 @@
         "E37DB9C9AF23577974200276678C5E465E26C44B" # ublock origin
       ];
     };
-
+    dconf.enable = true;
     ydotool.enable = true;
   };
 
@@ -60,16 +60,16 @@
       };
     };
 
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-    };
-
     programs.waybar = {
       enable = true;
       settings = import ./waybar/${desktop}.nix;
       style = builtins.readFile ./waybar/style.css;
+    };
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
     };
 
     gtk = {

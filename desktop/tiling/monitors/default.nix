@@ -4,7 +4,7 @@
     width = 2560;
     height = 1440;
     refresh = 165;
-    x = 810;
+    x = 813;
     y = 0;
     scale = 1;
     vrr = 0;

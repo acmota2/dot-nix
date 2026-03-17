@@ -30,7 +30,6 @@
 
     "ext/workspaces" = {
       disable-scroll = true;
-      all-outputs = true;
       format = "{icon}";
       on-click = "activate";
       sort-by-id = true;
@@ -45,7 +44,6 @@
         "7" = " 7 ";
         "8" = " 8 ";
         "9" = " 9 ";
-        active = "";
         default = "";
       };
     };

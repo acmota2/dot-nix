@@ -10,21 +10,26 @@ let
     let
       base = [
         "name:^${m.output}$"
-        "width:${m.width}"
-        "height:${m.height}"
-        "refresh:${m.nrefresh}"
-        "x:${m.x}"
-        "y:${m.y}"
-        "scale:${m.scale}"
-        "vrr:${m.vrr}"
-        "rr:${m.rr}"
+        "width:${toString m.width}"
+        "height:${toString m.height}"
+        "refresh:${toString m.refresh}"
+        "x:${toString m.x}"
+        "y:${toString m.y}"
+        "scale:${toString m.scale}"
+        "vrr:${toString m.vrr}"
+        "rr:${toString m.rotate}"
       ];
     in
     "monitorrule=" + builtins.concatStringsSep "," base;
 
   monitorLines = builtins.concatStringsSep "\n" (map renderMonitor monitors);
 
-  mangoConfig = builtins.readFile ./mangowc.conf + "\n\n" + monitorLines + "\n";
+  mangoConfig =
+    builtins.readFile ./mangowc.conf
+    + "\n\n"
+    + monitorLines
+    + "\n\n"
+    + "exec-once=~/.config/mango/autostart.sh\n";
 in
 {
   imports = [
@@ -34,7 +39,7 @@ in
   environment.systemPackages = with pkgs; [
     swaybg
     swayidle
-    swaylock
+    swaylock-effects
     grim
     slurp
   ];
@@ -42,6 +47,8 @@ in
   services.dbus.enable = true;
 
   programs.mango.enable = true;
+
+  security.pam.services.swaylock = { };
 
   xdg.portal = {
     enable = true;
@@ -61,5 +68,7 @@ in
       settings = mangoConfig;
       autostart_sh = builtins.readFile ./autostart.sh;
     };
+
+    home.file.".config/swaylock/config".source = ./swaylock.conf;
   };
 }

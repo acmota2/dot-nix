@@ -1,16 +1,16 @@
-{ pkgs, ... }:
-let
-  hyprland-starter = pkgs.writeScript "hyprland-starter" ''
-    export XDG_SESSION_TYPE=wayland
-    export XDG_CURRENT_DESKTOP=Hyprland
-    export XDG_SESSION_DESKTOP=Hyprland
-    export QT_QPA_PLATFORM=wayland
-    export SDL_VIDEODRIVER=wayland
-    export MOZ_ENABLE_WAYLAND=1
-
-    exec start-hyprland
-  '';
-in
+{ ... }:
+# let
+#   hyprland-starter = pkgs.writeScript "hyprland-starter" ''
+#     export XDG_SESSION_TYPE=wayland
+#     export XDG_CURRENT_DESKTOP=Hyprland
+#     export XDG_SESSION_DESKTOP=Hyprland
+#     export QT_QPA_PLATFORM=wayland
+#     export SDL_VIDEODRIVER=wayland
+#     export MOZ_ENABLE_WAYLAND=1
+#
+#     exec start-hyprland
+#   '';
+# in
 {
   security.pam.services.ly = { };
   services = {
@@ -27,8 +27,7 @@ in
         fg = "0x082E3E5A";
         hide_borders = true;
         hide_version_string = true;
-        login_cmd = "${hyprland-starter}";
-        logout_cm = "clear && reset && chvt 1";
+        logout_cmd = "clear && reset && chvt 1";
         numlock = false;
         save = true;
         vi_mode = false;
