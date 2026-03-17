@@ -10,8 +10,7 @@
   imports =
     let
       guiPackages = [
-        ./desktop
-        ./desktop/${desktop}
+        ./desktop/tiling
       ];
       base = [
         home-manager.nixosModules.home-manager

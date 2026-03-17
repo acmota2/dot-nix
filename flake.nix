@@ -54,7 +54,7 @@
 
       dot-nvim = dot-nix-neovim.packages.${system}.default;
 
-      monitors = import ./desktop/hyprland/monitors;
+      monitors = import ./desktop/tiling/monitors;
 
       mySystems = {
         EnderDragon = {
@@ -97,8 +97,7 @@
             hdr = false;
             monitors = [
               monitors.t480
-              monitors.aoc-t480
-              monitors.acer
+              monitors.aoc
             ];
           };
         };

@@ -1,11 +1,28 @@
 { monitors, ... }:
+let
+  renderMonitor =
+    m:
+    builtins.concatStringsSep "," [
+      m.output
+      "${toString m.width}x${toString m.height}@${toString m.refresh}"
+      "${toString m.x}x${toString m.y}"
+      (toString m.scale)
+      "vrr"
+      (toString m.vrr)
+      "transform"
+      (toString m.rotate)
+    ];
+
+  renderedMonitors = map renderMonitor monitors;
+in
 {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     "$terminal" = "footclient";
     "$terminalWindow" = "footclient";
     "$menu" = "wofi -S drun,run";
-    monitor = monitors;
+
+    monitor = renderedMonitors;
 
     exec-once = [
       "foot --server"
@@ -14,8 +31,8 @@
       "mako"
       "hyprpaper"
       "blueman-applet"
-      "wl-paste --type text --watch cliphist store" # Stores only text data
-      "wl-paste --type image --watch cliphist store" # Stores only image data
+      "wl-paste --type text --watch cliphist store"
+      "wl-paste --type image --watch cliphist store"
     ];
 
     cursor.no_hardware_cursors = true;
@@ -67,12 +84,12 @@
     };
 
     dwindle = {
-      pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-      preserve_split = true; # you probably want this
+      pseudotile = true;
+      preserve_split = true;
     };
 
     misc = {
-      force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
+      force_default_wallpaper = 0;
     };
   };
 }
