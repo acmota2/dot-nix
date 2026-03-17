@@ -7,7 +7,7 @@
     x = 813;
     y = 0;
     scale = 1;
-    vrr = 0;
+    vrr = 1;
     rotate = 0;
   };
 
