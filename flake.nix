@@ -42,11 +42,11 @@
       default = [ ./. ];
 
       machineModules = [
-        ./boot/kernel-mod
+        ./apps/multimedia
         ./display-manager/ly
         ./hardware/nfs.nix
-        ./multimedia
-        ./virtualization/podman.nix
+        ./system/boot/kernel-mod
+        ./dev/virtualization/podman.nix
       ];
 
       sops = [
@@ -68,8 +68,8 @@
             ++ [
               ./apps/games
               ./apps/games/minecraft
-              ./hardware/bluetooth.nix
               ./apps/multimedia/video.nix
+              ./hardware/bluetooth.nix
             ];
 
           specialArgs = {
@@ -127,10 +127,10 @@
         "acmota2" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
-            ./home
             ./apps/terminal/macchina
-            ./system/shell
             ./apps/terminal/starship
+            ./home
+            ./system/shell
             ./users
           ];
           extraSpecialArgs =
