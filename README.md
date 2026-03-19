@@ -19,15 +19,13 @@ This configuration is automatically enabled for all machines. A standalone confi
 ### Desktop
 
 - [foot](./desktop/foot)
-- [hyprland](./desktop//hyprland)
-- [hypridle](./desktop/hyprland/hypridle/default.nix)
-- [hyprlock](./desktop/hyprland/hyprlock/default.nix)
+- [hyprland](./desktop/tiling/mangowc/default.nix)
 - [mako](./desktop/tiling/mako/default.nix)
-- [waybar](./desktop/hyprland/waybar/default.nix)
+- [waybar](./desktop/tiling/waybar/default.nix)
 
 ### Development
 
-- [nixvim](./nixvim)
+- [nixvim](http://github.com/acmota2/dot-nix-neovim)
 - [tmux](./tmux/default.nix)
 
 ### System
