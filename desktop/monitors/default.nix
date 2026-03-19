@@ -3,11 +3,11 @@
     output = "DP-1";
     width = 2560;
     height = 1440;
-    refresh = 165;
+    refresh = 180;
     x = 813;
     y = 0;
     scale = 1;
-    vrr = 1;
+    vrr = 0;
     rotate = 0;
   };
 

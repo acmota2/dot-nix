@@ -58,7 +58,7 @@
 
       dot-nvim = dot-nix-neovim.packages.${system}.default;
 
-      monitors = import ./desktop/tiling/monitors;
+      monitors = import ./desktop/monitors;
 
       mySystems = {
         EnderDragon = {
@@ -66,10 +66,10 @@
             default
             ++ machineModules
             ++ [
-              ./games
-              ./games/minecraft
+              ./apps/games
+              ./apps/games/minecraft
               ./hardware/bluetooth.nix
-              ./multimedia/video.nix
+              ./apps/multimedia/video.nix
             ];
 
           specialArgs = {
@@ -89,7 +89,7 @@
             ++ machineModules
             ++ sops
             ++ [
-              ./games
+              ./apps/games
               ./hardware/bluetooth.nix
               ./hardware/brightness.nix
               ./hardware/tlp.nix
@@ -111,8 +111,8 @@
             default
             ++ sops
             ++ [
-              ./aws
-              ./wsl
+              ./dev/aws
+              ./system/wsl
             ];
           specialArgs = {
             desktop = null;
@@ -127,19 +127,17 @@
         "acmota2" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
-            ./aws
             ./home
-            ./macchina
-            ./nixvim
-            ./shell
-            ./starship
+            ./apps/terminal/macchina
+            ./system/shell
+            ./apps/terminal/starship
             ./users
           ];
           extraSpecialArgs =
             defaultUser
             // inputs
             // {
-              inherit myUtils;
+              inherit myUtils dot-nvim;
               isHomeManager = true;
             };
         };

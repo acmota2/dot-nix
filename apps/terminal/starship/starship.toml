@@ -10,7 +10,7 @@ $git_status\
 $nodejs\
 $rust\
 $golang\
-$php\
+$kubernetes\
 [](fg:#212736 bg:#1d2230)\
 ${custom.nix_shell}\
 [ ](fg:#1d2230)\
@@ -21,12 +21,6 @@ style = "fg:#e3e5e5 bg:#769ff0"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
-
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
 
 [custom.nix_shell]
 command = "echo ''"
@@ -59,10 +53,13 @@ symbol = ""
 style = "bg:#212736"
 format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
 
-[php]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+[kubernetes]
+symbol = "󱃾"
+style = "bg:#1d2230"
+format = '[[ $symbol $context(::$namespace) ](fg:#769ff0 bg:#212736)]($style)'
+disabled = false
+detect_files = ["k8s", "kubernetes", "helm", "chart"]
+detect_extensions = ["yaml", "yml"]
 
 [time]
 disabled = true

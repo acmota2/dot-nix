@@ -14,20 +14,20 @@
       ];
       base = [
         home-manager.nixosModules.home-manager
-        ./base
-        ./btop
+        ./system/nix-settings
+        ./apps/terminal/btop
         ./dev
         ./dev/languages.nix
-        ./lix
-        ./locale
-        ./macchina
-        ./shell
-        ./starship
-        ./tmux
+        ./system/lix
+        ./system/locale
+        ./apps/terminal/macchina
+        ./system/shell
+        ./apps/terminal/starship
+        ./apps/terminal/tmux
         ./users
       ];
       machineBase = [
-        ./boot
+        ./system/boot
         ./hardware
         ./machines
       ];
