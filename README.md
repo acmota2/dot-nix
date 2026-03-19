@@ -8,7 +8,7 @@ My flakes enabled multi-machine NixOS configuration - always in expansion.
 | -------- | ---- | ----- | ---- |
 | **EnderDragon** | Desktop | Workstation / Gaming | My main machine, used for all sorts of workloads. |
 | **Allay** | Laptop | Portable Workstation | My portable machine, used for work on the go. |
-| **Squid** | WSL | Development | My WSL2 configuration for development on Windows. |
+| **Wither** | Desktop | Gaming | My console emulation and couch gaming machine. |
 
 ## Home-manager
 

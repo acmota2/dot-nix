@@ -10,20 +10,20 @@
   imports =
     let
       guiPackages = [
-        ./desktop/tiling
+        ./desktop
       ];
       base = [
         home-manager.nixosModules.home-manager
-        ./system/nix-settings
         ./apps/terminal/btop
+        ./apps/terminal/macchina
+        ./apps/terminal/starship
+        ./apps/terminal/tmux
         ./dev
         ./dev/languages.nix
         ./system/lix
         ./system/locale
-        ./apps/terminal/macchina
+        ./system/nix-settings
         ./system/shell
-        ./apps/terminal/starship
-        ./apps/terminal/tmux
         ./users
       ];
       machineBase = [

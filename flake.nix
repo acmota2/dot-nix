@@ -6,7 +6,7 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/hyprland";
+    # hyprland.url = "github:hyprwm/hyprland";
     mango = {
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +43,6 @@
 
       machineModules = [
         ./apps/multimedia
-        ./display-manager/ly
         ./hardware/nfs.nix
         ./system/boot/kernel-mod
         ./dev/virtualization/podman.nix
@@ -69,6 +68,7 @@
               ./apps/games
               ./apps/games/minecraft
               ./apps/multimedia/video.nix
+              ./display-manager/ly
               ./hardware/bluetooth.nix
             ];
 
@@ -90,13 +90,14 @@
             ++ sops
             ++ [
               ./apps/games
+              ./display-manager/ly
               ./hardware/bluetooth.nix
               ./hardware/brightness.nix
               ./hardware/tlp.nix
             ];
 
           specialArgs = {
-            desktop = "hyprland";
+            desktop = "mangowc";
             graphics = "intel";
             hdr = false;
             monitors = [
@@ -106,18 +107,22 @@
           };
         };
 
-        Squid = {
+        Wither = {
           modules =
             default
+            ++ machineModules
             ++ sops
             ++ [
-              ./dev/aws
-              ./system/wsl
+              ./apps/appimage
+              ./apps/games
+              ./apps/games/minecraft
+              ./hardware/bluetooth.nix
+              ./users/autologin.nix
             ];
           specialArgs = {
-            desktop = null;
-            gitEmail = null;
-            gitUser = null;
+            desktop = "gamescope";
+            graphics = "amd";
+            hdr = false;
           };
         };
       };
@@ -142,6 +147,7 @@
             };
         };
       };
+
       nixosConfigurations = nixpkgs.lib.mapAttrs (
         hostname: config:
         nixpkgs.lib.nixosSystem {
