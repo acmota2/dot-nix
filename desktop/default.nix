@@ -9,7 +9,7 @@ in
   imports =
     if builtins.elem desktop tiling then
       [
-        ./tiling/${desktop}
+        ./tiling
       ]
     else
       [
