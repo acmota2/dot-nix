@@ -139,6 +139,7 @@
               ./apps/appimage
               ./apps/games
               ./apps/games/minecraft
+              ./apps/terminal/ssh
               ./hardware/bluetooth.nix
               ./system/disko/Wither.nix
               ./users/autologin.nix
