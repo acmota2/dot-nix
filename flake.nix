@@ -138,6 +138,7 @@
             ++ [
               ./apps/appimage
               ./apps/games
+              ./apps/games/emulation
               ./apps/games/minecraft
               ./apps/terminal/ssh
               ./hardware/bluetooth.nix
