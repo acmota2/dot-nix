@@ -23,6 +23,8 @@ let
   '';
 in
 {
+  imports = [ ./shortcuts.nix ];
+
   programs = {
     gamescope = {
       enable = true;
