@@ -1,4 +1,4 @@
-{ desktop, ... }:
+{ desktop, pkgs, ... }:
 let
   tiling = [
     "hyprland"
@@ -15,4 +15,26 @@ in
       [
         ./${desktop}
       ];
+  programs = {
+    chromium = {
+      enable = true;
+      extensions = [
+        "E37DB9C9AF23577974200276678C5E465E26C44B" # ublock origin
+      ];
+    };
+    dconf.enable = true;
+    ydotool.enable = true;
+  };
+
+  fonts.packages = [
+    pkgs.font-awesome
+    pkgs.jetbrains-mono
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.noto-fonts
+    pkgs.noto-fonts-color-emoji
+  ];
+
+  environment.systemPackages = [
+    pkgs.brave
+  ];
 }

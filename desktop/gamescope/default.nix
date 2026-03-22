@@ -1,13 +1,25 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 let
-  login = pkgs.writeShellScript "login" ''
+  steamBigPicture = pkgs.writeShellScript "steam-big-picture" ''
     set -euo pipefail
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
     exec ${pkgs.gamescope}/bin/gamescope \
       --rt \
-      # --steam -- \
+      --steam \
+      -- \
       ${pkgs.steam}/bin/steam \
-      -no-big-picture
+      -gamepadui
+  '';
+
+  steamDesktop = pkgs.writeShellScript "steam-desktop" ''
+    set -euo pipefail
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+
+    exec ${pkgs.gamescope}/bin/gamescope \
+      --rt \
+      -- \
+      ${pkgs.steam}/bin/steam
   '';
 in
 {
@@ -22,9 +34,22 @@ in
     };
   };
 
+  users.users.${username}.extraGroups = [
+    "input"
+    "render"
+    "video"
+  ];
+
   environment.loginShellInit = ''
-    if [ -z "''${DISPLAY:-}" ] && [ "$(tty)" = "/dev/tty1" ]; then
-      exec ${login}
+    if [ -z "''${DISPLAY:-}" ]; then
+      case "$(tty)" in
+        /dev/tty1)
+          exec ${steamBigPicture}
+          ;;
+        /dev/tty2)
+          exec ${steamDesktop}
+          ;;
+      esac
     fi
   '';
 }
