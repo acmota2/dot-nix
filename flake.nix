@@ -153,7 +153,7 @@
           };
 
           deployment = {
-            targetHost = "wither";
+            targetHost = "192.168.178.82";
             targetUser = "acmota2";
             buildOnTarget = true;
             tags = [

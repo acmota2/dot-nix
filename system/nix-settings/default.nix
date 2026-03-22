@@ -11,6 +11,7 @@
       "nix-command"
       "flakes"
     ];
+    trusted-users = [ username ];
   };
   system.stateVersion = "25.11";
 
