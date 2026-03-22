@@ -7,7 +7,7 @@ gamescopeArgs=(
   --steam
 )
 steamArgs=(
-  -tenfoot
+  -no-big-picture
 )
 
 exec gamescope "${gamescopeArgs[@]}" -- steam "${steamArgs[@]}"

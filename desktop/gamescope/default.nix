@@ -7,7 +7,7 @@ let
       --rt \
       --steam -- \
       ${pkgs.steam}/bin/steam \
-      -gamepadui
+      -no-big-picture
   '';
 in
 {
