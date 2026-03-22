@@ -81,6 +81,7 @@
             desktop = "mangowc";
             graphics = "amd";
             hdr = true;
+            isGaming = false;
             monitors = [
               monitors.aoc
               monitors.portable
@@ -115,6 +116,7 @@
             desktop = "mangowc";
             graphics = "intel";
             hdr = false;
+            isGaming = false;
             monitors = [
               monitors.t480
               monitors.aoc
@@ -143,16 +145,22 @@
               ./apps/games/emulation
               ./apps/games/minecraft
               ./apps/terminal/ssh
+              ./display-manager/ly
               ./hardware/bluetooth.nix
               ./system/disko/Wither.nix
+              ./system/systemd/faster-boot.nix
               ./users/autologin.nix
               ./users/root/enable-ssh.nix
             ];
 
           specialArgs = {
-            desktop = "gamescope";
+            desktop = "mangowc";
             graphics = "amd";
             hdr = false;
+            isGaming = true;
+            monitors = [
+              monitors.tv
+            ];
           };
 
           deployment = {
