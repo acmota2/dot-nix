@@ -7,11 +7,13 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
-    trusted-users = [ username ];
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [ username ];
+    };
   };
   system.stateVersion = "25.11";
 
