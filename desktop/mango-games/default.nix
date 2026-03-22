@@ -1,14 +1,11 @@
 {
-  isGaming ? false,
-  monitors,
   pkgs,
   username,
+  monitors,
+  isMinimal ? false,
   ...
 }@inputs:
 let
-  mkGaming =
-    filename: extension:
-    if isGaming then "${filename}-minimal.${extension}" else "${filename}.${extension}";
   renderMonitor =
     m:
     let
@@ -29,32 +26,24 @@ let
   monitorLines = builtins.concatStringsSep "\n" (map renderMonitor monitors);
 
   mangoConfig =
-    builtins.readFile ./${mkGaming "mangowc" "conf"}
+    builtins.readFile ./mangowc.conf
     + "\n\n"
     + monitorLines
     + "\n\n"
-    + "exec-once=~/.config/mango/${mkGaming "autostart" "sh"}\n";
+    + "exec-once=~/.config/mango/autostart.sh\n";
 in
 {
   imports = [
     inputs.mango.nixosModules.mango
   ];
 
-  environment.systemPackages =
-    with pkgs;
-    if isGaming then
-      [
-        swayidle
-        swaylock-effects
-      ]
-    else
-      [
-        swaybg
-        swayidle
-        swaylock-effects
-        grim
-        slurp
-      ];
+  environment.systemPackages = with pkgs; [
+    swaybg
+    swayidle
+    swaylock-effects
+    grim
+    slurp
+  ];
 
   services.dbus.enable = true;
 
@@ -78,7 +67,7 @@ in
     wayland.windowManager.mango = {
       enable = true;
       settings = mangoConfig;
-      autostart_sh = builtins.readFile ./${mkGaming "autostart" "sh"};
+      autostart_sh = builtins.readFile ./autostart.sh;
     };
 
     home.file.".config/swaylock/config".source = ./swaylock.conf;
