@@ -146,6 +146,7 @@
               ./hardware/bluetooth.nix
               ./system/disko/Wither.nix
               ./users/autologin.nix
+              ./users/root/enable-ssh.nix
             ];
 
           specialArgs = {
@@ -156,7 +157,7 @@
 
           deployment = {
             targetHost = "192.168.178.82";
-            targetUser = "acmota2";
+            targetUser = "root";
             buildOnTarget = true;
             tags = [
               "console"
