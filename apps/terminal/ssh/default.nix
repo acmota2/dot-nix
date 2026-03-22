@@ -1,19 +1,12 @@
-{
-  defaultUser,
-  extraUsers ? { },
-  pkgs,
-  ...
-}:
-let
-  users = extraUsers // defaultUser;
-in
-{
+_: {
   services.openssh = {
     enable = true;
     ports = [ 22 ];
     settings = {
       PasswordAuthentication = false;
-      AllowUsers = pkgs.lib.attrNames users;
+      AllowUsers = [
+        "acmota2"
+      ];
       UseDns = true;
       X11Forwarding = false;
       PermitRootLogin = "prohibit-password";
