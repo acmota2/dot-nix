@@ -11,12 +11,16 @@
   programs = {
     git = {
       enable = true;
-      settings.aliases = {
-        "ga" = "git add";
-        "gc" = "git clone";
+      settings = {
+        aliases = {
+          "ga" = "git add";
+          "gc" = "git clone";
+          user = {
+            email = "${gitEmail}";
+            name = "${gitUser}";
+          };
+        };
       };
-      userEmail = "${gitEmail}";
-      userName = "${gitUser}";
     };
   };
 }
