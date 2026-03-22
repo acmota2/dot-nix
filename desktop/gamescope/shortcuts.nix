@@ -1,32 +1,59 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 let
-  steam-brave = pkgs.writeShellScriptBin "steam-brave" ''
-    export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
-    export HOME="/home/$(whoami)"
-    export WAYLAND_DISPLAY=$GAMESCOPE_WAYLAND_DISPLAY
-    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-
-    exec ${pkgs.brave}/bin/brave \
-      --ozone-platform=wayland \
-      --enable-features=UseOzonePlatform \
-      --no-sandbox
+  steam-youtube = pkgs.writeShellScriptBin "steam-youtube" ''
+    exec ${pkgs.glib}/bin/gtk-launch youtube-tv
   '';
 
-  steamBraveDesktop = pkgs.makeDesktopItem {
-    name = "steam-brave";
-    desktopName = "Brave";
-    exec = "${steam-brave}/bin/steam-brave";
-    terminal = false;
-    categories = [
-      "Network"
-      "WebBrowser"
-    ];
-  };
+  steam-netflix = pkgs.writeShellScriptBin "steam-netflix" ''
+    exec ${pkgs.glib}/bin/gtk-launch netflix
+  '';
+
+  steam-disney = pkgs.writeShellScriptBin "steam-disney" ''
+    exec ${pkgs.glib}/bin/gtk-launch disney-plus
+  '';
+
+  firefox = "${pkgs.firefox}/bin/firefox";
+  youtubeUserAgent =
+    "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) "
+    + "AppleWebKit/537.36 (KHTML, like Gecko) "
+    + "SamsungBrowser/3.0 TV Safari/537.36";
 in
 {
   environment.systemPackages = [
-    pkgs.kitty
-    steam-brave
-    steamBraveDesktop
+    pkgs.firefox
+    steam-youtube
+    steam-netflix
+    steam-disney
   ];
+
+  home-manager.users.${username} = {
+    xdg.desktopEntries = {
+      youtube-tv = {
+        name = "YouTube (TV)";
+        type = "Application";
+        terminal = false;
+        startupNotify = false;
+        exec = "${firefox} " + ''--user-agent "${youtubeUserAgent}" '' + "https://www.youtube.com/tv";
+        categories = [ "AudioVideo" ];
+      };
+
+      netflix = {
+        name = "Netflix";
+        type = "Application";
+        terminal = false;
+        startupNotify = false;
+        exec = "${firefox} " + "https://www.netflix.com";
+        categories = [ "AudioVideo" ];
+      };
+
+      disney-plus = {
+        name = "Disney+";
+        type = "Application";
+        terminal = false;
+        startupNotify = false;
+        exec = "${firefox} " + "https://www.disneyplus.com";
+        categories = [ "AudioVideo" ];
+      };
+    };
+  };
 }

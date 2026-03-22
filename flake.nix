@@ -145,6 +145,7 @@
               ./apps/games/emulation
               ./apps/games/minecraft
               ./apps/terminal/ssh
+              ./desktop/gamescope/shortcuts.nix
               ./display-manager/ly
               ./hardware/bluetooth.nix
               ./system/disko/Wither.nix

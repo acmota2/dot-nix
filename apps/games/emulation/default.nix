@@ -1,4 +1,9 @@
-{ pkgs, unstable, ... }:
+{
+  pkgs,
+  unstable,
+  username,
+  ...
+}:
 let
   es-de = pkgs.appimageTools.wrapType2 {
     pname = "es-de";
@@ -13,6 +18,19 @@ let
   steam-es-de = pkgs.writeShellScriptBin "steam-es-de" ''
     exec ${es-de}/bin/es-de
   '';
+
+  steam-es-de-desktop = pkgs.makeDesktopItem {
+    name = "steam-es-de";
+    desktopName = "EmulationStation DE";
+    exec = "${steam-es-de}/bin/steam-es-de";
+    terminal = false;
+    categories = [
+      "Game"
+      "Emulator"
+    ];
+  };
+
+  retroarch = "${pkgs.retroarch-free}/bin/retroarch";
 in
 {
   programs.nix-ld.enable = true;
@@ -29,18 +47,37 @@ in
     [
       dolphin-emu
       flycast
+      libretro.beetle-psx-hw
+      libretro.beetle-saturn
+      libretro.gambatte
+      libretro.genesis-plus-gx
       mame
-      mednafen
+      mgba
       pcsx2
-      pipx
       ppsspp-sdl-wayland
-      python3
       retroarch-free
+      snes9x
       steam-es-de
+      steam-es-de-desktop
       xemu
       xenia-canary
     ]
     ++ [
       unstable.rpcs3
     ];
+
+  home-manager.users.${username} = {
+    xdg.desktopEntries = {
+      retroarch = {
+        name = "RetroArch";
+        comment = "Multi-system emulator frontend";
+        exec = "${pkgs.util-linux}/bin/setsid -f ${retroarch} " + "--fullscreen " + "--menu" + "--verbose";
+        terminal = false;
+        categories = [
+          "Game"
+          "Emulator"
+        ];
+      };
+    };
+  };
 }
