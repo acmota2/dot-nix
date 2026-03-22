@@ -5,7 +5,7 @@ let
 
     exec ${pkgs.gamescope}/bin/gamescope \
       --rt \
-      --steam -- \
+      # --steam -- \
       ${pkgs.steam}/bin/steam \
       -no-big-picture
   '';
