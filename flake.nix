@@ -16,6 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixos-anywhere.url = "github:nix-community/nixos-anywhere";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixvim.url = "github:nix-community/nixvim";
     dot-nix-neovim.url = "github:acmota2/dot-nix-neovim";
@@ -28,6 +29,7 @@
       colmena,
       dot-nix-neovim,
       home-manager,
+      nixos-anywhere,
       nixpkgs,
       sops-nix,
       unstable,
@@ -202,6 +204,28 @@
 
     in
     {
+      colmenaHive = colmena.lib.makeHive (
+        {
+          meta = {
+            nixpkgs = import nixpkgs { inherit system; };
+            specialArgs = inputs;
+            nodeSpecialArgs = lib.mapAttrs mkSpecialArgs mySystems;
+          };
+        }
+        // lib.mapAttrs mkColmenaNode mySystems
+      );
+
+      devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
+        packages = with nixpkgs.legacyPackages.${system}; [
+          age
+          colmena.packages.${system}.colmena
+          just
+          nixos-anywhere.packages.${system}.default
+          ssh-to-age
+          sops
+        ];
+      };
+
       homeConfigurations = {
         "acmota2" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
@@ -223,16 +247,5 @@
       };
 
       nixosConfigurations = lib.mapAttrs mkNixosSystem mySystems;
-
-      colmenaHive = colmena.lib.makeHive (
-        {
-          meta = {
-            nixpkgs = import nixpkgs { inherit system; };
-            specialArgs = inputs;
-            nodeSpecialArgs = lib.mapAttrs mkSpecialArgs mySystems;
-          };
-        }
-        // lib.mapAttrs mkColmenaNode mySystems
-      );
     };
 }

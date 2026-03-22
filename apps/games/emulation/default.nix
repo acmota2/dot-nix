@@ -32,7 +32,9 @@ in
       mame
       mednafen
       pcsx2
+      pipx
       ppsspp-sdl-wayland
+      python3
       retroarch-free
       steam-es-de
       xemu
