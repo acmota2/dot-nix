@@ -16,12 +16,7 @@ in
         ./${desktop}
       ];
   programs = {
-    chromium = {
-      enable = true;
-      extensions = [
-        "E37DB9C9AF23577974200276678C5E465E26C44B" # ublock origin
-      ];
-    };
+    chromium.enable = true;
     dconf.enable = true;
     ydotool.enable = true;
   };
