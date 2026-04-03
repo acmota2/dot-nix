@@ -106,9 +106,8 @@
             ++ sops
             ++ [
               ./apps/games
+              ./apps/games/minecraft
               ./display-manager/ly
-              ./games
-              ./games/minecraft
               ./hardware/bluetooth.nix
               ./hardware/brightness.nix
               ./hardware/tlp.nix
