@@ -107,6 +107,8 @@
             ++ [
               ./apps/games
               ./display-manager/ly
+              ./games
+              ./games/minecraft
               ./hardware/bluetooth.nix
               ./hardware/brightness.nix
               ./hardware/tlp.nix
