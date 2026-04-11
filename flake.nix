@@ -15,6 +15,7 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    musnix.url = "github:musnix/musnix";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-anywhere.url = "github:nix-community/nixos-anywhere";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
@@ -72,6 +73,9 @@
             ++ [
               ./apps/games
               ./apps/games/minecraft
+              ./apps/multimedia
+              ./apps/multimedia/audio
+              ./apps/multimedia/audio/extra.nix
               ./apps/multimedia/video.nix
               ./display-manager/ly
               ./hardware/bluetooth.nix
@@ -107,6 +111,8 @@
             ++ [
               ./apps/games
               ./apps/games/minecraft
+              ./apps/multimedia
+              ./apps/multimedia/audio
               ./display-manager/ly
               ./hardware/bluetooth.nix
               ./hardware/brightness.nix
