@@ -49,11 +49,12 @@ in
       ]
     else
       [
+        grim
+        slurp
         swaybg
         swayidle
         swaylock-effects
-        grim
-        slurp
+        swayosd
       ];
 
   services.dbus.enable = true;
