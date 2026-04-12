@@ -3,8 +3,9 @@ let
   pd-packs = pkgs.writeShellScriptBin "pd-packs" ''
     exec ${
       pkgs.puredata-with-plugins [
-        pkgs.zexy
         pkgs.cyclone
+        pkgs.maxlib
+        pkgs.zexy
       ]
     }/bin/pd \
       -lib zexy \
