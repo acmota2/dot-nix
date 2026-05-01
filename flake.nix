@@ -73,6 +73,7 @@
             ++ [
               ./apps/games
               ./apps/games/minecraft
+              ./apps/llm
               ./apps/multimedia
               ./apps/multimedia/audio
               ./apps/multimedia/audio/extra.nix
