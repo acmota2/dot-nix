@@ -18,7 +18,7 @@ This configuration is automatically enabled for all machines. A standalone confi
 
 ### Desktop
 
-- [foot](./desktop/foot)
+- [foot](./desktop/foot/default.nix)
 - [hyprland](./desktop/tiling/mangowc/default.nix)
 - [mako](./desktop/tiling/mako/default.nix)
 - [waybar](./desktop/tiling/waybar/default.nix)
