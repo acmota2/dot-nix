@@ -1,11 +1,15 @@
 { pkgs, username, ... }:
 {
   services = {
-    open-webui.enable = true;
+    open-webui = {
+      enable = true;
+      port = 10101;
+    };
     ollama = {
       enable = true;
       # Optional: preload models, see https://ollama.com/library
       environmentVariables = {
+        HIP_VISIBLE_DEVICES = "0";
         HSA_OVERRIDE_GFX_VERSION = "10.3.0";
       };
       rocmOverrideGfx = "10.3.0";
