@@ -6,62 +6,52 @@
   ...
 }@inputs:
 let
-  mkGaming =
-    filename: extension:
-    if isGaming then "${filename}-minimal.${extension}" else "${filename}.${extension}";
   renderMonitor =
     m:
-    let
-      base = [
-        "name:^${m.output}$"
-        "width:${toString m.width}"
-        "height:${toString m.height}"
-        "refresh:${toString m.refresh}"
-        "x:${toString m.x}"
-        "y:${toString m.y}"
-        "scale:${toString m.scale}"
-        "vrr:${toString m.vrr}"
-        "rr:${toString m.rotate}"
-      ];
-    in
-    "monitorrule=" + builtins.concatStringsSep "," base;
+    "name:^${m.output}$,width:${toString m.width},height:${toString m.height},refresh:${toString m.refresh},x:${toString m.x},y:${toString m.y},scale:${toString m.scale},vrr:${toString m.vrr},rr:${toString m.rotate}";
 
-  monitorLines = builtins.concatStringsSep "\n" (map renderMonitor monitors);
+  mangoSettings = (if isGaming then import ./settings-minimal.nix else import ./settings.nix) {
+    inherit monitors renderMonitor;
+  };
 
-  mangoConfig =
-    builtins.readFile ./${mkGaming "mangowc" "conf"}
-    + "\n\n"
-    + monitorLines
-    + "\n\n"
-    + "exec-once=~/.config/mango/${mkGaming "autostart" "sh"}\n";
+  autostartScript = import ./autostart.nix { inherit pkgs monitors isGaming; };
 in
 {
-  imports = [
-    inputs.mango.nixosModules.mango
-  ];
+  imports = [ inputs.mango.nixosModules.mango ];
 
   environment.systemPackages =
     with pkgs;
-    if isGaming then
-      [
-        swayidle
-        swaylock-effects
-      ]
-    else
-      [
-        grim
-        slurp
-        swaybg
-        swayidle
-        swaylock-effects
-        swayosd
-      ];
+    [
+      swayidle
+      swaylock-effects
+      sway-audio-idle-inhibit
+    ]
+    ++ (
+      if isGaming then
+        [ ]
+      else
+        [
+          grim
+          slurp
+          swayosd
+        ]
+    );
 
-  services.dbus.enable = true;
+  # Fix SwayOSD crash on suspend
+  systemd.user.services.swayosd = {
+    description = "SwayOSD display service";
+    partOf = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.swayosd}/bin/swayosd-server";
+      Restart = "always";
+      RestartSec = "2sec";
+    };
+    wantedBy = [ "graphical-session.target" ];
+  };
 
   programs.mango.enable = true;
-
   security.pam.services.swaylock = { };
+  services.dbus.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -72,16 +62,14 @@ in
   };
 
   home-manager.users.${username} = _: {
-    imports = [
-      inputs.mango.hmModules.mango
-    ];
+    imports = [ inputs.mango.hmModules.mango ];
+
+    home.file.".config/swaylock/config".source = ./swaylock.conf;
 
     wayland.windowManager.mango = {
       enable = true;
-      settings = mangoConfig;
-      autostart_sh = builtins.readFile ./${mkGaming "autostart" "sh"};
+      settings = mangoSettings;
+      autostart_sh = "${autostartScript}";
     };
-
-    home.file.".config/swaylock/config".source = ./swaylock.conf;
   };
 }
