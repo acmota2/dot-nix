@@ -13,17 +13,26 @@
     };
     ollama = {
       enable = true;
-      # Optional: preload models, see https://ollama.com/library
-      package = pkgs.ollama-vulkan;
+      package = pkgs.ollama-rocm;
+      environmentVariables = {
+        HIP_VISIBLE_DEVICES = "0";
+        HSA_OVERRIDE_GFX_VERSION = "10.3.0";
+        OLLAMA_KEEP_ALIVE = "30s";
+        OLLAMA_NUM_PARALLEL = "2";
+      };
+
+      rocmOverrideGfx = "10.3.0";
+      acceleration = "rocm";
+
       loadModels = [
-        "llama3.2:3b"
-        "codellama:7b"
         "qwen3:8b"
+        "qwen2.5-coder:1.5b"
+        "qwen2.5-coder:7b"
+        "mistral-nemo"
       ];
     };
   };
 
-  # Keep this separate block to maintain the aggressive restart policy
   systemd.services.open-webui.serviceConfig = {
     Restart = "always";
     RestartSec = "5s";
@@ -31,7 +40,6 @@
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  # Ensure your user has access to the render and video groups
   users.users.${username}.extraGroups = [
     "video"
     "render"

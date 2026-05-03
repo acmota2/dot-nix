@@ -71,11 +71,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1777679086,
-        "narHash": "sha256-LrDSucN4yIO4cBirQ4BI2oDB0w4CP4EJHlvkx4Xhg6k=",
+        "lastModified": 1777768962,
+        "narHash": "sha256-oJ1fqIc/iPjgQBNEo+qUiiWkQR2uwd1FcDpr7F9PS98=",
         "owner": "acmota2",
         "repo": "dot-nix-neovim",
-        "rev": "79464d8f25e2949e680475124ba21fdae6acd2ac",
+        "rev": "c7b662bbd77f5e34728c5c0ed30069689321c0bb",
         "type": "github"
       },
       "original": {
