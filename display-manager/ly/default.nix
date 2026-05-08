@@ -1,16 +1,18 @@
-{ ... }:
-# let
-#   hyprland-starter = pkgs.writeScript "hyprland-starter" ''
-#     export XDG_SESSION_TYPE=wayland
-#     export XDG_CURRENT_DESKTOP=Hyprland
-#     export XDG_SESSION_DESKTOP=Hyprland
-#     export QT_QPA_PLATFORM=wayland
-#     export SDL_VIDEODRIVER=wayland
-#     export MOZ_ENABLE_WAYLAND=1
-#
-#     exec start-hyprland
-#   '';
-# in
+{
+  username,
+  ...
+}@inputs:
+let
+  autoLogin = inputs.autoLogin or false;
+  autoLoginSettings =
+    if autoLogin then
+      {
+        auto_login = true;
+        auto_login_user = username;
+      }
+    else
+      { };
+in
 {
   security.pam.services.ly = { };
   services = {
@@ -18,7 +20,6 @@
     displayManager.ly = {
       enable = true;
       settings = {
-        allow_empty_password = true;
         bg = 0;
         animation = "colormix";
         colormix_col1 = "0x082E3E5A";
@@ -31,7 +32,8 @@
         numlock = false;
         save = true;
         vi_mode = false;
-      };
+      }
+      // autoLoginSettings;
     };
   };
   systemd.services."getty@tty1".enable = false;

@@ -3,8 +3,8 @@
 
   inputs = {
     colmena = {
-      url = "github:zhaofengli/colmena/main";
-      inputs.nixpkgs.follows = "unstable";
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     disko.url = "github:nix-community/disko";
     home-manager = {
@@ -163,6 +163,7 @@
             ];
 
           specialArgs = {
+            autoLogin = true;
             desktop = "mangowc";
             graphics = "amd";
             hdr = false;
@@ -193,7 +194,10 @@
           inherit hostname myUtils dot-nvim;
           isWsl = lib.elem ./wsl config.modules;
           isHomeManager = false;
-          unstable = unstable.legacyPackages.${system};
+          unstable = import unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
         };
 
       mkNixosSystem =
