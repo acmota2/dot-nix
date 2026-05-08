@@ -1,6 +1,10 @@
 # .nix - NixOS configuration
 
-My flakes enabled multi-machine NixOS configuration - always in expansion.
+My flake NixOS configuration - always in expansion.
+
+## Preview
+
+![preview](./preview.png)
 
 ## Machines
 
@@ -12,20 +16,22 @@ My flakes enabled multi-machine NixOS configuration - always in expansion.
 
 ## Home-manager
 
-This configuration is automatically enabled for all machines. A standalone configuration is also available for use on non-NixOS systems.
+This configuration is automatically enabled for all machines.
+
+A standalone configuration is also available for use on non-NixOS systems.
 
 ## Applications in use
 
 ### Desktop
 
 - [foot](./desktop/foot/default.nix)
-- [hyprland](./desktop/tiling/mangowc/default.nix)
+- [mango](./desktop/tiling/mangowc/default.nix)
 - [mako](./desktop/tiling/mako/default.nix)
 - [waybar](./desktop/tiling/waybar/default.nix)
 
 ### Development
 
-- [nixvim](http://github.com/acmota2/dot-nix-neovim)
+- [nixvim](http://github.com/acmota2/dot-nix-neovim) (moved to another repository)
 - [tmux](./tmux/default.nix)
 
 ### System
