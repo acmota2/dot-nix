@@ -1,7 +1,6 @@
 { monitors, renderMonitor }:
 {
   # Basic appearance
-  default_layout = "tile";
   allow_tearing = 0;
 
   # Input
