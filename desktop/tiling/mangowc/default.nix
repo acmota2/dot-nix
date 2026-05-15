@@ -70,6 +70,20 @@ in
       enable = true;
       settings = mangoSettings;
       autostart_sh = "${autostartScript}";
+      systemd = {
+        enable = true;
+        variables = [
+          "DISPLAY"
+          "WAYLAND_DISPLAY"
+          "XDG_CURRENT_DESKTOP"
+          "XDG_SESSION_TYPE"
+        ];
+        extraCommands = [
+          "systemctl --user reset-failed"
+          "systemctl --user start mango-session.target"
+        ];
+        xdgAutostart = true;
+      };
     };
   };
 }

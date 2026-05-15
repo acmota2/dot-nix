@@ -58,24 +58,33 @@
 
   # Keybinds
   bind = [
+    # Layouts
     "SUPER,F1,setlayout,tile"
     "SUPER,F2,setlayout,scroller"
     "SUPER,F3,setlayout,monocle"
     "SUPER,F4,setlayout,grid"
     "SUPER,F5,switch_layout"
+
+    # Moving windows
     "SUPER+CTRL,left,focusmon,left"
     "SUPER+CTRL,right,focusmon,right"
     "SUPER+CTRL+SHIFT,left,tagmon,left,1"
     "SUPER+CTRL+SHIFT,right,tagmon,right,1"
+
+    # Programs
     "SUPER,Return,spawn,footclient"
     "SUPER,D,spawn,wofi -S drun,run"
     "SUPER+SHIFT,D,spawn,walker"
     "SUPER,V,spawn_shell,cliphist list | wofi --dmenu | cliphist decode | wl-copy"
     "SUPER,E,spawn,wofi-emoji"
     "SUPER,P,spawn,wofi-power-menu"
-    "SUPER,Print,spawn_shell,grim -g \"$(slurp)\" - | wl-copy"
-    "NONE,Print,spawn_shell,grim -o \"$(slurp -o | head -n1)\" - | wl-copy"
+
+    # Printscreen
+    "NONE,Print,spawn_shell,grim - | wl-copy"
+    "SUPER,Print,spawn_shell,grim -g \"$(slurp)\" - | wl-copy" # TODO: review
     "SUPER+SHIFT,Print,spawn_shell,grim -g \"$(slurp)\" - | wl-copy"
+
+    # Windows
     "SUPER,left,focusdir,left"
     "SUPER,right,focusdir,right"
     "SUPER,up,focusdir,up"
@@ -108,6 +117,8 @@
     "SUPER+SHIFT,7,tag,7"
     "SUPER+SHIFT,8,tag,8"
     "SUPER+SHIFT,9,tag,9"
+
+    # Special
     "NONE,XF86MonBrightnessUp,spawn,swayosd-client --brightness raise"
     "SHIFT,XF86MonBrightnessUp,spawn,swayosd-client --brightness +100"
     "NONE,XF86MonBrightnessDown,spawn,swayosd-client --brightness lower"
@@ -116,8 +127,11 @@
     "NONE,XF86AudioLowerVolume,spawn,swayosd-client --output-volume lower"
     "NONE,XF86AudioMute,spawn,swayosd-client --output-volume mute-toggle"
     "SHIFT,XF86AudioMute,spawn,swayosd-client --input-volume mute-toggle"
+
+    # Compositor
     "SUPER+SHIFT,C,quit"
     "SUPER+SHIFT,Q,killclient"
+    "SUPER,r,reload_config"
   ];
 
   bindl = [ "SUPER,L,spawn,swaylock" ];

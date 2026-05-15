@@ -18,7 +18,7 @@ pkgs.writeShellScript "mango-autostart" ''
   ${if isGaming then "" else bg}
 
   ${pkgs.swayidle}/bin/swayidle -w \
-    timeout 600 '${disableCmds}' \
+    timeout 1200 '${disableCmds}' \
     resume '${enableCmds}' \
     timeout 1800 'systemctl suspend' \
     before-sleep '${pkgs.swaylock-effects}/bin/swaylock'
