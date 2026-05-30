@@ -1,5 +1,8 @@
 { pkgs, username, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    aider-chat-full
+  ];
   services = {
     open-webui = {
       enable = true;
@@ -26,8 +29,6 @@
 
       loadModels = [
         "qwen3:8b"
-        "qwen2.5-coder:1.5b"
-        "qwen2.5-coder:7b"
         "mistral-nemo"
       ];
     };
