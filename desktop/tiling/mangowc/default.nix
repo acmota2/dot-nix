@@ -1,5 +1,4 @@
 {
-  isGaming ? false,
   monitors,
   pkgs,
   username,
@@ -8,34 +7,37 @@
 let
   renderMonitor =
     m:
-    "name:^${m.output}$,width:${toString m.width},height:${toString m.height},refresh:${toString m.refresh},x:${toString m.x},y:${toString m.y},scale:${toString m.scale},vrr:${toString m.vrr},rr:${toString m.rotate}";
+    builtins.concatStringsSep "," [
+      "name:^${m.output}$"
+      "width:${toString m.width}"
+      "height:${toString m.height}"
+      "refresh:${toString m.refresh}"
+      "x:${toString m.x}"
+      "y:${toString m.y}"
+      "scale:${toString m.scale}"
+      "vrr:${toString m.vrr}"
+      "rr:${toString m.rotate}"
+    ];
 
-  mangoSettings = (if isGaming then import ./settings-minimal.nix else import ./settings.nix) {
+  mangoSettings = (import ./settings.nix) {
     inherit monitors renderMonitor;
   };
 
-  autostartScript = import ./autostart.nix { inherit pkgs monitors isGaming; };
+  autostartScript = import ./autostart.nix {
+    inherit pkgs monitors;
+  };
 in
 {
   imports = [ inputs.mango.nixosModules.mango ];
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      swayidle
-      swaylock-effects
-      sway-audio-idle-inhibit
-    ]
-    ++ (
-      if isGaming then
-        [ ]
-      else
-        [
-          grim
-          slurp
-          swayosd
-        ]
-    );
+  environment.systemPackages = with pkgs; [
+    swayidle
+    swaylock-effects
+    sway-audio-idle-inhibit
+    grim
+    slurp
+    swayosd
+  ];
 
   # Fix SwayOSD crash on suspend
   systemd.user.services.swayosd = {
