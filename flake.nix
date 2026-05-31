@@ -11,6 +11,7 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland/v0.54.3-b";
     mango = {
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,10 +84,9 @@
             ];
 
           specialArgs = {
-            desktop = "mangowc";
+            desktop = "hyprland";
             graphics = "amd";
             hdr = true;
-            isGaming = false;
             monitors = [
               monitors.aoc
               monitors.portable
@@ -124,7 +124,6 @@
             desktop = "mangowc";
             graphics = "intel";
             hdr = false;
-            isGaming = false;
             monitors = [
               monitors.t480
               monitors.aoc
@@ -167,7 +166,6 @@
             desktop = "mangowc";
             graphics = "amd";
             hdr = false;
-            isGaming = true;
             monitors = [
               monitors.tv
             ];
