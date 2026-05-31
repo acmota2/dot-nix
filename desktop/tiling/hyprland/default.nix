@@ -44,6 +44,7 @@
     ];
 
     wayland.windowManager.hyprland = {
+      configType = "hyprlang"; # change in the future
       enable = true;
       package = null;
       portalPackage = null;
@@ -54,7 +55,7 @@
     services = {
       hyprpaper = {
         enable = true;
-        settings = import ./hyprpaper;
+        settings = import ./hyprpaper inputs;
       };
       hypridle = {
         enable = true;

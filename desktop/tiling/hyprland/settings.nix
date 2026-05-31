@@ -20,15 +20,16 @@ in
     "$mod" = "SUPER";
     "$terminal" = "footclient";
     "$terminalWindow" = "footclient";
-    "$menu" = "wofi -S drun,run";
+    "$menu" = "uwsm app -- setpriv --ambient-caps=\"-all\" wofi -S drun";
 
     monitor = renderedMonitors;
 
     exec-once = [
-      "foot --server"
-      "tmux"
+      "uwsm app -- foot --server"
+      "uwsm app -- waybar"
+      "uwsm app -- mako"
+      "uwsm app -- tmux"
       "waybar"
-      "mako"
       "hyprpaper"
       "blueman-applet"
       "wl-paste --type text --watch cliphist store"
@@ -58,29 +59,27 @@ in
       border_size = 2;
       "col.active_border" = "rgba(007184ee) rgba(008194ee) 60deg";
       "col.inactive_border" = "rgba(333333aa)";
-      "col.urgent" = "0xad401fff";
       allow_tearing = false;
     };
 
-    decoration = {
-      rounding = 5;
-      blur = {
-        enabled = true;
-        size = 3;
-        passes = 1;
-      };
+    decoration.blur = {
+      enabled = true;
+      size = 3;
+      passes = 1;
     };
 
     animations = {
       enabled = true;
-      bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+      bezier = "myBezier,0.46,1.0,0.29,0.99";
       animation = [
-        "windows,1, 4, myBezier"
-        "windowsOut,1, 4, default, popin 80%"
+        "windowsIn, 1, 1.2, myBezier, slide"
+        "windowsOut, 1, 1.2, myBezier, slide"
+        "windowsMove, 1, 1.2, myBezier"
         "border,1, 10, default"
         "borderangle,1, 8, default"
-        "fade,1, 4, default"
-        "workspaces,1, 4, default"
+        "fade, 0"
+        "workspaces, 1, 1.8, myBezier, slide"
+        "layers, 0"
       ];
     };
 
@@ -89,8 +88,6 @@ in
       preserve_split = true;
     };
 
-    misc = {
-      force_default_wallpaper = 0;
-    };
+    misc.force_default_wallpaper = 0;
   };
 }

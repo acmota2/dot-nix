@@ -7,7 +7,7 @@
     x = 0;
     y = 0;
     scale = 1;
-    vrr = 1;
+    vrr = 2;
     rotate = 0;
   };
 
@@ -16,7 +16,7 @@
     width = 1920;
     height = 1080;
     refresh = 60;
-    x = -812;
+    x = -813;
     y = 0;
     scale = 1.33;
     vrr = 0;

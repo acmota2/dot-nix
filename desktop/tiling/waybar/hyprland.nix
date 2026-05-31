@@ -12,7 +12,6 @@
       "clock"
     ];
     modules-right = [
-      "hyprland/language"
       "pulseaudio"
       "network"
       "cpu"
