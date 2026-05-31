@@ -18,7 +18,7 @@
           launch = "xdg-open $\{url\}";
           osc8-underline = "always";
         };
-        colors = {
+        colors-dark = {
           foreground = "c0caf5";
           background = "1a1b26";
           regular0 = "15161E"; # black

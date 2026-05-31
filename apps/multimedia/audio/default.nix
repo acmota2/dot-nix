@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     audacity
-    helvum
+    crosspipe
     unstable.musescore
   ];
 }

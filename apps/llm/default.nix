@@ -25,7 +25,6 @@
       };
 
       rocmOverrideGfx = "10.3.0";
-      acceleration = "rocm";
 
       loadModels = [
         "qwen3:8b"
