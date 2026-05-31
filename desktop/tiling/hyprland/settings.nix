@@ -55,9 +55,10 @@ in
     general = {
       gaps_in = 3;
       gaps_out = 10;
-      border_size = 1;
+      border_size = 2;
       "col.active_border" = "rgba(007184ee) rgba(008194ee) 60deg";
       "col.inactive_border" = "rgba(333333aa)";
+      "col.urgent" = "0xad401fff";
       allow_tearing = false;
     };
 
