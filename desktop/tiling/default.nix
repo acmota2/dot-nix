@@ -3,7 +3,7 @@
   desktop,
   username,
   ...
-}:
+}@inputs:
 {
   imports = [
     ./${desktop}
@@ -37,20 +37,22 @@
       };
 
       sessionVariables = {
-        "NIXOS_OZONE_WL" = "1";
+        NIXOS_OZONE_WL = "1";
+        GTK_THEME = "Adwaita-dark";
       };
     };
 
     programs.waybar = {
       enable = true;
-      settings = import ./waybar/${desktop}.nix;
+      settings = import ./waybar/${desktop}${
+        if inputs.isMultiMonitor or false then "-multi-monitor" else ""
+      }.nix;
       style = builtins.readFile ./waybar/style.css;
     };
 
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
+    dconf.settings."org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      gtk-application-prefer-dark-theme = true;
     };
 
     gtk = {

@@ -29,7 +29,6 @@ in
       "uwsm app -- waybar"
       "uwsm app -- mako"
       "uwsm app -- tmux"
-      "waybar"
       "hyprpaper"
       "blueman-applet"
       "wl-paste --type text --watch cliphist store"

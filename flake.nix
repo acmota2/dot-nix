@@ -87,6 +87,7 @@
             desktop = "hyprland";
             graphics = "amd";
             hdr = true;
+            isMultiMonitor = true;
             monitors = [
               monitors.aoc
               monitors.portable
