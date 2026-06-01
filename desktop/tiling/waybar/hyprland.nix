@@ -6,7 +6,9 @@
     margin-top = 4;
     margin-right = 10;
     margin-left = 10;
+
     modules-left = [ "hyprland/workspaces" ];
+
     modules-center = [
       "custom/fildem"
       "clock"
