@@ -2,23 +2,18 @@
   description = "My machines";
 
   inputs = {
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     disko.url = "github:nix-community/disko";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland/v0.54.3-b";
+    hyprland.url = "github:hyprwm/Hyprland";
     mango = {
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     musnix.url = "github:musnix/musnix";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixos-anywhere.url = "github:nix-community/nixos-anywhere";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixvim.url = "github:nix-community/nixvim";
     dot-nix-neovim.url = "github:acmota2/dot-nix-neovim";
@@ -28,10 +23,8 @@
 
   outputs =
     {
-      colmena,
       dot-nix-neovim,
       home-manager,
-      nixos-anywhere,
       nixpkgs,
       sops-nix,
       unstable,
@@ -66,6 +59,28 @@
         sops-nix.nixosModules.sops
       ];
 
+      specialArgs = {
+        EnderDragon = {
+          desktop = "hyprland";
+          graphics = "amd";
+          hdr = true;
+          isMultiMonitor = true;
+          monitors = [
+            monitors.aoc
+            monitors.portable
+          ];
+        };
+        Allay = {
+          desktop = "mangowc";
+          graphics = "intel";
+          hdr = false;
+          monitors = [
+            monitors.t480
+            monitors.aoc
+          ];
+        };
+      };
+
       mySystems = {
         EnderDragon = {
           modules =
@@ -82,27 +97,6 @@
               ./display-manager/ly
               ./hardware/bluetooth.nix
             ];
-
-          specialArgs = {
-            desktop = "hyprland";
-            graphics = "amd";
-            hdr = true;
-            isMultiMonitor = true;
-            monitors = [
-              monitors.aoc
-              monitors.portable
-            ];
-          };
-
-          deployment = {
-            targetHost = "enderdragon";
-            targetUser = "acmota2";
-            buildOnTarget = true;
-            tags = [
-              "desktop"
-              "personal"
-            ];
-          };
         };
 
         Allay = {
@@ -120,67 +114,6 @@
               ./hardware/brightness.nix
               ./hardware/tlp.nix
             ];
-
-          specialArgs = {
-            desktop = "mangowc";
-            graphics = "intel";
-            hdr = false;
-            monitors = [
-              monitors.t480
-              monitors.aoc
-            ];
-          };
-
-          deployment = {
-            targetHost = "allay";
-            targetUser = "acmota2";
-            buildOnTarget = true;
-            tags = [
-              "laptop"
-              "personal"
-            ];
-          };
-        };
-
-        Wither = {
-          modules =
-            default
-            ++ machineModules
-            ++ sops
-            ++ [
-              ./apps/appimage
-              ./apps/games
-              ./apps/games/emulation
-              ./apps/games/minecraft
-              ./apps/terminal/ssh
-              ./desktop/gamescope/shortcuts.nix
-              ./display-manager/ly
-              ./hardware/bluetooth.nix
-              ./system/disko/Wither.nix
-              ./system/systemd/faster-boot.nix
-              ./users/autologin.nix
-              ./users/root/enable-ssh.nix
-            ];
-
-          specialArgs = {
-            autoLogin = true;
-            desktop = "mangowc";
-            graphics = "amd";
-            hdr = false;
-            monitors = [
-              monitors.tv
-            ];
-          };
-
-          deployment = {
-            targetHost = "192.168.178.82";
-            targetUser = "root";
-            buildOnTarget = true;
-            tags = [
-              "console"
-              "personal"
-            ];
-          };
         };
       };
 
@@ -188,7 +121,7 @@
         hostname: config:
         inputs
         // defaultUser
-        // config.specialArgs
+        // specialArgs.${hostname}
         // {
           inherit hostname myUtils dot-nvim;
           isWsl = lib.elem ./wsl config.modules;
@@ -206,49 +139,19 @@
           modules = config.modules;
           specialArgs = mkSpecialArgs hostname config;
         };
-
-      mkColmenaNode = hostname: config: {
-        imports = config.modules;
-
-        deployment = {
-          targetHost = config.deployment.targetHost;
-          targetUser = config.deployment.targetUser;
-          buildOnTarget = config.deployment.buildOnTarget or true;
-          tags = config.deployment.tags or [ ];
-          privilegeEscalationCommand = [
-            "sudo"
-            "-H"
-            "--"
-          ];
-        };
-      };
-
     in
     {
-      colmenaHive = colmena.lib.makeHive (
-        {
-          meta = {
-            nixpkgs = import nixpkgs { inherit system; };
-            specialArgs = inputs;
-            nodeSpecialArgs = lib.mapAttrs mkSpecialArgs mySystems;
-          };
-        }
-        // lib.mapAttrs mkColmenaNode mySystems
-      );
-
       devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
         packages = with nixpkgs.legacyPackages.${system}; [
           age
-          colmena.packages.${system}.colmena
           just
-          nixos-anywhere.packages.${system}.default
           ssh-to-age
           sops
         ];
       };
 
       homeConfigurations = {
-        "acmota2" = home-manager.lib.homeManagerConfiguration {
+        acmota2 = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             ./apps/terminal/macchina
