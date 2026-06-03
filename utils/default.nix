@@ -2,20 +2,19 @@
 {
   homeOrNixos =
     {
-      isHomeManager,
-      username,
+      config,
       options,
       optionalHome ? { },
       optionalNixos ? { },
     }:
-    if isHomeManager then
+    if config.meta.isHomeManager then
       lib.mkMerge [
         options
         optionalHome
       ]
     else
       {
-        home-manager.users.${username} =
+        home-manager.users.${config.users.default.username} =
           _:
           lib.mkMerge [
             options
