@@ -6,29 +6,31 @@
   services = {
     open-webui = {
       enable = true;
-      port = 10101;
       environment = {
         HOME = "/var/lib/open-webui";
         HUGGINGFACE_HUB_CACHE = "/var/lib/open-webui/cache/huggingface";
         TRANSFORMERS_CACHE = "/var/lib/open-webui/cache/transformers";
         CHROMA_CACHE_DIR = "/var/lib/open-webui/cache/chroma";
       };
+      package = pkgs.open-webui;
+      port = 10101;
     };
     ollama = {
       enable = true;
       package = pkgs.ollama-rocm;
+
       environmentVariables = {
-        HIP_VISIBLE_DEVICES = "0";
-        HSA_OVERRIDE_GFX_VERSION = "10.3.0";
         OLLAMA_KEEP_ALIVE = "30s";
-        OLLAMA_NUM_PARALLEL = "2";
+        OLLAMA_NUM_PARALLEL = "1";
       };
 
-      rocmOverrideGfx = "10.3.0";
+      rocmOverrideGfx = "11.0.0";
 
       loadModels = [
         "qwen3:8b"
         "mistral-nemo"
+        "gemma3:27b"
+        "qwen3:30b"
       ];
     };
   };
