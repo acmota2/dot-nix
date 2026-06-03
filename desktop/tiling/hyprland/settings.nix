@@ -2,16 +2,19 @@
 let
   renderMonitor =
     m:
-    builtins.concatStringsSep "," [
-      m.output
-      "${toString m.width}x${toString m.height}@${toString m.refresh}"
-      "${toString m.x}x${toString m.y}"
-      (toString m.scale)
-      "vrr"
-      (toString m.vrr)
-      "transform"
-      (toString m.rotate)
-    ];
+    builtins.concatStringsSep "," (
+      [
+        m.output
+        "${toString m.width}x${toString m.height}@${toString m.refresh}"
+        "${toString m.x}x${toString m.y}"
+        (toString m.scale)
+        "vrr"
+        (toString m.vrr)
+        "transform"
+        (toString m.rotate)
+      ]
+      ++ (if m ? hyprlandExtras then m.hyprlandExtras else [ ])
+    );
 
   renderedMonitors = map renderMonitor monitors;
 in
@@ -82,11 +85,11 @@ in
       ];
     };
 
-    dwindle = {
-      pseudotile = true;
-      preserve_split = true;
-    };
+    dwindle.preserve_split = true;
 
-    misc.force_default_wallpaper = 0;
+    misc = {
+      force_default_wallpaper = 0;
+      disable_splash_rendering = true;
+    };
   };
 }

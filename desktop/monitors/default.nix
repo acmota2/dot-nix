@@ -9,10 +9,20 @@
     scale = 1;
     vrr = 2;
     rotate = 0;
+    # hyprlandExtras = [
+    #   "bitdepth"
+    #   "10"
+    #   "cm"
+    #   "hdr"
+    #   "sdr_max_luminance"
+    #   "200"
+    #   "sdr_min_luminance"
+    #   "0"
+    # ];
   };
 
   portable = {
-    output = "DP-2";
+    output = "DP-3";
     width = 1920;
     height = 1080;
     refresh = 60;

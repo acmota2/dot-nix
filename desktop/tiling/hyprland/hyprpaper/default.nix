@@ -1,6 +1,6 @@
 { monitors, ... }:
 {
-  splash = true;
+  splash = false;
   preload = [ "~/pictures/penide-cold.jpg" ];
   wallpaper = map (m: {
     monitor = m.output;
