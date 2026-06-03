@@ -14,7 +14,7 @@
       ]
     else
       {
-        home-manager.users.${config.users.default.username} =
+        home-manager.users.${config.users.defaultUser} =
           _:
           lib.mkMerge [
             options
