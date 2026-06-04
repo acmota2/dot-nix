@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   myBar = {
     layer = "top";
@@ -7,16 +8,17 @@
     margin-right = 10;
     margin-left = 10;
 
-    modules-left = [ "ext/workspaces" ];
+    modules-left =
+      if config.hostSettings.display.desktop.name == "hyprland" then
+        [ "hyprland/workspaces" ]
+      else
+        [ "ext/workspaces" ];
 
     modules-center = [
       "custom/fildem"
       "clock"
     ];
-
     modules-right = [
-      # Replaces hyprland/language. You will need a tiny script for this.
-      "custom/keyboard-layout"
       "pulseaudio"
       "network"
       "cpu"
@@ -27,13 +29,18 @@
       "battery#bat2"
       "tray"
     ];
-
-    "ext/workspaces" = {
+    # Modules configuration
+    "hyprland/language" = {
+      format-en = "US";
+      format-en-intl = "US (intl)";
+      format = "{}";
+      on-click = "hyprctl switchxkblayout current next";
+    };
+    "hyprland/workspaces" = {
       disable-scroll = true;
+      all-outputs = true;
+      warp-on-scroll = false;
       format = "{icon}";
-      on-click = "activate";
-      sort-by-id = true;
-
       format-icons = {
         "1" = " ";
         "2" = " ";
@@ -44,27 +51,11 @@
         "7" = " 7 ";
         "8" = " 8 ";
         "9" = " 9 ";
+        urgent = "";
+        focused = "";
         default = "";
       };
     };
-
-    # MangoWC does not have the Hyprland-specific language module,
-    # so use a custom script here instead.
-    #
-    # Suggested contract:
-    # - script prints JSON, e.g. {"text":"US","tooltip":"English (US)"}
-    # - on-click switches to the next configured XKB layout
-    #
-    # You can leave this module out entirely for the first migration pass
-    # if you want to keep things simpler.
-    "custom/keyboard-layout" = {
-      format = "{}";
-      return-type = "json";
-      interval = 1;
-      exec = "$HOME/.config/waybar/scripts/keyboard-layout";
-      on-click = "$HOME/.config/waybar/scripts/keyboard-layout --next";
-    };
-
     keyboard-state = {
       numlock = true;
       capslock = true;
@@ -74,11 +65,9 @@
         unlocked = "";
       };
     };
-
     "sway/mode" = {
       format = "<span style=\"italic\">{}</span>";
     };
-
     "sway/scratchpad" = {
       format = "{icon} {count}";
       show-empty = false;
@@ -89,40 +78,32 @@
       tooltip = true;
       tooltip-format = "{app}: {title}";
     };
-
     mpd = {
       format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
       format-disconnected = "Disconnected ";
       format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
       unknown-tag = "N/A";
       interval = 2;
-
       consume-icons = {
         on = " ";
       };
-
       random-icons = {
         off = "<span color=\"#f53c3c\"></span> ";
         on = " ";
       };
-
       repeat-icons = {
         on = " ";
       };
-
       single-icons = {
         on = "1 ";
       };
-
       state-icons = {
         paused = "";
         playing = "";
       };
-
       tooltip-format = "MPD (connected)";
       tooltip-format-disconnected = "MPD (disconnected)";
     };
-
     idle_inhibitor = {
       format = "{icon}";
       format-icons = {
@@ -130,30 +111,29 @@
         deactivated = "";
       };
     };
-
     tray = {
+      # "icon-size"= 21;
       spacing = 10;
     };
-
     clock = {
+      # "timezone"= "America/New_York";
       format = "{:%d %b • %H:%M}";
       tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       format-alt = "{:%Y-%m-%d • %H:%M}";
     };
-
     cpu = {
       format = "{usage}% ";
       tooltip = false;
     };
-
     memory = {
       format = "{}% ";
     };
-
     temperature = {
       thermal-zone = 2;
       hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+      # "hwmon-path"= "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input";
       critical-threshold = 80;
+      # "format-critical"= "{temperatureC}°C {icon}";
       format = "{temperatureC}°C {icon}";
       format-icons = [
         ""
@@ -161,8 +141,8 @@
         ""
       ];
     };
-
     backlight = {
+      # "device"= "acpi_video1";
       format = "{percent}% {icon}";
       format-icons = [
         ""
@@ -176,18 +156,15 @@
         ""
       ];
     };
-
     battery = {
       states = {
         warning = 30;
         critical = 15;
       };
-
       format = "{capacity}% {icon}";
       format-charging = "{capacity}% ";
       format-plugged = "{capacity}% ";
       format-alt = "{time} {capacity}% {icon}";
-
       format-icons = [
         ""
         ""
@@ -196,11 +173,9 @@
         ""
       ];
     };
-
     "battery#bat2" = {
       bat = "BAT2";
     };
-
     network = {
       format-wifi = "[{signalStrength}%] ";
       format-ethernet = "󰛳";
@@ -208,7 +183,6 @@
       format-linked = "󰱓";
       format-disconnected = "󰅛";
     };
-
     pulseaudio = {
       format = "{volume}% {icon}";
       format-bluetooth = "{volume}% {icon}";
@@ -216,7 +190,6 @@
       format-muted = "󰝟";
       format-source = "{volume}% ";
       format-source-muted = "";
-
       format-icons = {
         headphone = "";
         hands-free = "";
@@ -230,24 +203,19 @@
           ""
         ];
       };
-
       on-click = "pavucontrol";
     };
-
     "custom/media" = {
       format = "{icon} {}";
       return-type = "json";
       max-length = 40;
-
       format-icons = {
         spotify = "";
         default = "🎜";
       };
-
       escape = true;
       exec = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null";
     };
-
     "custom/fildem" = {
       exec = "fildem";
     };

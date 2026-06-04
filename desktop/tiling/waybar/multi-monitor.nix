@@ -1,3 +1,4 @@
+{ config, ... }:
 let
   aoc = (import ../../monitors).aoc;
   portable = (import ../../monitors).portable;
@@ -46,7 +47,6 @@ let
       spacing = 10;
     };
   };
-
 in
 {
   # --- Main Monitor Bar ---
@@ -55,7 +55,11 @@ in
     // {
       output = aoc.output;
 
-      modules-left = [ "hyprland/workspaces" ];
+      modules-left =
+        if config.hostSettings.displaydesktop.name == "hyprland" then
+          [ "hyprland/workspaces" ]
+        else
+          [ "ext/workspaces" ];
       modules-center = [
         "custom/fildem"
         "clock"
