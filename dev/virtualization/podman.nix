@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ config, pkgs, ... }:
 {
   virtualisation.containers.enable = true;
   virtualisation = {
@@ -10,7 +10,7 @@
     };
   };
 
-  users.users.${username}.extraGroups = [
+  users.users.${config.hostSettings.users.default.username}.extraGroups = [
     "docker"
     "podman"
   ];

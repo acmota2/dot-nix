@@ -1,6 +1,6 @@
-{ pkgs, username, ... }:
+{ config, pkgs, ... }:
 {
-  users.users.${username} = {
+  users.users.${config.hostSettings.users.default.username} = {
     extraGroups = [ "sound" ];
   };
   security.rtkit.enable = true;

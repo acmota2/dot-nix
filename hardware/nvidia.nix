@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, lib, ... }:
+lib.mkIf (config.hostSettings.display.adapter.manufacturer == "nvidia") {
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl = {
     enable = true;

@@ -1,5 +1,10 @@
-{ pkgs, ... }:
 {
+  isHomeManager,
+  lib,
+  pkgs,
+  ...
+}:
+lib.mkIf (!isHomeManager) {
   # nixpkgs.overlays = [
   #   (final: prev: {
   #     inherit (prev.lixPackageSets.stable)

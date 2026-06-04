@@ -3,22 +3,26 @@
   homeOrNixos =
     {
       config,
+      isHomeManager,
       options,
       optionalHome ? { },
       optionalNixos ? { },
     }:
-    if config.meta.isHomeManager then
-      lib.mkMerge [
-        options
-        optionalHome
-      ]
-    else
-      {
-        home-manager.users.${config.users.defaultUser} =
-          _:
-          lib.mkMerge [
-            options
-            optionalNixos
-          ];
-      };
+    lib.mkIf config.hostSettings.enable (
+      if isHomeManager then
+        lib.mkMerge [
+          options
+          optionalHome
+        ]
+      else
+        {
+          home-manager.users.${config.hostSettings.users.default.username} =
+            _:
+            lib.mkMerge [
+              options
+              optionalNixos
+            ];
+        }
+    );
 }
+// (import ../modules/constants.nix).utils

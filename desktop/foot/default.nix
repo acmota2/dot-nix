@@ -1,6 +1,14 @@
-{ username, ... }:
 {
-  home-manager.users.${username} = _: {
+  config,
+  lib,
+  meta,
+  ...
+}:
+let
+  desktop = config.hostSettings.display.desktop.name;
+in
+lib.mkIf (meta.utils.isTiling desktop) {
+  home-manager.users.${config.hostSettings.users.default.username} = _: {
     programs.foot = {
       enable = true;
       settings = {

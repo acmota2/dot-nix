@@ -1,4 +1,5 @@
-{
+{ config, lib, ... }:
+lib.mkIf config.hostSettings.hardware.isLaptop {
   services.tlp = {
     enable = true;
     settings = {

@@ -1,10 +1,11 @@
 {
+  config,
+  lib,
   pkgs,
   hyprland,
-  username,
   ...
 }@inputs:
-{
+lib.mkIf (config.hostSettings.display.desktop.name == "hyprland") {
   environment.systemPackages = [
     pkgs.hypridle
     pkgs.hyprpaper
@@ -35,7 +36,7 @@
     ];
   };
 
-  home-manager.users.${username} = _: {
+  home-manager.users.${config.hostSettings.users.default.username} = _: {
     imports = [
       hyprland.homeManagerModules.default
       (import ./settings.nix inputs)

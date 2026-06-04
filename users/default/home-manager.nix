@@ -1,9 +1,14 @@
+{ config, ... }:
+let
+  defaultUser = config.hostSettings.users.default;
+in
 {
-  gitUser,
-  gitEmail,
-  ...
-}:
-{
+  programs.home-manager.enable = true;
+
+  home.username = defaultUser.username;
+  home.homeDirectory = "/home/${defaultUser.username}";
+  home.stateVersion = "26.05"; # Update this when changing nixpkgs version
+
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -15,8 +20,8 @@
         "ga" = "git add";
         "gc" = "git clone";
         user = {
-          email = "${gitEmail}";
-          name = "${gitUser}";
+          email = defaultUser.gitEmail;
+          name = defaultUser.gitUser;
         };
       };
       diff = {

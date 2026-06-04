@@ -1,4 +1,5 @@
-{
+{ config, lib, ... }:
+lib.mkIf config.hostSettings.hardware.enableBluetooth {
   hardware.bluetooth = {
     enable = true;
     settings.General = {

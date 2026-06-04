@@ -1,5 +1,7 @@
 {
+  config,
   hostname,
+  lib,
   nixos-wsl,
   username,
   ...
@@ -11,13 +13,16 @@
       system.stateVersion = "26.05";
       wsl = {
         enable = true;
-        defaultUser = "${username}";
+        defaultUser = username;
       };
     }
   ];
-  networking.hostName = "${hostname}";
-  programs.nix-ld.enable = true;
-  home-manager.users.${username} = _: {
-    home.sessionVariables.EDITOR = "nvim";
+
+  config = lib.mkIf config.hostSettings.meta.isWsl {
+    networking.hostName = hostname;
+    programs.nix-ld.enable = true;
+    home-manager.users.${username} = _: {
+      home.sessionVariables.EDITOR = "nvim";
+    };
   };
 }

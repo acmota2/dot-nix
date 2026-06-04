@@ -1,5 +1,10 @@
-{ pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+lib.mkIf (config.hostSettings.display.adapter.manufacturer == "intel") {
   hardware = {
     graphics = {
       enable = true;

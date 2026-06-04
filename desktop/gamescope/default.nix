@@ -1,57 +1,65 @@
-{ pkgs, username, ... }:
-let
-  steamBigPicture = pkgs.writeShellScript "steam-big-picture" ''
-    set -euo pipefail
-    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-
-    exec ${pkgs.gamescope}/bin/gamescope \
-      --rt \
-      --steam \
-      -- \
-      ${pkgs.steam}/bin/steam \
-      -gamepadui
-  '';
-
-  steamDesktop = pkgs.writeShellScript "steam-desktop" ''
-    set -euo pipefail
-    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-
-    exec ${pkgs.gamescope}/bin/gamescope \
-      --rt \
-      -- \
-      ${pkgs.steam}/bin/steam
-  '';
-in
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [ ./shortcuts.nix ];
+  config = lib.mkIf (config.hostSettings.display.desktop.name == "gamescope") (
+    let
+      steamBigPicture = pkgs.writeShellScript "steam-big-picture" ''
+        set -euo pipefail
+        export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-  programs = {
-    gamescope = {
-      enable = true;
-      capSysNice = true;
-    };
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-    };
-  };
+        exec ${pkgs.gamescope}/bin/gamescope \
+          --rt \
+          --steam \
+          -- \
+          ${pkgs.steam}/bin/steam \
+          -gamepadui
+      '';
 
-  users.users.${username}.extraGroups = [
-    "input"
-    "render"
-    "video"
-  ];
+      steamDesktop = pkgs.writeShellScript "steam-desktop" ''
+        set -euo pipefail
+        export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
-  environment.loginShellInit = ''
-    if [ -z "''${DISPLAY:-}" ]; then
-      case "$(tty)" in
-        /dev/tty1)
-          exec ${steamBigPicture}
-          ;;
-        /dev/tty2)
-          exec ${steamDesktop}
-          ;;
-      esac
-    fi
-  '';
+        exec ${pkgs.gamescope}/bin/gamescope \
+          --rt \
+          -- \
+          ${pkgs.steam}/bin/steam
+      '';
+    in
+    {
+      programs = {
+        gamescope = {
+          enable = true;
+          capSysNice = true;
+        };
+        steam = {
+          enable = true;
+          gamescopeSession.enable = true;
+        };
+      };
+
+      users.users.${config.hostSettings.users.default.username}.extraGroups = [
+        "input"
+        "render"
+        "video"
+      ];
+
+      environment.loginShellInit = ''
+        if [ -z "''${DISPLAY:-}" ]; then
+          case "$(tty)" in
+            /dev/tty1)
+              exec ${steamBigPicture}
+              ;;
+            /dev/tty2)
+              exec ${steamDesktop}
+              ;;
+          esac
+        fi
+      '';
+    }
+  );
 }

@@ -1,7 +1,8 @@
-{ hostname, username, ... }: {
+{ config, hostname, ... }:
+{
   networking = {
     networkmanager.enable = true;
-    hostName = "${hostname}";
+    hostName = hostname;
 
     # wireguard config
     wireguard.enable = true;
@@ -17,5 +18,5 @@
       '';
     };
   };
-  users.users."${username}".extraGroups = [ "networkmanager" ];
+  users.users.${config.hostSettings.users.default.username}.extraGroups = [ "networkmanager" ];
 }

@@ -1,12 +1,15 @@
 {
+  config,
   isHomeManager,
-  myUtils,
+  lib,
   pkgs,
-  username,
   ...
 }:
-myUtils.homeOrNixos {
-  inherit isHomeManager username;
+let
+  utils = import ../../utils { inherit lib; };
+in
+utils.homeOrNixos {
+  inherit config isHomeManager;
   options = {
     home.sessionVariables = {
       AWS_VAULT_BACKEND = "pass";

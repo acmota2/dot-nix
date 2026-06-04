@@ -1,9 +1,11 @@
-{ username, ... }:
-{
-  home.username = "${username}";
-  home.homeDirectory = "/home/${username}";
-  home.stateVersion = "26.05"; # Update this when changing nixpkgs version
-  home.sessionVariables.EDITOR = "nvim";
-
-  programs.home-manager.enable = true;
+_: {
+  imports = [
+    ../apps/terminal/btop
+    ../apps/terminal/macchina
+    ../apps/terminal/starship
+    ../apps/terminal/tmux
+    ../dev
+    ../dev/languages.nix
+    ../system/shell
+  ];
 }

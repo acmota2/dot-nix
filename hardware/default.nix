@@ -1,25 +1,38 @@
-{ graphics, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
-    ./sound.nix
+    ./amd.nix
+    ./bluetooth.nix
+    ./brightness.nix
+    ./intel.nix
     ./network.nix
-    ./${graphics}.nix
+    ./nfs.nix
+    ./nvidia.nix
+    ./sound.nix
+    ./tlp.nix
   ];
-  hardware.keyboard.qmk.enable = true;
-  environment.systemPackages = with pkgs; [
-    qmk
-    qmk-udev-rules
-    vial
-  ];
-  services = {
-    udev.packages = with pkgs; [
+  config = lib.mkIf (!config.hostSettings.meta.isWsl) {
+    hardware.keyboard.qmk.enable = true;
+    environment.systemPackages = with pkgs; [
       qmk
       qmk-udev-rules
       vial
     ];
-    udisks2 = {
-      enable = true;
-      mountOnMedia = true;
+    services = {
+      udev.packages = with pkgs; [
+        qmk
+        qmk-udev-rules
+        vial
+      ];
+      udisks2 = {
+        enable = true;
+        mountOnMedia = true;
+      };
     };
   };
 }

@@ -1,4 +1,4 @@
-{ username, ... }:
+{ config, ... }:
 {
-  services.getty.autologinUser = username;
+  services.getty.autologinUser = config.hostSettings.users.default.autologin;
 }

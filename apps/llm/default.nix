@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     aider-chat-full
@@ -42,7 +42,7 @@
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  users.users.${username}.extraGroups = [
+  users.users.${config.hostSettings.users.default.username}.extraGroups = [
     "video"
     "render"
   ];

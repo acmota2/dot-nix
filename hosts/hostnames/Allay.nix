@@ -1,20 +1,24 @@
 _: {
+  imports = [
+    ../../apps/games
+    ../../apps/games/minecraft
+    ../../apps/multimedia
+    ../../apps/multimedia/audio
+  ];
+
   config.hostSettings = {
-    adapter = {
-      enable = true;
-      manufacturer = "intel";
+    display = {
+      adapter = {
+        enable = true;
+        manufacturer = "intel";
+      };
+      desktop.name = "mangowc";
     };
-    desktop = "mangowc";
     hardware = {
       enableBluetooth = true;
+      enableNfs = true;
       enableRollingKernel = true;
       isLaptop = true;
     };
   };
-  modules = [
-    ./apps/games
-    ./apps/games/minecraft
-    ./apps/multimedia
-    ./apps/multimedia/audio
-  ];
 }

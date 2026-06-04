@@ -1,12 +1,17 @@
 {
+  config,
   isHomeManager,
-  myUtils,
-  username,
+  lib,
   ...
 }:
-myUtils.homeOrNixos {
-  inherit isHomeManager username;
-  options = {
-    home.file.".config/starship.toml".source = ./starship.toml;
-  };
-}
+lib.mkIf config.hostSettings.enable (
+  let
+    utils = import ../../../utils { inherit lib; };
+  in
+  utils.homeOrNixos {
+    inherit config isHomeManager;
+    options = {
+      home.file.".config/starship.toml".source = ./starship.toml;
+    };
+  }
+)

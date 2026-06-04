@@ -1,7 +1,7 @@
 {
+  config,
   pkgs,
   unstable,
-  username,
   ...
 }:
 
@@ -116,7 +116,7 @@ in
     find ${retroarchPkg} -type f -name "*.info" -exec ln -sf {} /var/lib/retrocompat/info/ \;
   '';
 
-  home-manager.users.${username}.xdg.desktopEntries = {
+  home-manager.users.${config.users.default.username}.xdg.desktopEntries = {
     retroarch = {
       name = "RetroArch";
       comment = "Multi-system emulator frontend";

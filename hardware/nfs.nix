@@ -1,4 +1,5 @@
-{
+{ config, lib, ... }:
+lib.mkIf config.hostSettings.hardware.enableNfs {
   fileSystems."/mnt/data" = {
     device = "nfs.hosts.voldemota.xyz:/general";
     fsType = "nfs";

@@ -1,57 +1,58 @@
 {
+  config,
   isHomeManager,
-  myUtils,
-  username,
+  lib,
+  meta,
   ...
 }:
-myUtils.homeOrNixos {
-  inherit isHomeManager username;
-  options = {
-    programs = {
-      atuin.enableBashIntegration = true;
-      bash = {
-        enable = true;
-        enableCompletion = true;
-        initExtra = ''
-          if [ -z "$\{WAYLAND_DISPLAY\}" ] && [ "$\{XDG_VTNR\}" -eq 1 ]; then
-            exec start-hyprland > /dev/null 2>&1
-          fi
-        '';
-        shellAliases = {
-          ls = "ls --color";
-          als = "ls -la";
-          cp = "cp -i";
-          edit = "sudo -e";
-          schlaf = "systemctl suspend";
-          ".." = "cd ..";
-          "..." = "cd ../..";
-          "...." = "cd ../../..";
+lib.mkIf (config.hostSettings.users.default.shell == "bash") (
+  let
+    defaultUser = config.hostSettings.users.default;
+  in
+  meta.utils.homeOrNixos {
+    inherit config isHomeManager;
+    options = {
+      programs = {
+        atuin.enableBashIntegration = true;
+        bash = {
+          enable = true;
+          enableCompletion = true;
+          shellAliases = {
+            ls = "ls --color";
+            als = "ls -la";
+            cp = "cp -i";
+            edit = "sudo -e";
+            schlaf = "systemctl suspend";
+            ".." = "cd ..";
+            "..." = "cd ../..";
+            "...." = "cd ../../..";
+          };
+          historySize = 1000;
+          historyFile = "/home/${defaultUser.username}/.histfile";
         };
-        historySize = 1000;
-        historyFile = "/home/${username}/.histfile";
+        direnv.enableBashIntegration = true;
+        fzf.enableBashIntegration = true;
+        readline = {
+          enable = true;
+          variables = {
+            bell-style = "none";
+            show-all-if-ambiguous = "on";
+          };
+          bindings = {
+            "\\e[H" = "beginning-of-line"; # Home key
+            "\\e[F" = "end-of-line"; # End key
+            "\\e[3~" = "delete-char"; # Delete key
+            "\\e[1;5C" = "forward-word"; # Ctrl+Right
+            "\\e[1;5D" = "backward-word"; # Ctrl+Left
+            "\\C-h?" = "backward-kill-word"; # Ctrl+Backspace
+            "\\e[3;5~" = "kill-word"; # Ctrl+Del
+            "\\C-i" = "menu-complete"; # Tab
+            "\\e[Z" = "menu-complete-backward"; # Shift+Tab
+          };
+        };
+        starship.enableBashIntegration = true;
+        zoxide.enableBashIntegration = true;
       };
-      direnv.enableBashIntegration = true;
-      fzf.enableBashIntegration = true;
-      readline = {
-        enable = true;
-        variables = {
-          bell-style = "none";
-          show-all-if-ambiguous = "on";
-        };
-        bindings = {
-          "\\e[H" = "beginning-of-line"; # Home key
-          "\\e[F" = "end-of-line"; # End key
-          "\\e[3~" = "delete-char"; # Delete key
-          "\\e[1;5C" = "forward-word"; # Ctrl+Right
-          "\\e[1;5D" = "backward-word"; # Ctrl+Left
-          "\\C-h?" = "backward-kill-word"; # Ctrl+Backspace
-          "\\e[3;5~" = "kill-word"; # Ctrl+Del
-          "\\C-i" = "menu-complete"; # Tab
-          "\\e[Z" = "menu-complete-backward"; # Shift+Tab
-        };
-      };
-      starship.enableBashIntegration = true;
-      zoxide.enableBashIntegration = true;
     };
-  };
-}
+  }
+)

@@ -1,20 +1,14 @@
 {
+  config,
   lib,
   pkgs,
   ...
-}@inputs:
-let
-  enable-nix-ld = builtins.hasAttr "enable-nix-ld" inputs;
-  withNixLd = (
-    lib.attrsets.optionalAttrs enable-nix-ld {
-      programs.nix-ld.enable = "conditional_value";
-    }
-  );
-in
+}:
 {
   environment.systemPackages = with pkgs; [
     commitizen
     ripgrep
   ];
+
+  programs.nix-ld.enable = lib.mkIf config.hostSettings.system.enableNixLd true;
 }
-// withNixLd

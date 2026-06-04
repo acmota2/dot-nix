@@ -1,15 +1,17 @@
 {
+  config,
   isHomeManager,
-  myUtils,
-  shell,
-  username,
+  meta,
   ...
 }:
 {
-  imports = [ ./${shell}.nix ];
+  imports = [
+    ./bash.nix
+    ./nushell.nix
+  ];
 }
-// myUtils.homeOrNixos {
-  inherit isHomeManager username;
+// meta.utils.homeOrNixos {
+  inherit config isHomeManager;
   options = {
     programs = {
       direnv = {

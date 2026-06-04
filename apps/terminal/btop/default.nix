@@ -1,18 +1,23 @@
 {
+  config,
   isHomeManager,
-  myUtils,
+  lib,
   pkgs,
-  username,
   ...
 }:
-myUtils.homeOrNixos {
-  inherit isHomeManager username;
-  options = {
-    home.packages = [ pkgs.btop ];
-    programs.btop = {
-      enable = true;
-      themes.tokyonight = builtins.readFile ./themes/tokyonight.theme;
-      settings.color_theme = "tokyonight";
+lib.mkIf config.hostSettings.enable (
+  let
+    utils = import ../../../utils { inherit lib; };
+  in
+  utils.homeOrNixos {
+    inherit config isHomeManager;
+    options = {
+      home.packages = [ pkgs.btop ];
+      programs.btop = {
+        enable = true;
+        themes.tokyonight = builtins.readFile ./themes/tokyonight.theme;
+        settings.color_theme = "tokyonight";
+      };
     };
-  };
-}
+  }
+)

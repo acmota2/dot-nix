@@ -1,4 +1,7 @@
-{ isHomeManager, username, ... }:
+{ isHomeManager, ... }:
 {
-  imports = if isHomeManager then [ ./${username}/home-manager.nix ] else [ ./${username} ];
+  imports = [
+    (if isHomeManager then ./default/home-manager.nix else ./default)
+    ./root/enable-ssh.nix
+  ];
 }

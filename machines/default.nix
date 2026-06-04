@@ -1,5 +1,13 @@
-{ hostname, pkgs, ... }:
+{
+  config,
+  hostname,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [ ./${hostname}.nix ];
-  hardware.firmware = [ pkgs.linux-firmware ];
+  config = lib.mkIf (!config.hostSettings.meta.isWsl) {
+    hardware.firmware = [ pkgs.linux-firmware ];
+  };
 }

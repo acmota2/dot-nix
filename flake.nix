@@ -18,7 +18,7 @@
     nixvim.url = "github:nix-community/nixvim";
     dot-nix-neovim.url = "github:acmota2/dot-nix-neovim";
     sops-nix.url = "github:Mic92/sops-nix";
-    unstable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs =
@@ -33,25 +33,25 @@
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
-
-      defaultUser = {
-        gitEmail = "acmota2@gmail.com";
-        gitUser = "acmota2";
-        shell = "bash";
-        username = "acmota2";
+      pkgs = nixpkgs.legacyPackages.${system};
+      unstablePkgs = import unstable {
+        inherit system;
+        config.allowUnfree = true;
       };
 
-      myUtils = import ./utils { inherit lib; };
       dot-nvim = dot-nix-neovim.packages.${system}.default;
       monitors = import ./desktop/monitors;
-
-      default = [ ./. ];
+      default = [
+        ./.
+        ./modules/flake-module-configuration.nix
+      ];
 
       machineModules = [
         ./apps/multimedia
-        ./hardware/nfs.nix
-        ./system/boot/kernel-mod
         ./dev/virtualization/podman.nix
+        ./display-manager/ly
+        ./hardware/nfs.nix
+        ./home
       ];
 
       sops = [
@@ -59,90 +59,50 @@
         sops-nix.nixosModules.sops
       ];
 
-      specialArgs = {
-        EnderDragon = {
-          desktop = "hyprland";
-          graphics = "amd";
-          hdr = true;
-          isMultiMonitor = true;
-          monitors = [
-            monitors.aoc
-            monitors.portable
-          ];
-        };
-        Allay = {
-          desktop = "mangowc";
-          graphics = "intel";
-          hdr = false;
-          monitors = [
-            monitors.t480
-            monitors.aoc
-          ];
-        };
-      };
-
       mySystems = {
         EnderDragon = {
-          modules =
-            default
-            ++ machineModules
-            ++ [
-              ./apps/games
-              ./apps/games/minecraft
-              ./apps/llm
-              ./apps/multimedia
-              ./apps/multimedia/audio
-              ./apps/multimedia/audio/extra.nix
-              ./apps/multimedia/video.nix
-              ./display-manager/ly
-              ./hardware/bluetooth.nix
+          modules = default ++ machineModules ++ sops;
+          specialArgs = {
+            isHomeManager = false;
+            monitors = [
+              monitors.aoc
+              monitors.portable
             ];
+          };
         };
-
         Allay = {
-          modules =
-            default
-            ++ machineModules
-            ++ sops
-            ++ [
-              ./apps/games
-              ./apps/games/minecraft
-              ./apps/multimedia
-              ./apps/multimedia/audio
-              ./display-manager/ly
-              ./hardware/bluetooth.nix
-              ./hardware/brightness.nix
-              ./hardware/tlp.nix
+          modules = default ++ machineModules ++ sops;
+          specialArgs = {
+            isHomeManager = false;
+            monitors = [
+              monitors.t480
+              monitors.aoc
             ];
+          };
         };
       };
 
       mkSpecialArgs =
         hostname: config:
         inputs
-        // defaultUser
-        // specialArgs.${hostname}
+        // config.specialArgs
         // {
-          inherit hostname myUtils dot-nvim;
-          isWsl = lib.elem ./wsl config.modules;
-          isHomeManager = false;
-          unstable = import unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
+          inherit dot-nvim hostname;
+          unstable = unstablePkgs;
+          meta.utils = import ./utils { inherit lib; };
         };
 
       mkNixosSystem =
         hostname: config:
         lib.nixosSystem {
           inherit system;
-          modules = config.modules;
+          modules = config.modules ++ [ ./hosts ];
           specialArgs = mkSpecialArgs hostname config;
         };
     in
     {
-      devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
-        packages = with nixpkgs.legacyPackages.${system}; [
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
           age
           just
           ssh-to-age
@@ -160,13 +120,9 @@
             ./system/shell
             ./users
           ];
-          extraSpecialArgs =
-            defaultUser
-            // inputs
-            // {
-              inherit myUtils dot-nvim;
-              isHomeManager = true;
-            };
+          extraSpecialArgs = inputs // {
+            inherit dot-nvim unstable;
+          };
         };
       };
 
