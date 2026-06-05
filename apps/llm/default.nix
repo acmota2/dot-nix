@@ -33,20 +33,20 @@ in
         performance.disabled = true;
 
         models = {
-          "gemma4-12b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-12b-it-Q8_0.gguf -ngl -1 -c 32768";
-            ttl = 10;
-          };
-          "gemma4-26b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-Q4_K_M.gguf -ngl -1 -c 16384 --cache-ram 12288";
+          "gemma4-31b" = {
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 -c 8192 --cache-ram 8192";
             ttl = 10;
           };
           "mistral-nemo" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Mistral-Nemo-Prism-12B-Q8_0.gguf -ngl -1 -c 32768";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Mistral-Nemo-Prism-12B-Q8_0.gguf -ngl -1 -c 16384 --cache-ram 8192";
             ttl = 10;
           };
-          "qwen3.5-27b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-27B-Q4_K_M.gguf -ngl -1 -c 10240 --cache-ram 6144";
+          "qwen3.6-27b" = {
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-27B-IQ4_XS.gguf -ngl -1 -c 32768 --cache-ram 16384";
+            ttl = 10;
+          };
+          "qwen3.5-4b" = {
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-4B-Q8_0.gguf -ngl -1 -c 65536 --cache-ram 32768";
             ttl = 10;
           };
         };
