@@ -34,7 +34,7 @@ in
 
         models = {
           "gemma4-31b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 -c 8192 --cache-ram 8192";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 -c 16384 --cache-ram 12288";
             ttl = 10;
           };
           "mistral-nemo" = {
