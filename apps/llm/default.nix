@@ -33,20 +33,20 @@ in
         performance.disabled = true;
 
         models = {
-          "mistral-nemo" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Mistral-Nemo-Prism-12B-Q8_0.gguf -ngl -1 -c 32768";
+          "gemma-4-12b" = {
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-12b-it-Q8_0.gguf -ngl -1 -c 32768";
             ttl = 10;
           };
           "gemma4-26b" = {
             cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-Q4_K_M.gguf -ngl 36 -c 16384";
             ttl = 10;
           };
-          "qwen3.5-27b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-27B-Q4_K_M.gguf -ngl -1 -c 3072";
+          "mistral-nemo" = {
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Mistral-Nemo-Prism-12B-Q8_0.gguf -ngl -1 -c 32768";
             ttl = 10;
           };
-          "gemma-4-12b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-12b-it-Q8_0.gguf -ngl -1 -c 32768";
+          "qwen3.5-27b" = {
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-27B-Q4_K_M.gguf -ngl -1 -c 3072";
             ttl = 10;
           };
         };
