@@ -38,7 +38,7 @@ in
             ttl = 10;
           };
           "gemma4-26b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-Q4_K_M.gguf -ngl 36 -c 16384";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-Q4_K_M.gguf -ngl -1 -c 16384 --cache-ram 12288";
             ttl = 10;
           };
           "mistral-nemo" = {
@@ -46,7 +46,7 @@ in
             ttl = 10;
           };
           "qwen3.5-27b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-27B-Q4_K_M.gguf -ngl -1 -c 4096";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-27B-Q4_K_M.gguf -ngl -1 -c 10240 --cache-ram 6144";
             ttl = 10;
           };
         };
