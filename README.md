@@ -51,20 +51,14 @@ A standalone configuration is also available for use on non-NixOS systems.
 
 ### Multimedia
 
-- [audio](./apps/multimedia/audio/default.nix)
-- [video](./apps/multimedia/video.nix)
+- [pipewire](./apps/multimedia/audio/default.nix)
+- [vlc](./apps/multimedia/video.nix)
 
 ### Games
 
 - [minecraft](./apps/games/minecraft/default.nix)
-- [emulation](./apps/games/emulation/default.nix)
 
-### Networking
-
-- [netbird](./apps/networking/netbird.nix)
-
-### System
+### Shell
 
 - [bash](./system/shell/bash.nix)
 - [nushell](./system/shell/nushell.nix)
-- [pipewire](./apps/multimedia/audio/default.nix)
