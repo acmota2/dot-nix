@@ -24,23 +24,47 @@ A standalone configuration is also available for use on non-NixOS systems.
 ### Desktop
 
 - [foot](./desktop/foot/default.nix)
+- [hyprland](./desktop/tiling/hyprland/default.nix)
 - [mango](./desktop/tiling/mangowc/default.nix)
 - [mako](./desktop/tiling/mako/default.nix)
 - [waybar](./desktop/tiling/waybar/default.nix)
+- [wofi](./desktop/tiling/wofi/default.nix)
+- [walker](./desktop/tiling/walker/default.nix)
+- [gamescope](./desktop/gamescope/default.nix)
+- [ly](./display-manager/ly/default.nix)
+- [regreet](./display-manager/regreet/default.nix)
 
 ### Development
 
 - [nixvim](http://github.com/acmota2/dot-nix-neovim) (moved to another repository)
-- [tmux](./tmux/default.nix)
+- [tmux](./apps/terminal/tmux/default.nix)
+- [podman](./dev/virtualization/podman.nix)
+- [qemu](./dev/virtualization/qemu.nix)
+- [aws](./dev/aws/default.nix)
+
+### Terminal
+
+- [btop](./apps/terminal/btop/default.nix)
+- [macchina](./apps/terminal/macchina/default.nix)
+- [starship](./apps/terminal/starship/default.nix)
+- [ssh](./apps/terminal/ssh/default.nix)
+
+### Multimedia
+
+- [audio](./apps/multimedia/audio/default.nix)
+- [video](./apps/multimedia/video.nix)
+
+### Games
+
+- [minecraft](./apps/games/minecraft/default.nix)
+- [emulation](./apps/games/emulation/default.nix)
+
+### Networking
+
+- [netbird](./apps/networking/netbird.nix)
 
 ### System
 
-- [ly](./display-manager/ly/default.nix)
-- [pipewire](./hardware/sound.nix)
-
-### Utils
-
-- [bash](./shell/bash.nix)
-- [btop](./btop/default.nix)
-- [macchina](./macchina/default.nix)
-- [starship](./starship/default.nix)
+- [bash](./system/shell/bash.nix)
+- [nushell](./system/shell/nushell.nix)
+- [pipewire](./apps/multimedia/audio/default.nix)
