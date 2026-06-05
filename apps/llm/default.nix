@@ -46,7 +46,7 @@ in
             ttl = 10;
           };
           "qwen3.5-4b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-4B-Q8_0.gguf -ngl -1 -c 65536 --cache-ram 32768";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-4B-Q8_0.gguf -ngl -1 -c 8192";
             ttl = 10;
           };
         };
