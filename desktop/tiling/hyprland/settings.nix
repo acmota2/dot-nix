@@ -35,7 +35,7 @@ in
       "uwsm app -- mako"
       "uwsm app -- tmux"
       "uwsm app -- waybar"
-      "uwsm app -- walker --gapplication-launcher"
+      "uwsm app -- walker --gapplication-service"
       "wl-paste --type image --watch cliphist store"
       "wl-paste --type text --watch cliphist store"
     ];
