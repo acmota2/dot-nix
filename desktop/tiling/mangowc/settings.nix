@@ -73,11 +73,11 @@
 
     # Programs
     "SUPER,Return,spawn,footclient"
-    "SUPER,D,spawn,wofi -S drun,run"
-    "SUPER+SHIFT,D,spawn,walker"
-    "SUPER,V,spawn_shell,cliphist list | wofi --dmenu | cliphist decode | wl-copy"
-    "SUPER,E,spawn,wofi-emoji"
-    "SUPER,P,spawn,wofi-power-menu"
+    "SUPER,D,spawn,walker"
+    # "SUPER+SHIFT,D,spawn,walker" # Removed
+    "SUPER,V,spawn,walker --provider clipboard"
+    "SUPER,E,spawn,walker --provider emojis"
+    "SUPER,P,spawn,walker-power-menu"
 
     # Printscreen
     "NONE,Print,spawn_shell,grim - | wl-copy"

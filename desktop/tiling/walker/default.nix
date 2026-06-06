@@ -27,6 +27,7 @@
           "calc"
           "runner"
           "menus"
+          "emojis"
         ];
         empty = [ "desktopapplications" ];
         prefixes = [
@@ -48,12 +49,17 @@
           }
           {
             provider = "clipboard";
+            prefix = ":";
             time_format = "%d.%m. - %H:%M";
             default = "copy";
             copy = "Return";
             delete = "ctrl d";
             edit = "ctrl o";
             toggle_images_only = "ctrl i";
+          }
+          {
+            provider = "emojis";
+            prefix = "~";
           }
         ];
       };

@@ -14,9 +14,14 @@ in
     ./hyprland
     ./mako
     ./mangowc
-    ./wofi
-    # ./walker
+    ./walker
+    # ./wofi
   ];
+
+  nix.settings = {
+    extra-substituters = [ "https://walker.cachix.org" ];
+    extra-trusted-public-keys = [ "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM=" ];
+  };
 
   config = lib.mkIf (meta.utils.isTiling desktop) {
     environment.systemPackages = [
@@ -24,8 +29,6 @@ in
       pkgs.cliphist
       pkgs.discord
       pkgs.wl-clipboard
-      pkgs.wofi-emoji
-      pkgs.wofi-power-menu
     ];
 
     home-manager.users.${config.hostSettings.users.default.username} = _: {

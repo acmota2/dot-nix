@@ -23,7 +23,7 @@ in
     "$mod" = "SUPER";
     "$terminal" = "footclient";
     "$terminalWindow" = "footclient";
-    "$menu" = "uwsm app -- setpriv --ambient-caps=\"-all\" wofi -S drun";
+    "$menu" = "walker";
 
     monitor = renderedMonitors;
 

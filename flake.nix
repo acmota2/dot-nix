@@ -19,6 +19,11 @@
     dot-nix-neovim.url = "github:acmota2/dot-nix-neovim";
     sops-nix.url = "github:Mic92/sops-nix";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    elephant.url = "github:abenz1267/elephant";
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
+    };
   };
 
   outputs =
@@ -28,6 +33,7 @@
       nixpkgs,
       sops-nix,
       unstable,
+      walker,
       ...
     }@inputs:
     let
@@ -68,6 +74,7 @@
               monitors.aoc
               monitors.portable
             ];
+            inherit walker;
           };
         };
         Allay = {
@@ -78,6 +85,7 @@
               monitors.t480
               monitors.aoc
             ];
+            inherit walker;
           };
         };
       };

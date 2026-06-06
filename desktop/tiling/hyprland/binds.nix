@@ -16,6 +16,10 @@ let
   wallpaper-choose = pkgs.writeShellScript "wallpaper-spawn" (
     builtins.readFile ./hyprpaper/wallpaper-spawn.sh
   );
+
+  walkerPowerMenu = pkgs.writeShellScriptBin "walker-power-menu" (
+    builtins.readFile ../walker/scripts/power-menu.sh
+  );
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -25,11 +29,11 @@ in
       "$mod SHIFT, C, exit,"
       # execute shortcuts
       "$mod, return, exec, $terminal"
-      "$mod, D, exec, $menu"
-      "$mod SHIFT, d, exec, walker"
-      "$mod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
-      "$mod, E, exec, wofi-emoji"
-      "$mod, P, exec, wofi-power-menu"
+      "$mod, D, exec, walker"
+      # "$mod SHIFT, d, exec, walker" # Removed
+      "$mod, V, exec, walker --provider clipboard"
+      "$mod, E, exec, walker --provider emojis"
+      "$mod, P, exec, ${walkerPowerMenu}/bin/walker-power-menu"
       "$mod, L, exec, hyprlock"
       "$mod SHIFT, Q, killactive"
       "$mod, W, exec, ${wallpaper-choose}"
