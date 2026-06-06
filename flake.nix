@@ -17,7 +17,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixvim.url = "github:nix-community/nixvim";
-    dot-nix-neovim.url = "github:acmota2/dot-nix-neovim";
+    my-nixvim.url = "github:acmota2/dot-nix-neovim";
     sops-nix.url = "github:Mic92/sops-nix";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     walker = {
@@ -28,7 +28,6 @@
 
   outputs =
     {
-      dot-nix-neovim,
       home-manager,
       nixpkgs,
       sops-nix,
@@ -45,7 +44,6 @@
         config.allowUnfree = true;
       };
 
-      dot-nvim = dot-nix-neovim.packages.${system}.default;
       monitors = import ./desktop/monitors;
       default = [
         ./.
@@ -93,7 +91,7 @@
         inputs
         // config.specialArgs
         // {
-          inherit dot-nvim hostname walker;
+          inherit hostname walker;
           unstable = unstablePkgs;
           meta.utils = import ./utils { inherit lib; };
         };
@@ -127,7 +125,7 @@
             ./users
           ];
           extraSpecialArgs = inputs // {
-            inherit dot-nvim unstable;
+            inherit unstable;
           };
         };
       };

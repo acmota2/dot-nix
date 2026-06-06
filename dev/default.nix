@@ -5,10 +5,12 @@
   ...
 }:
 {
+  imports = [ ./editor.nix ];
+
   environment.systemPackages = with pkgs; [
     commitizen
     ripgrep
   ];
 
-  programs.nix-ld.enable = lib.mkIf config.hostSettings.system.enableNixLd true;
+  programs.nix-ld.enable = config.hostSettings.system.enableNixLd;
 }

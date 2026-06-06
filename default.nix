@@ -1,9 +1,4 @@
-{
-  dot-nvim,
-  home-manager,
-  pkgs,
-  ...
-}:
+{ home-manager, pkgs, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager
@@ -23,7 +18,6 @@
     coreutils-full
     curl
     deluge
-    dot-nvim
     file
     git
     macchina
