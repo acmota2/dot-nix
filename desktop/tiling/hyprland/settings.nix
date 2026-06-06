@@ -13,7 +13,7 @@ let
         "transform"
         (toString m.rotate)
       ]
-      ++ (if m ? hyprlandExtras then m.hyprlandExtras else [ ])
+      ++ (m.hyprlandExtras or [ ])
     );
 
   renderedMonitors = map renderMonitor monitors;
