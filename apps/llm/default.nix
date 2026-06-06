@@ -6,6 +6,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     aider-chat-full
+    crush
   ];
 
   services = {
@@ -33,8 +34,12 @@ in
         performance.disabled = true;
 
         models = {
+          "gemma4-26b" = {
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-UD-IQ4_XS.gguf -ngl -1 -c 8192";
+            ttl = 10;
+          };
           "gemma4-31b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 -c 3072"; # --cache-ram 21504";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 -c 16384 --cache-ram 12288";
             ttl = 10;
           };
           "mistral-nemo" = {
@@ -46,7 +51,11 @@ in
             ttl = 10;
           };
           "qwen3.6-27b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-27B-IQ4_XS.gguf -ngl -1 -c 32768 --cache-ram 16384";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-27B-IQ4_XS.gguf -ngl -1 -c 16384";
+            ttl = 10;
+          };
+          "qwen3.6-35b" = {
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 -c 16384 --cache-ram 8192";
             ttl = 10;
           };
         };
