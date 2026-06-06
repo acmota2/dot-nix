@@ -18,12 +18,12 @@ in
     # ./wofi
   ];
 
-  nix.settings = {
-    extra-substituters = [ "https://walker.cachix.org" ];
-    extra-trusted-public-keys = [ "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM=" ];
-  };
-
   config = lib.mkIf (meta.utils.isTiling desktop) {
+    nix.settings = {
+      extra-substituters = [ "https://walker.cachix.org" ];
+      extra-trusted-public-keys = [ "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM=" ];
+    };
+
     environment.systemPackages = [
       pkgs.brave
       pkgs.cliphist

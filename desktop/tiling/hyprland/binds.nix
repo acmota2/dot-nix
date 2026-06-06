@@ -32,7 +32,7 @@ in
       "$mod, D, exec, walker"
       # "$mod SHIFT, d, exec, walker" # Removed
       "$mod, V, exec, walker --provider clipboard"
-      "$mod, E, exec, walker --provider emojis"
+      "$mod, E, exec, walker --provider symbols"
       "$mod, P, exec, ${walkerPowerMenu}/bin/walker-power-menu"
       "$mod, L, exec, hyprlock"
       "$mod SHIFT, Q, killactive"

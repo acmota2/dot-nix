@@ -3,6 +3,7 @@
 
   inputs = {
     disko.url = "github:nix-community/disko";
+    elephant.url = "github:abenz1267/elephant";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +20,6 @@
     dot-nix-neovim.url = "github:acmota2/dot-nix-neovim";
     sops-nix.url = "github:Mic92/sops-nix";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    elephant.url = "github:abenz1267/elephant";
     walker = {
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";
@@ -74,7 +74,6 @@
               monitors.aoc
               monitors.portable
             ];
-            inherit walker;
           };
         };
         Allay = {
@@ -85,7 +84,6 @@
               monitors.t480
               monitors.aoc
             ];
-            inherit walker;
           };
         };
       };
@@ -95,7 +93,7 @@
         inputs
         // config.specialArgs
         // {
-          inherit dot-nvim hostname;
+          inherit dot-nvim hostname walker;
           unstable = unstablePkgs;
           meta.utils = import ./utils { inherit lib; };
         };

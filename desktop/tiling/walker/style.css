@@ -1,10 +1,11 @@
-@define-color window_bg_color rgba(51, 51, 51, 0.75);
-@define-color accent_bg_color rgba(0, 113, 148, 0.75);
-@define-color border_bg_color rgba(0, 113, 148, 0.75);
-@define-color theme_fg_color #f2ecbc;
+@define-color window_bg_color rgba(17, 17, 17, 0.75);
+@define-color accent_bg_color rgba(0, 113, 132, 0.75);
+@define-color border_bg_color rgba(0, 113, 132, 0.75);
+@define-color theme_fg_color #ffffff;
 
 * {
   all: unset;
+  font-family: "JetBrainsMonoNerd Font", "FontAwesome", sans-serif;
 }
 
 .normal-icons {
@@ -20,13 +21,15 @@ scrollbar {
 }
 
 .box-wrapper {
+  padding: 0;
   box-shadow:
     0 19px 38px rgba(0, 0, 0, 0.3),
     0 15px 12px rgba(0, 0, 0, 0.22);
-  background: @window_bg_color;
-  padding: 20px;
-  border-radius: 20px;
-  border: 1px solid darker(@accent_bg_color);
+  background: linear-gradient(to top,
+    rgba(17, 17, 17, 0.25) 0%,
+    rgba(17, 17, 17, 0.75) 40%);
+  border-radius: 7px;
+  border: 1px solid shade(@accent_bg_color, 0.8);
 }
 
 .preview-box,
@@ -39,7 +42,7 @@ scrollbar {
 }
 
 .search-container {
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 .input placeholder {
@@ -48,22 +51,27 @@ scrollbar {
 
 .input {
   caret-color: @theme_fg_color;
-  background: lighter(@window_bg_color);
-  padding: 10px;
+  background: shade(@window_bg_color, 1.2);
+  padding: 8px 10px 6px;
   color: @theme_fg_color;
+  font-size: 30px;
 }
 
 .input:focus,
 .input:active {
+  border: 1px solid @accent_bg_color;
+  box-shadow: 0 0 0 1px alpha(@accent_bg_color, 0.4);
 }
 
 .content-container {
+  font-weight: 500;
 }
 
 .placeholder {
 }
 
 .scroll {
+  padding: 0;
 }
 
 .list {
@@ -74,20 +82,21 @@ child {
 }
 
 .item-box {
-  border-radius: 10px;
-  padding: 10px;
+  min-height: 40px;
+  border-radius: 7px;
+  padding: 5px 8px;
 }
 
 .item-quick-activation {
   margin-left: 10px;
   background: alpha(@accent_bg_color, 0.25);
-  border-radius: 5px;
+  border-radius: 7px;
   padding: 10px;
 }
 
 child:hover .item-box,
 child:selected .item-box {
-  background: alpha(@accent_bg_color, 0.25);
+  background: alpha(@accent_bg_color, 0.15);
 }
 
 .item-text-box {
@@ -102,7 +111,7 @@ child:selected .item-box {
 }
 
 .item-image {
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 .keybind-hints {

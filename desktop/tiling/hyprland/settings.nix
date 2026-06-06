@@ -28,14 +28,16 @@ in
     monitor = renderedMonitors;
 
     exec-once = [
+      "uwsm app -- blueman-applet"
+      "uwsm app -- hyprpaper"
+      "uwsm app -- elephant"
       "uwsm app -- foot --server"
-      "uwsm app -- waybar"
       "uwsm app -- mako"
       "uwsm app -- tmux"
-      "hyprpaper"
-      "blueman-applet"
-      "wl-paste --type text --watch cliphist store"
+      "uwsm app -- waybar"
+      "uwsm app -- walker --gapplication-launcher"
       "wl-paste --type image --watch cliphist store"
+      "wl-paste --type text --watch cliphist store"
     ];
 
     cursor.no_hardware_cursors = true;

@@ -76,7 +76,7 @@
     "SUPER,D,spawn,walker"
     # "SUPER+SHIFT,D,spawn,walker" # Removed
     "SUPER,V,spawn,walker --provider clipboard"
-    "SUPER,E,spawn,walker --provider emojis"
+    "SUPER,E,spawn,walker --provider symbols"
     "SUPER,P,spawn,walker-power-menu"
 
     # Printscreen

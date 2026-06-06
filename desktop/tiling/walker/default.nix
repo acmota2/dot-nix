@@ -1,21 +1,23 @@
-{
-  isHomeManager,
-  walker,
-  ...
-}:
+{ isHomeManager, walker, ... }:
 {
   imports =
     if isHomeManager then [ walker.homeManagerModules.default ] else [ walker.nixosModules.default ];
+
+  # workaround to disable current nixpkgs implementation
+  disabledModules = [ "services/misc/elephant.nix" ];
+
   environment.systemPackages = [
     walker.packages.x86_64-linux.default
   ];
+
   programs.walker = {
     enable = true;
-    runAsService = true;
-    # All options from the config.toml can be used here.
+
     config = {
       force_keyboard_focus = true;
       close_when_open = true;
+      window_width = 900;
+      window_height = 300;
       placeholders."default" = {
         input = "Search";
         list = "No results";
@@ -27,7 +29,7 @@
           "calc"
           "runner"
           "menus"
-          "emojis"
+          "symbols"
         ];
         empty = [ "desktopapplications" ];
         prefixes = [
@@ -58,12 +60,13 @@
             toggle_images_only = "ctrl i";
           }
           {
-            provider = "emojis";
-            prefix = "~";
+            provider = "symbols";
+            prefix = "&";
           }
         ];
       };
+      theme = "myTheme";
     };
-    theme.style = builtins.readFile ./style.css;
+    themes."myTheme".style = builtins.readFile ./style.css;
   };
 }
