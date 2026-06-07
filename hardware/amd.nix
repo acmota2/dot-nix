@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  monitors,
   ...
 }:
 lib.mkIf (config.hostSettings.display.adapter.manufacturer == "amd") {
@@ -13,8 +12,4 @@ lib.mkIf (config.hostSettings.display.adapter.manufacturer == "amd") {
       enable32Bit = true;
     };
   };
-
-  boot.kernelParams = map (
-    m: "video=${m.output}:${toString m.width}x${toString m.height}MR@${toString m.refresh}Hz"
-  ) monitors;
 }
