@@ -1,13 +1,13 @@
 {
   pkgs,
-  monitors,
+  actualMonitors,
 }:
 let
   enableCmds = builtins.concatStringsSep "; " (
-    map (m: "mmsg -d enable_monitor,${m.output}") monitors
+    map (m: "mmsg -d enable_monitor,${m.output}") actualMonitors
   );
   disableCmds = builtins.concatStringsSep "; " (
-    map (m: "mmsg -d disable_monitor,${m.output}") monitors
+    map (m: "mmsg -d disable_monitor,${m.output}") actualMonitors
   );
 in
 pkgs.writeShellScript "mango-autostart" ''

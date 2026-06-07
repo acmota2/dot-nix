@@ -1,4 +1,4 @@
-{ monitors, renderMonitor }:
+{ actualMonitors, renderMonitor }:
 {
   # General appearance
   bordercolor = "0x333333aa";
@@ -16,7 +16,7 @@
   urgentcolor = "0xad401fff";
 
   # Monitors
-  monitorrule = map renderMonitor monitors;
+  monitorrule = map renderMonitor actualMonitors;
 
   # Animations
   animations = 1;
@@ -45,15 +45,17 @@
   ];
 
   # Startup
-  "exec-once" = [
-    "waybar"
-    "mako"
+  exec-once = [
     "blueman-applet"
-    "wl-paste --type text --watch cliphist store"
-    "wl-paste --type image --watch cliphist store"
+    "elephant"
     "foot --server"
-    "swayosd-server"
+    "mako"
     "sway-audio-idle-inhibit"
+    "swayosd-server"
+    "walker --gapplication-service"
+    "waybar"
+    "wl-paste --type image --watch cliphist store"
+    "wl-paste --type text --watch cliphist store"
   ];
 
   # Keybinds
@@ -72,7 +74,7 @@
     "SUPER+CTRL+SHIFT,right,tagmon,right,1"
 
     # Programs
-    "SUPER,Return,spawn,footclient"
+    "SUPER,Return,spawn,footclient -e tmux"
     "SUPER,D,spawn,walker"
     # "SUPER+SHIFT,D,spawn,walker" # Removed
     "SUPER,V,spawn,walker --provider clipboard"

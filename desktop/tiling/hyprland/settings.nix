@@ -1,4 +1,4 @@
-{ monitors, ... }:
+{ actualMonitors, ... }:
 let
   renderMonitor =
     m:
@@ -16,12 +16,12 @@ let
       ++ (m.hyprlandExtras or [ ])
     );
 
-  renderedMonitors = map renderMonitor monitors;
+  renderedMonitors = map renderMonitor actualMonitors;
 in
 {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
-    "$terminal" = "footclient";
+    "$terminal" = "footclient -e tmux";
     "$terminalWindow" = "footclient";
     "$menu" = "walker";
 

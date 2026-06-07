@@ -2,20 +2,24 @@
   config,
   lib,
   meta,
+  monitors,
   pkgs,
   ...
 }@inputs:
 let
   desktop = config.hostSettings.display.desktop.name;
+  actualMonitors = [ monitors.primary ] ++ (monitors.other or [ ]);
+  inputsWithMonitors = inputs // {
+    inherit actualMonitors;
+  };
 in
 {
   imports = [
     ../foot
-    ./hyprland
+    (import ./hyprland inputsWithMonitors)
     ./mako
-    ./mangowc
+    (import ./mangowc inputsWithMonitors)
     ./walker
-    # ./wofi
   ];
 
   config = lib.mkIf (meta.utils.isTiling desktop) {

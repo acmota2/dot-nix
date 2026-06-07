@@ -1,8 +1,10 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  monitors,
+  ...
+}:
 let
-  aoc = (import ../../monitors).aoc;
-  portable = (import ../../monitors).portable;
-
   # Shared layout configurations across both bars
   barLayout = {
     layer = "top";
@@ -13,9 +15,26 @@ let
     margin-left = 10;
   };
   isMultiMonitor = config.hostSettings.display.multiMonitor;
-
   # Modules used by both the main and secondary monitors
   sharedModules = {
+    "ext/workspaces" = {
+      disable-scroll = true;
+      format = "{icon}";
+      on-click = "activate";
+      sort-by-id = true;
+      format-icons = {
+        "1" = " ";
+        "2" = " ";
+        "3" = " ";
+        "4" = " ";
+        "5" = "󱎓";
+        "6" = " 6 ";
+        "7" = " 7 ";
+        "8" = " 8 ";
+        "9" = " 9 ";
+        default = "";
+      };
+    };
     "hyprland/workspaces" = {
       disable-scroll = true;
       all-outputs = true;
@@ -48,19 +67,21 @@ let
       spacing = 10;
     };
   };
+  modules-left =
+    if config.hostSettings.display.desktop.name == "hyprland" then
+      [ "hyprland/workspaces" ]
+    else
+      [ "ext/workspaces" ];
+  # ... (your let bindings stay exactly the same)
 in
 {
   # --- Main Monitor Bar ---
   myBar =
     barLayout
     // {
-      output = lib.mkIf isMultiMonitor aoc.output;
+      inherit modules-left;
 
-      modules-left =
-        if config.hostSettings.display.desktop.name == "hyprland" then
-          [ "hyprland/workspaces" ]
-        else
-          [ "ext/workspaces" ];
+      output = monitors.primary.output;
       modules-center = [
         "custom/fildem"
         "clock"
@@ -233,20 +254,25 @@ in
       };
     }
     // sharedModules;
-
-  # --- Secondary Monitor Bar ---
-  secondaryBar = lib.mkIf isMultiMonitor (
-    barLayout
-    // {
-      output = portable.output;
-
-      modules-left = [ "hyprland/workspaces" ];
-      modules-center = [
-        "custom/fildem"
-        "clock"
-      ];
-      modules-right = [ "tray" ];
-    }
-    // sharedModules
-  );
 }
+// lib.optionalAttrs isMultiMonitor (
+  builtins.listToAttrs (
+    map (m: {
+      name = "bar-${m.output}";
+      value =
+        barLayout
+        // {
+          inherit modules-left;
+
+          output = m.output;
+
+          modules-center = [
+            "custom/fildem"
+            "clock"
+          ];
+          modules-right = [ "tray" ];
+        }
+        // sharedModules;
+    }) (monitors.other or [ ])
+  )
+)

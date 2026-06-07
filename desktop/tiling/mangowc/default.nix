@@ -1,8 +1,8 @@
 {
+  actualMonitors,
   config,
   lib,
   mango,
-  monitors,
   pkgs,
   ...
 }@inputs:
@@ -26,11 +26,11 @@
         ];
 
       mangoSettings = (import ./settings.nix) {
-        inherit monitors renderMonitor;
+        inherit actualMonitors renderMonitor;
       };
 
       autostartScript = import ./autostart.nix {
-        inherit pkgs monitors;
+        inherit pkgs actualMonitors;
       };
     in
     {

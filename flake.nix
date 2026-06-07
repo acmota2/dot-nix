@@ -68,20 +68,20 @@
           modules = default ++ machineModules ++ sops;
           specialArgs = {
             isHomeManager = false;
-            monitors = [
-              monitors.aoc
-              monitors.portable
-            ];
+            monitors = {
+              primary = monitors.aoc;
+              other = [ monitors.portable ];
+            };
           };
         };
         Allay = {
           modules = default ++ machineModules ++ sops;
           specialArgs = {
             isHomeManager = false;
-            monitors = [
-              monitors.t480
-              monitors.aoc
-            ];
+            monitors = {
+              primary = monitors.t480;
+              other = [ monitors.aoc ];
+            };
           };
         };
       };
