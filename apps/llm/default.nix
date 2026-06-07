@@ -35,27 +35,27 @@ in
 
         models = {
           "gemma4-26b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-UD-IQ4_XS.gguf -ngl -1 -c 8192";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-UD-IQ4_XS.gguf -ngl -1 -c 16384 --cache-type-k q8_0 --cache-type-v q8_0";
             ttl = 10;
           };
           "gemma4-31b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 -c 16384 --cache-ram 12288";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 -c 16384 --cache-type-k q8_0 --cache-type-v q8_0";
             ttl = 10;
           };
           "mistral-nemo" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Mistral-Nemo-Prism-12B-Q8_0.gguf -ngl -1 -c 16384";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Mistral-Nemo-Prism-12B-Q8_0.gguf -ngl -1 -c 16384 --cache-type-k q8_0 --cache-type-v q8_0";
             ttl = 90;
           };
           "qwen3.5-4b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-4B-Q8_0.gguf -ngl -1 -c 8192";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-4B-Q8_0.gguf -ngl -1 -c 16384";
             ttl = 90;
           };
           "qwen3.6-27b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-27B-IQ4_XS.gguf -ngl -1 -c 32768 --cache-ram 12288";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-27B-IQ4_XS.gguf -ngl -1 -c 65536 --cache-type-k q8_0 --cache-type-v q8_0";
             ttl = 10;
           };
           "qwen3.6-35b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 -c 32768 --cache-ram 20480";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 -c 49152 --cache-type-k q8_0 --cache-type-v q8_0";
             ttl = 10;
           };
         };
