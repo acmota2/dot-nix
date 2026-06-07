@@ -4,5 +4,8 @@
     my-nixvim.nixosModules.my-nixvim
   ];
 
-  programs.my-nixvim.enable = true;
+  programs.my-nixvim = {
+    enable = true;
+    settings.enable = true;
+  };
 }
