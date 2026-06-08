@@ -51,11 +51,11 @@ in
             ttl = 90;
           };
           "qwen3.6-27b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-27B-IQ4_XS.gguf -ngl -1 -c 65536 --cache-type-k q8_0 --cache-type-v q8_0";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-27B-IQ4_XS.gguf -ngl -1 -c 32768 --cache-ram 8192";
             ttl = 10;
           };
           "qwen3.6-35b" = {
-            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 -c 49152 --cache-type-k q8_0 --cache-type-v q8_0";
+            cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 -c 32768 --cache-ram 8192";
             ttl = 10;
           };
         };
