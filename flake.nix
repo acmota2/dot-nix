@@ -68,10 +68,7 @@
           modules = default ++ machineModules ++ sops;
           specialArgs = {
             isHomeManager = false;
-            monitors = {
-              primary = monitors.aoc;
-              other = [ monitors.portable ];
-            };
+            monitors.primary = monitors.samsung;
           };
         };
         Allay = {
@@ -80,7 +77,7 @@
             isHomeManager = false;
             monitors = {
               primary = monitors.t480;
-              other = [ monitors.aoc ];
+              other = [ monitors.samsung ];
             };
           };
         };
