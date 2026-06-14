@@ -15,7 +15,7 @@ _: {
         enable = true;
         manufacturer = "amd";
       };
-      multiMonitor = true;
+      multiMonitor = false;
       hdr = true;
     };
     hardware = {
