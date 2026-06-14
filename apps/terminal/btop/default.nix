@@ -16,7 +16,10 @@ lib.mkIf config.hostSettings.enable (
       programs.btop = {
         enable = true;
         themes.tokyonight = builtins.readFile ./themes/tokyonight.theme;
-        settings.color_theme = "tokyonight";
+        settings = {
+          color_theme = "tokyonight";
+          theme_background = false;
+        };
       };
     };
   }

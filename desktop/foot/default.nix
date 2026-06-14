@@ -13,8 +13,8 @@ lib.mkIf (meta.utils.isTiling desktop) {
       enable = true;
       settings = {
         main = {
-          dpi-aware = "yes";
-          font = "JetBrainsMono:size=10";
+          dpi-aware = "no";
+          font = "JetBrainsMono:size=14";
           font-size-adjustment = "1px";
         };
         cursor = {
@@ -27,6 +27,7 @@ lib.mkIf (meta.utils.isTiling desktop) {
           osc8-underline = "always";
         };
         colors-dark = {
+          alpha = "0.95";
           foreground = "c0caf5";
           background = "1a1b26";
           regular0 = "15161E"; # black

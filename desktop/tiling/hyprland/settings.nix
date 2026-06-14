@@ -25,6 +25,12 @@ in
     "$terminalWindow" = "footclient";
     "$menu" = "walker";
 
+    # Override for HDR
+    render = {
+      direct_scanout = false;
+      cm_auto_hdr = 1;
+    };
+
     monitor = renderedMonitors;
 
     exec-once = [
@@ -64,6 +70,12 @@ in
       "col.active_border" = "rgba(007184ee) rgba(008194ee) 60deg";
       "col.inactive_border" = "rgba(333333aa)";
       allow_tearing = false;
+      # better for widescreen 21:9
+      layout = "master";
+    };
+
+    master = {
+      orientation = "center";
     };
 
     decoration.blur = {

@@ -19,6 +19,7 @@ in
     (import ./hyprland inputsWithMonitors)
     ./mako
     (import ./mangowc inputsWithMonitors)
+    (import ./niri inputsWithMonitors)
     ./walker
   ];
 

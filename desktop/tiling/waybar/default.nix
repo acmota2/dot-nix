@@ -8,11 +8,11 @@ let
   # Shared layout configurations across both bars
   barLayout = {
     layer = "top";
-    height = 30;
+    height = 35;
     spacing = 0;
-    margin-top = 4;
-    margin-right = 10;
-    margin-left = 10;
+    # margin-top = 4;
+    # margin-right = 10;
+    # margin-left = 10;
   };
   isMultiMonitor = config.hostSettings.display.multiMonitor;
   # Modules used by both the main and secondary monitors

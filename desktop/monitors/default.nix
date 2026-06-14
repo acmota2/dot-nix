@@ -1,24 +1,24 @@
 {
-  aoc = {
+  samsung = {
     output = "DP-1";
-    width = 2560;
-    height = 1440;
+    width = 5120;
+    height = 2160;
     refresh = 180;
     x = 0;
     y = 0;
     scale = 1;
     vrr = 2;
     rotate = 0;
-    # hyprlandExtras = [
-    #   "bitdepth"
-    #   "10"
-    #   "cm"
-    #   "hdr"
-    #   "sdr_max_luminance"
-    #   "200"
-    #   "sdr_min_luminance"
-    #   "0"
-    # ];
+    hyprlandExtras = [
+      "bitdepth"
+      "10"
+      # "cm"
+      # "hdr"
+      # "sdrbrightness"
+      # "2"
+      # "sdrsaturation"
+      # "1.25"
+    ];
   };
 
   portable = {

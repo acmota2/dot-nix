@@ -6,7 +6,7 @@
 }
 
 window#waybar {
-  background-color: rgba(17, 17, 17, 0.75);
+  background-color: rgba(17, 17, 17, 0.65);
   color: #ffffff;
 }
 
@@ -40,8 +40,8 @@ button:hover {
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
-  margin: 0 4px;
-  padding: 5px 5px 0;
+  /* margin: 0 4px; */
+  /* padding: 5px 5px 0; */
 }
 
 #custom-sys-settings button,
@@ -223,7 +223,7 @@ label:focus {
 }
 
 #tray {
-  background-color: rgba(21, 34, 56, 0.75);
+  background-color: rgba(21, 34, 56, 0.65);
 }
 
 #tray > .passive {
