@@ -3,8 +3,8 @@ lib.mkIf config.hostSettings.hardware.enableBluetooth {
   hardware.bluetooth = {
     enable = true;
     settings.General = {
-      Experimental = true;
-      Enable = "Source,Sink,Media,Socket";
+      Experimental = false;
+      ControllerMode = "bredr";
     };
   };
   services.blueman.enable = true;

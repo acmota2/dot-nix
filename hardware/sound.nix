@@ -33,10 +33,28 @@
                 "hfp_ag"
               ];
             };
+            "10-disable-auto-switch" = {
+              "wireplumber.settings" = {
+                "node.disable-auto-default" = true;
+              };
+            };
             "10-volume-limit" = {
               "node.properties" = {
                 "volume.max" = 1.0;
               };
+            };
+            "10-bluetooth-priority.conf" = {
+              "monitor.bluez.rules" = [
+                {
+                  matches = [ { "node.name" = "~bluez_output.*"; } ];
+                  actions = {
+                    update-props = {
+                      "priority.driver" = 1500;
+                      "priority.session" = 1500;
+                    };
+                  };
+                }
+              ];
             };
           };
         };
