@@ -1,9 +1,9 @@
 { actualMonitors, ... }:
 {
   splash = false;
-  preload = [ "~/pictures/penide-cold.jpg" ];
+  preload = [ "~/pictures/sameiro-cold.jpg" ];
   wallpaper = map (m: {
     monitor = m.output;
-    path = "~/pictures/penide-cold.jpg";
+    path = "~/pictures/sameiro-cold.jpg";
   }) actualMonitors;
 }
