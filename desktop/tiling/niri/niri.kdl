@@ -1,0 +1,123 @@
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            variant "intl"
+        }
+        repeat-rate 25
+        repeat-delay 300
+    }
+    touchpad {
+        natural-scroll false
+    }
+}
+
+layout {
+    gaps 6
+    
+    // Prevent screen from jumping to center on ultrawide
+    center-focused-column "never"
+
+    // Default window width (default_mfact = 0.5)
+    default-column-width { proportion 0.5; }
+
+    focus-ring { off; }
+
+    border {
+        width 2
+        active-color "#007184ee"
+        inactive-color "#333333aa"
+    }
+}
+
+animations {
+    slowdown 0.5
+}
+
+spawn-at-startup "blueman-applet"
+spawn-at-startup "elephant"
+spawn-at-startup "foot" "--server"
+spawn-at-startup "mako"
+spawn-at-startup "walker" "--gapplication-service"
+spawn-at-startup "waybar"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+
+binds {
+    // --- Programs ---
+    Mod+Return { spawn "footclient" "-e" "tmux"; }
+    Mod+D { spawn "walker"; }
+    Mod+V { spawn "walker" "--provider" "clipboard"; }
+    Mod+E { spawn "walker" "--provider" "symbols"; }
+    Mod+P { spawn "walker-power-menu"; }
+    Mod+L { spawn "swaylock"; }
+
+    // --- Printscreen ---
+    Print { spawn "sh" "-c" "grim - | wl-copy"; }
+    Mod+Print { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
+    Mod+Shift+Print { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
+
+    // --- Special Keys ---
+    XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "raise"; }
+    Shift+XF86MonBrightnessUp { spawn "brightnessctl set 5%+"; }
+    XF86MonBrightnessDown { spawn "brightnessctl set 5%-"; }
+    XF86AudioRaiseVolume { spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+"; }
+    XF86AudioLowerVolume { spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"; }
+    XF86AudioMute { spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+
+    // --- System ---
+    Mod+Shift+C { quit; }
+    Mod+Shift+Q { close-window; }
+    Mod+R { spawn "niri" "msg" "action" "reload-config"; }
+
+    // --- Focus ---
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up    { focus-window-or-workspace-up; }
+    Mod+Down  { focus-window-or-workspace-down; }
+
+    // --- Move Windows ---
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+
+    // --- Monitors ---
+    Mod+Ctrl+Left  { focus-monitor-left; }
+    Mod+Ctrl+Right { focus-monitor-right; }
+    Mod+Ctrl+Shift+Left  { move-column-to-monitor-left; }
+    Mod+Ctrl+Shift+Right { move-column-to-monitor-right; }
+
+    // --- Window States ---
+    Mod+F { fullscreen-window; }
+    Mod+A { toggle-window-floating; }
+
+    // --- Resizing ---
+    Alt+Shift+Right { set-column-width "+5%"; }
+    Alt+Shift+Left  { set-column-width "-5%"; }
+    Alt+Shift+Up    { set-window-height "-5%"; }
+    Alt+Shift+Down  { set-window-height "+5%"; }
+
+    // Custom exact width proportions
+    Alt+3 { set-column-width "30%"; }
+    Alt+6 { set-column-width "60%"; }
+
+    // --- Workspaces ---
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+}
