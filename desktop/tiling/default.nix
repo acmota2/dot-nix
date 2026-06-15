@@ -17,7 +17,8 @@ in
   imports = [
     ../foot
     (import ./hyprland inputsWithMonitors)
-    ./mako
+    # ./mako
+    ./noctalia
     (import ./mangowc inputsWithMonitors)
     (import ./niri inputsWithMonitors)
     ./walker
@@ -56,11 +57,11 @@ in
         };
       };
 
-      programs.waybar = {
-        enable = true;
-        settings = import ./waybar inputs;
-        style = builtins.readFile ./waybar/style.css;
-      };
+      # programs.waybar = {
+      #   enable = true;
+      #   settings = import ./waybar inputs;
+      #   style = builtins.readFile ./waybar/style.css;
+      # };
 
       dconf.settings."org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
