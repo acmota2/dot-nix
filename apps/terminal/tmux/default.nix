@@ -10,6 +10,6 @@
   };
 
   home-manager.users.${config.hostSettings.users.default.username} = _: {
-    home.file.".config/tmux/tmux.conf".source = ./tmux.conf;
+    xdg.configFile."tmux/tmux.conf".source = ./tmux.conf;
   };
 }
