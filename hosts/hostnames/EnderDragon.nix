@@ -17,6 +17,7 @@ _: {
       };
       multiMonitor = false;
       hdr = true;
+      desktop.name = "niri";
     };
     hardware = {
       enableBluetooth = true;
