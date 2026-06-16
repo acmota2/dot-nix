@@ -1,123 +1,162 @@
 input {
-    keyboard {
-        xkb {
-            layout "us"
-            variant "intl"
-        }
-        repeat-rate 25
-        repeat-delay 300
+  focus-follows-mouse
+  warp-mouse-to-focus
+  keyboard {
+    xkb {
+      layout "us"
+      variant "intl"
     }
-    touchpad {
-        natural-scroll false
-    }
+    repeat-rate 25
+    repeat-delay 300
+  }
+  touchpad {
+    tap
+    natural-scroll
+  }
+}
+
+gestures {
+  hot-corners {
+    off
+  }
 }
 
 layout {
-    gaps 6
-    
-    // Prevent screen from jumping to center on ultrawide
-    center-focused-column "never"
+  gaps 6
 
-    // Default window width (default_mfact = 0.5)
-    default-column-width { proportion 0.5; }
+  always-center-single-column
+  
+  // Prevent screen from jumping to center on ultrawide
+  center-focused-column "never"
 
-    focus-ring { off; }
+  // Default window width (default_mfact = 0.5)
+  default-column-width { proportion 0.5; }
+  background-color "transparent"
 
-    border {
-        width 2
-        active-color "#007184ee"
-        inactive-color "#333333aa"
-    }
+  focus-ring { off; }
+
+  border {
+    width 2
+    active-color "#7fc8ff"
+    inactive-color "#333333"
+    urgent-color "#9b0000"
+  }
 }
+
+debug {
+  keep-max-bpc-unchanged
+}
+
+layer-rule {
+  match namespace="^noctalia-wallpaper*"
+  place-within-backdrop true
+}
+
+prefer-no-csd
 
 animations {
-    slowdown 0.5
+  slowdown 0.5
 }
+
+window-rule {
+  match app-id="foot" is-active=false
+  opacity 0.85
+}
+
+screenshot-path "~/pictures/screenshot-%Y-%m-$d_%H:%M:%S.png"
 
 spawn-at-startup "blueman-applet"
 spawn-at-startup "elephant"
 spawn-at-startup "foot" "--server"
-spawn-at-startup "mako"
+spawn-at-startup "noctalia-shell"
 spawn-at-startup "walker" "--gapplication-service"
-spawn-at-startup "waybar"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 
 binds {
-    // --- Programs ---
-    Mod+Return { spawn "footclient" "-e" "tmux"; }
-    Mod+D { spawn "walker"; }
-    Mod+V { spawn "walker" "--provider" "clipboard"; }
-    Mod+E { spawn "walker" "--provider" "symbols"; }
-    Mod+P { spawn "walker-power-menu"; }
-    Mod+L { spawn "swaylock"; }
+  // --- Programs ---
+  Mod+Return { spawn "footclient" "-e" "tmux"; }
+  Mod+D { spawn "walker"; }
+  Mod+V { spawn "walker" "--provider" "clipboard"; }
+  Mod+E { spawn "walker" "--provider" "symbols"; }
+  Mod+P { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+  Mod+L { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
 
-    // --- Printscreen ---
-    Print { spawn "sh" "-c" "grim - | wl-copy"; }
-    Mod+Print { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
-    Mod+Shift+Print { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
+  // --- Screenshots ---
+  Print { screenshot; }
+  Ctrl+Print { screenshot-screen; }
+  Alt+Print { screenshot-window; }
 
-    // --- Special Keys ---
-    XF86MonBrightnessUp { spawn "swayosd-client" "--brightness" "raise"; }
-    Shift+XF86MonBrightnessUp { spawn "brightnessctl set 5%+"; }
-    XF86MonBrightnessDown { spawn "brightnessctl set 5%-"; }
-    XF86AudioRaiseVolume { spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+"; }
-    XF86AudioLowerVolume { spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"; }
-    XF86AudioMute { spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+  // --- Special Keys ---
+  XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "5%+"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
+  XF86AudioRaiseVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "2%+"; }
+  XF86AudioLowerVolume  allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
+  XF86AudioMute         allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
 
-    // --- System ---
-    Mod+Shift+C { quit; }
-    Mod+Shift+Q { close-window; }
-    Mod+R { spawn "niri" "msg" "action" "reload-config"; }
+  // --- System ---
+  Mod+Shift+E { quit; }
+  Mod+Shift+Q repeat=false { close-window; }
+  Mod+O       repeat=false { toggle-overview; }
+  Mod+R { spawn "niri" "msg" "action" "reload-config"; }
+  Mod+Shift+P { power-off-monitors; }
 
-    // --- Focus ---
-    Mod+Left  { focus-column-left; }
-    Mod+Right { focus-column-right; }
-    Mod+Up    { focus-window-or-workspace-up; }
-    Mod+Down  { focus-window-or-workspace-down; }
+  // --- Focus ---
+  Mod+Left  { focus-column-left; }
+  Mod+Right { focus-column-right; }
+  Mod+Up    { focus-window-or-workspace-up; }
+  Mod+Down  { focus-window-or-workspace-down; }
 
-    // --- Move Windows ---
-    Mod+Shift+Left  { move-column-left; }
-    Mod+Shift+Right { move-column-right; }
+  // --- Move Windows ---
+  Mod+Shift+Left  { move-column-left; }
+  Mod+Shift+Right { move-column-right; }
 
-    // --- Monitors ---
-    Mod+Ctrl+Left  { focus-monitor-left; }
-    Mod+Ctrl+Right { focus-monitor-right; }
-    Mod+Ctrl+Shift+Left  { move-column-to-monitor-left; }
-    Mod+Ctrl+Shift+Right { move-column-to-monitor-right; }
+  // --- Monitors ---
+  Mod+Ctrl+Left  { focus-monitor-left; }
+  Mod+Ctrl+Right { focus-monitor-right; }
+  Mod+C { center-column; }
+  Mod+Ctrl+Shift+Left  { move-column-to-monitor-left; }
+  Mod+Ctrl+Shift+Right { move-column-to-monitor-right; }
 
-    // --- Window States ---
-    Mod+F { fullscreen-window; }
-    Mod+A { toggle-window-floating; }
+  // --- Window States ---
+  Mod+A { toggle-window-floating; }
+  Mod+F { maximize-column; }
+  Mod+Shift+F { fullscreen-window; }
+  Mod+Ctrl+F { expand-column-to-available-width; }
 
-    // --- Resizing ---
-    Alt+Shift+Right { set-column-width "+5%"; }
-    Alt+Shift+Left  { set-column-width "-5%"; }
-    Alt+Shift+Up    { set-window-height "-5%"; }
-    Alt+Shift+Down  { set-window-height "+5%"; }
+  // --- Resizing ---
+  Alt+Shift+Right { set-column-width "+5%"; }
+  Alt+Shift+Left  { set-column-width "-5%"; }
 
-    // Custom exact width proportions
-    Alt+3 { set-column-width "30%"; }
-    Alt+6 { set-column-width "60%"; }
+  // Custom exact width proportions
+  Alt+1 { set-column-width "10%"; }
+  Alt+2 { set-column-width "20%"; }
+  Alt+3 { set-column-width "30%"; }
+  Alt+4 { set-column-width "40%"; }
+  Alt+5 { set-column-width "50%"; }
+  Alt+6 { set-column-width "60%"; }
+  Alt+7 { set-column-width "70%"; }
+  Alt+8 { set-column-width "80%"; }
+  Alt+9 { set-column-width "90%"; }
 
-    // --- Workspaces ---
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
+  // --- Workspaces ---
+  Mod+1 { focus-workspace 1; }
+  Mod+2 { focus-workspace 2; }
+  Mod+3 { focus-workspace 3; }
+  Mod+4 { focus-workspace 4; }
+  Mod+5 { focus-workspace 5; }
+  Mod+6 { focus-workspace 6; }
+  Mod+7 { focus-workspace 7; }
+  Mod+8 { focus-workspace 8; }
+  Mod+9 { focus-workspace 9; }
 
-    Mod+Shift+1 { move-column-to-workspace 1; }
-    Mod+Shift+2 { move-column-to-workspace 2; }
-    Mod+Shift+3 { move-column-to-workspace 3; }
-    Mod+Shift+4 { move-column-to-workspace 4; }
-    Mod+Shift+5 { move-column-to-workspace 5; }
-    Mod+Shift+6 { move-column-to-workspace 6; }
-    Mod+Shift+7 { move-column-to-workspace 7; }
-    Mod+Shift+8 { move-column-to-workspace 8; }
-    Mod+Shift+9 { move-column-to-workspace 9; }
+  Mod+Shift+1 { move-column-to-workspace 1; }
+  Mod+Shift+2 { move-column-to-workspace 2; }
+  Mod+Shift+3 { move-column-to-workspace 3; }
+  Mod+Shift+4 { move-column-to-workspace 4; }
+  Mod+Shift+5 { move-column-to-workspace 5; }
+  Mod+Shift+6 { move-column-to-workspace 6; }
+  Mod+Shift+7 { move-column-to-workspace 7; }
+  Mod+Shift+8 { move-column-to-workspace 8; }
+  Mod+Shift+9 { move-column-to-workspace 9; }
 }

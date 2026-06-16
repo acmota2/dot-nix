@@ -27,7 +27,7 @@ lib.mkIf (meta.utils.isTiling desktop) {
           osc8-underline = "always";
         };
         colors-dark = {
-          alpha = "0.95";
+          alpha = "0.9";
           foreground = "c0caf5";
           background = "1a1b26";
           regular0 = "15161E"; # black

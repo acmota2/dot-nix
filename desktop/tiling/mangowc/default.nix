@@ -71,7 +71,7 @@
       home-manager.users.${config.hostSettings.users.default.username} = _: {
         imports = [ inputs.mango.hmModules.mango ];
 
-        home.file.".config/swaylock/config".source = ./swaylock.conf;
+        home.file.".config/swaylock/config".source = ../swaylock/swaylock.conf;
 
         wayland.windowManager.mango = {
           enable = true;
