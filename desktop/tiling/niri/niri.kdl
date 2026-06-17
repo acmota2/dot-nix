@@ -129,15 +129,15 @@ binds {
   Alt+Shift+Left  { set-column-width "-5%"; }
 
   // Custom exact width proportions
-  Alt+1 { set-column-width "10%"; }
-  Alt+2 { set-column-width "20%"; }
-  Alt+3 { set-column-width "30%"; }
-  Alt+4 { set-column-width "40%"; }
-  Alt+5 { set-column-width "50%"; }
-  Alt+6 { set-column-width "60%"; }
-  Alt+7 { set-column-width "70%"; }
-  Alt+8 { set-column-width "80%"; }
-  Alt+9 { set-column-width "90%"; }
+  Mod+Alt+1 { set-column-width "10%"; }
+  Mod+Alt+2 { set-column-width "20%"; }
+  Mod+Alt+3 { set-column-width "30%"; }
+  Mod+Alt+4 { set-column-width "40%"; }
+  Mod+Alt+5 { set-column-width "50%"; }
+  Mod+Alt+6 { set-column-width "60%"; }
+  Mod+Alt+7 { set-column-width "70%"; }
+  Mod+Alt+8 { set-column-width "80%"; }
+  Mod+Alt+9 { set-column-width "90%"; }
 
   // --- Workspaces ---
   Mod+1 { focus-workspace 1; }
