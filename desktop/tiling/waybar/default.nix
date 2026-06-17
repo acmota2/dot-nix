@@ -264,7 +264,7 @@ in
         // {
           inherit modules-left;
 
-          output = m.output;
+          inherit (m) output;
 
           modules-center = [
             "custom/fildem"

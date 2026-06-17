@@ -19,7 +19,7 @@ lib.mkIf defaultUser.enable {
         "ydotool"
         "wheel"
       ];
-      description = defaultUser.description;
+      inherit (defaultUser) description;
 
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB1Bu1KY2x3DGuvOGFhDh00BrXXddgatGno21uEtpOLu acmota2@EnderDragon"

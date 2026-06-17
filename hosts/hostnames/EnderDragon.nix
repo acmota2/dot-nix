@@ -3,6 +3,7 @@ _: {
     ../../apps/games
     ../../apps/games/minecraft
     ../../apps/llm
+    ../../apps/misc/rgb.nix
     ../../apps/multimedia
     ../../apps/multimedia/audio
     ../../apps/multimedia/audio/extra.nix
