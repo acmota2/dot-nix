@@ -16,9 +16,12 @@ _: {
         enable = true;
         manufacturer = "amd";
       };
-      multiMonitor = false;
       hdr = true;
-      desktop.name = "niri";
+      desktop = {
+        enable = true;
+        name = "niri";
+        noctalia.enable = true;
+      };
     };
     hardware = {
       enableBluetooth = true;

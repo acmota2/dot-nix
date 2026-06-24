@@ -24,11 +24,13 @@ in
           };
         };
         desktop = {
+          enable = lib.mkEnableOption "Enable desktop for this host";
           name = lib.mkOption {
-            default = "hyprland";
+            default = "niri";
             description = "The compositor/DE/WM of choice for the host";
             type = lib.types.enum constants.desktops;
           };
+          noctalia.enable = lib.mkEnableOption "Enable Noctalia shell";
         };
       };
 
@@ -84,7 +86,6 @@ in
           description = "The list of users to create in the host";
         };
       };
-      # utils = { };
     };
   };
 }

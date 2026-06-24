@@ -12,7 +12,10 @@ _: {
         enable = true;
         manufacturer = "intel";
       };
-      desktop.name = "mangowc";
+      desktop = {
+        enable = true;
+        name = "mangowc";
+      };
     };
     hardware = {
       enableBluetooth = true;

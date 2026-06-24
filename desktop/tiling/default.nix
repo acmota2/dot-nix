@@ -17,7 +17,7 @@ in
   imports = [
     ../foot
     (import ./hyprland inputsWithMonitors)
-    # ./mako
+    ./mako
     ./noctalia
     (import ./mangowc inputsWithMonitors)
     (import ./niri inputsWithMonitors)

@@ -12,7 +12,7 @@
     ./tiling
   ];
 
-  config = lib.mkIf config.hostSettings.display.adapter.enable (
+  config = lib.mkIf config.hostSettings.display.desktop.enable (
     lib.mkMerge [
       {
         fonts = {
