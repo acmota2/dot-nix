@@ -57,11 +57,11 @@ in
         };
       };
 
-      # programs.waybar = {
-      #   enable = true;
-      #   settings = import ./waybar inputs;
-      #   style = builtins.readFile ./waybar/style.css;
-      # };
+      programs.waybar = lib.mkIf (!config.hostSettings.display.desktop.noctalia.enable) {
+        enable = true;
+        settings = import ./waybar inputs;
+        style = builtins.readFile ./waybar/style.css;
+      };
 
       dconf.settings."org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";

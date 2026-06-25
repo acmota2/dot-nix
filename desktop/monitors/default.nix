@@ -40,7 +40,7 @@
     refresh = 60;
     x = 0;
     y = 0;
-    scale = 1.25;
+    scale = 1.33;
     vrr = 0;
     rotate = 0;
   };
