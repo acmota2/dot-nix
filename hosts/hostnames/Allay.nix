@@ -22,6 +22,7 @@ _: {
       enableNfs = true;
       enableRollingKernel = true;
       isLaptop = true;
+      resumeDeviceUuid = "aafebdf9-2bb2-4e78-b367-3436034807a4";
     };
   };
 }
