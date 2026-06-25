@@ -39,6 +39,11 @@ in
         enableNfs = lib.mkEnableOption "Enable NFS";
         enableRollingKernel = lib.mkEnableOption "Enable rolling kernel";
         isLaptop = lib.mkEnableOption "Define this host as a laptop";
+        resumeDeviceUuid = lib.mkOption {
+          description = "The UUID of the swap drive";
+          type = lib.types.str;
+          default = "";
+        };
       };
 
       meta = {

@@ -1,4 +1,7 @@
 { config, lib, ... }:
+let
+  resumeDeviceUuid = config.hostSettings.hardware.resumeDeviceUuid;
+in
 {
   imports = [ ./kernel-mod ];
 
@@ -16,7 +19,7 @@
         enable = true;
         theme = "bgrt";
       };
-      resumeDevice = "/dev/disk/by-uuid/4d4efbda-9f85-42a0-adf0-4c60d9f6d6e6";
+      resumeDevice = lib.mkIf (resumeDeviceUuid != "") "/dev/disk/by-uuid/${resumeDeviceUuid}";
     };
   };
 }
