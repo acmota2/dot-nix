@@ -1,4 +1,8 @@
-{ actualMonitors, renderMonitor }:
+{
+  actualMonitors,
+  renderMonitor,
+  walkerPowerMenu,
+}:
 {
   # General appearance
   bordercolor = "0x333333aa";
@@ -76,7 +80,7 @@
     # Programs
     "SUPER,Return,spawn,footclient -e tmux"
     "SUPER,D,spawn,walker"
-    # "SUPER+SHIFT,D,spawn,walker" # Removed
+    "SUPER,P,spawn,${walkerPowerMenu}/bin/walker-power-menu"
     "SUPER,V,spawn,walker --provider clipboard"
     "SUPER,E,spawn,walker --provider symbols"
     "SUPER,P,spawn,walker-power-menu"
@@ -121,14 +125,12 @@
     "SUPER+SHIFT,9,tag,9"
 
     # Special
-    "NONE,XF86MonBrightnessUp,spawn,swayosd-client --brightness raise"
-    "SHIFT,XF86MonBrightnessUp,spawn,swayosd-client --brightness +100"
-    "NONE,XF86MonBrightnessDown,spawn,swayosd-client --brightness lower"
-    "SHIFT,XF86MonBrightnessDown,spawn,swayosd-client --brightness 1"
-    "NONE,XF86AudioRaiseVolume,spawn,swayosd-client --output-volume raise"
-    "NONE,XF86AudioLowerVolume,spawn,swayosd-client --output-volume lower"
-    "NONE,XF86AudioMute,spawn,swayosd-client --output-volume mute-toggle"
-    "SHIFT,XF86AudioMute,spawn,swayosd-client --input-volume mute-toggle"
+    "NONE,XF86MonBrightnessUp,spawn,brightnessctl set 5%+"
+    "NONE,XF86MonBrightnessDown,spawn,brightnessctl set 5%-"
+
+    "NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+"
+    "NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+    "NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
     # Compositor
     "SUPER+SHIFT,C,quit"

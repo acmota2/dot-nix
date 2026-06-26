@@ -25,8 +25,12 @@
           "rr:${toString m.rotate}"
         ];
 
+      walkerPowerMenu = pkgs.writeShellScriptBin "walker-power-menu" (
+        builtins.readFile ../walker/scripts/power-menu.sh
+      );
+
       mangoSettings = (import ./settings.nix) {
-        inherit actualMonitors renderMonitor;
+        inherit actualMonitors renderMonitor walkerPowerMenu;
       };
 
       autostartScript = import ./autostart.nix {
