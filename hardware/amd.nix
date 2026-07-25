@@ -16,4 +16,5 @@ lib.mkIf (config.hostSettings.display.adapter.manufacturer == "amd") {
       enable32Bit = true;
     };
   };
+  services.lact.enable = true;
 }
