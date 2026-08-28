@@ -27,10 +27,15 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    dexed
     lilypond
     muse-sounds-manager
-    puredata
+    odin2
     pd-packs
+    puredata
     reaper
+    wineWowPackages.stable
+    yabridge
+    yabridgectl
   ];
 }
