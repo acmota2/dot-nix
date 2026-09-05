@@ -18,6 +18,20 @@ lib.mkIf (config.hostSettings.display.desktop.name == "niri") (
   {
     programs.niri.enable = true;
 
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gnome
+        xdg-desktop-portal-gtk
+      ];
+      config.niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+      };
+    };
+
     environment.systemPackages = with pkgs; [
       swaybg
       swayidle
