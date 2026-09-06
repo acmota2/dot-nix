@@ -68,7 +68,7 @@ screenshot-path "~/pictures/screenshot-%Y-%m-$d_%H:%M:%S.png"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "elephant"
 spawn-at-startup "foot" "--server"
-spawn-at-startup "noctalia-shell"
+spawn-at-startup "noctalia"
 spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
@@ -79,8 +79,8 @@ binds {
   Mod+D { spawn "walker"; }
   Mod+V { spawn "walker" "--provider" "clipboard"; }
   Mod+E { spawn "walker" "--provider" "symbols"; }
-  Mod+P { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
-  Mod+L { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+  Mod+P { spawn "noctalia" "msg" "panel-toggle" "session"; }
+  Mod+L { spawn "noctalia" "msg" "session" "lock"; }
 
   // --- Screenshots ---
   Print { screenshot; }

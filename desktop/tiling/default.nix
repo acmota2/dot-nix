@@ -16,7 +16,8 @@ in
 {
   imports = [
     ../foot
-    (import ./hyprland inputsWithMonitors)
+    # reintroduce if I ever plan on using Hyprland again
+    # (import ./hyprland inputsWithMonitors)
     ./mako
     ./noctalia
     (import ./mangowc inputsWithMonitors)
