@@ -34,7 +34,7 @@ in
     pd-packs
     puredata
     reaper
-    wineWowPackages.stable
+    wineWow64Packages.stable
     yabridge
     yabridgectl
   ];
