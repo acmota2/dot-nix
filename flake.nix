@@ -8,7 +8,7 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
     mango = {
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +19,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixvim.url = "github:nix-community/nixvim";
     noctalia = {
-      url = "github:noctalia-dev/noctalia/legacy-v4";
+      url = "github:noctalia-dev/noctalia/cachix";
       inputs.nixpkgs.follows = "unstable";
     };
     sops-nix.url = "github:Mic92/sops-nix";
