@@ -17,7 +17,6 @@
     my-nixvim.url = "github:acmota2/dot-nix-neovim";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nixvim.url = "github:nix-community/nixvim";
     noctalia = {
       url = "github:noctalia-dev/noctalia/cachix";
       inputs.nixpkgs.follows = "unstable";
