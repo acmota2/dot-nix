@@ -92,13 +92,13 @@ in
               ];
               center = [
                 "workspaces"
+                "clock"
                 "wallpaper"
               ];
               end = [
                 "volume"
                 "network"
                 "bluetooth"
-                "clock"
                 "tray"
               ];
             };
