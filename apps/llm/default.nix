@@ -18,44 +18,48 @@ lib.mkMerge [
     ];
 
     sops.secrets."librechat-env" = {
-      format = "binary";
+      format = "dotenv";
       sopsFile = ../../secrets/librechat.env;
       owner = username;
     };
 
+    virtualisation.oci-containers = {
+      backend = "podman";
+      containers.librechat-db = {
+        image = "mongo:6.0";
+        ports = [ "127.0.0.1:27017:27017" ];
+        volumes = [ "librechat-db-data:/data/db" ];
+      };
+    };
+
     services = {
       librechat = {
-        enable = true;
-        enableLocalDB = true;
-        openFirewall = false;
-
         credentialsFile = config.sops.secrets."librechat-env".path;
-
+        enable = true;
         env = {
+          ALLOW_REGISTRATION = true;
           PORT = "3080";
-          HOST = "0.0.0.0";
+          HOST = "127.0.0.1";
+          MONGO_URI = "mongodb://127.0.0.1:27017/LibreChat";
         };
-
         settings = {
+          version = "1.2.1";
+          cache = true;
+
           endpoints = {
             custom = [
               {
-                name = "llama-swap";
-                apiKey = "ignored";
+                name = "llama.cpp";
+                apiKey = "sk-no-key-required";
                 baseURL = "http://127.0.0.1:8083/v1";
+
                 models = {
-                  default = [
-                    "gemma4-26b"
-                    "gemma4-31b"
-                    "mistral-nemo"
-                    "qwen3.5-4b"
-                    "qwen3.6-35b"
-                    "qwen3.8-27b"
-                  ];
-                  fetch = false;
+                  fetch = true;
+                  default = [ "gemma4-26b" ];
                 };
+
                 titleConvo = true;
-                modelDisplayLabel = "llama.cpp";
+                titleModel = "current_model"; # Reuses the conversation model to generate titles
               }
             ];
           };
@@ -71,11 +75,11 @@ lib.mkMerge [
 
           models = {
             "gemma4-26b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-UD-IQ4_XS.gguf -ngl -1 -c 49152";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 49152";
               ttl = 10;
             };
             "gemma4-31b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 -c 16384";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 16384";
               ttl = 10;
             };
             "mistral-nemo" = {
@@ -87,12 +91,12 @@ lib.mkMerge [
               ttl = 90;
             };
             "qwen3.6-35b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 -c 32768";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 32768";
               ttl = 10;
             };
             "qwen3.8-27b" = {
               # --reasoning-budget 2048 prevents overthinking while preserving quality
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.8-27B-UD-IQ4_XS.gguf -ngl -1 -c 40960 --reasoning-budget 2048";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.8-27B-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 40960 --reasoning-budget 2048 --temp 0.6 --top-p 0.95";
               ttl = 10;
             };
           };

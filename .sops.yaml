@@ -1,5 +1,7 @@
 keys:
   - &Allay age184ftm4s9hy99yl9l9hvy0a2y2qa8c6hkq9velwclsjggsfdh033qjv2606
+  - &EnderDragon age1e2ww68t6ekwk3d6c6k7u6wswnutsuqtht75yseerf7nynsvj6ezq3wtwk7
+  - &EnderDragonSys age1r64hyswskkztn784gx76knjvtuvnrvq9gq3hag4kfqaaut583prqh9jrgn
   - &Squid age1k37dllktx6jpcc3q3z9yrm64x4t5s9mrmnk9hzqthqfaj9d6s36szpvhsq
   - &Wither age1rmm4vz8ht4plvzttuhjk895n6h9fadvwxd9wj27lc4q9702ue4ns2eje24
 creation_rules:
@@ -7,5 +9,7 @@ creation_rules:
     key_groups:
       - age:
           - *Allay
+          - *EnderDragon
+          - *EnderDragonSys
           - *Squid
           - *Wither
