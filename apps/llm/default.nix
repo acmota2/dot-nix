@@ -13,7 +13,7 @@ in
 lib.mkMerge [
   {
     environment.systemPackages = with pkgs; [
-      aider-chat-full
+      aider-chat
       opencode
     ];
 

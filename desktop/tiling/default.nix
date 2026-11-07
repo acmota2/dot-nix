@@ -32,7 +32,6 @@ in
     };
 
     environment.systemPackages = [
-      pkgs.brave
       pkgs.cliphist
       pkgs.discord
       pkgs.wl-clipboard

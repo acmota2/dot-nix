@@ -39,33 +39,22 @@
         };
 
         environment.systemPackages = with pkgs; [
-          brave
           floorp-bin
         ];
       }
       (meta.utils.homeOrNixos {
         inherit config isHomeManager;
         options = {
-          programs = {
-            brave = {
-              enable = true;
-              commandLineArgs = [
-                "--force-device-scale-factor=1.2"
-                "--ozone-platform-hint=auto"
-                "--enable-features=WaylandWindowDecorations"
-              ];
-            };
-            floorp = {
-              enable = true;
-              profiles.default = {
-                settings = {
-                  # Replaces: "--force-device-scale-factor=1.2"
-                  "layout.css.devPixelsPerPx" = "1.2";
+          programs.floorp = {
+            enable = true;
+            profiles.default = {
+              settings = {
+                # Replaces: "--force-device-scale-factor=1.2"
+                "layout.css.devPixelsPerPx" = "1.2";
 
-                  # Replaces: "--enable-features=WaylandWindowDecorations"
-                  # Tells Floorp to use client-side tabs/decorations natively under Wayland
-                  "browser.tabs.drawInTitlebar" = true;
-                };
+                # Replaces: "--enable-features=WaylandWindowDecorations"
+                # Tells Floorp to use client-side tabs/decorations natively under Wayland
+                "browser.tabs.drawInTitlebar" = true;
               };
             };
           };
