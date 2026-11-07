@@ -146,7 +146,15 @@ lib.mkMerge [
           name = "llama-swap";
           options = {
             baseURL = "http://127.0.0.1:8083/v1";
-            apiKey = "ignored";
+            apiKey = "sk-no-key-required";
+          };
+          models = {
+            "qwen3.8-27b" = {
+              name = "Qwen 3.8 27B (Local)";
+            };
+            "gemma4-26b" = {
+              name = "Gemma 4 26B (Local)";
+            };
           };
         };
       };
