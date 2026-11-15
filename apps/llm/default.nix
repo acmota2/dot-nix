@@ -4,6 +4,7 @@
   lib,
   meta,
   pkgs,
+  unstable,
   ...
 }:
 let
@@ -14,7 +15,7 @@ lib.mkMerge [
   {
     environment.systemPackages = with pkgs; [
       aider-chat
-      opencode
+      unstable.opencode
     ];
 
     sops.secrets."librechat-env" = {
@@ -75,7 +76,7 @@ lib.mkMerge [
 
           models = {
             "gemma4-26b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 49152";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 53248";
               ttl = 10;
             };
             "gemma4-31b" = {
@@ -95,8 +96,7 @@ lib.mkMerge [
               ttl = 10;
             };
             "qwen3.8-27b" = {
-              # --reasoning-budget 2048 prevents overthinking while preserving quality
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.8-27B-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 40960 --reasoning-budget 2048 --temp 0.6 --top-p 0.95";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.8-27B-UD-IQ4_XS.gguf -ngl 999 --fit off -fa 1 -ctk q4_0 -ctv q4_0 -c 49152 --parallel 1 --spec-type draft-mtp --spec-draft-n-max 2 --jinja --chat-template-kwargs '{\"reasoning_effort\":\"medium\"}' --reasoning-budget 4096 --reasoning-format deepseek --temp 0.6 --top-p 0.95";
               ttl = 10;
             };
           };
