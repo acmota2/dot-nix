@@ -32,6 +32,7 @@ in
           cmd = "nvim -d \"$LOCAL\" \"$REMOTE\"";
         };
       };
+      init.defaultBranch = "main";
       merge = {
         tool = "nvimdiff";
       };
