@@ -122,27 +122,19 @@ lib.mkMerge [
 
           models = {
             "gemma4-26b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 81920";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-26B-A4B-it-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q4_0 -ctv q4_0 -c 81920";
               ttl = 10;
             };
             "gemma4-31b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 16384";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 --jinja -ctk q4_0 -ctv q4_0 -c 32768";
               ttl = 10;
             };
-            "mistral-nemo" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Mistral-Nemo-Prism-12B-Q8_0.gguf -ngl -1 -c 16384";
-              ttl = 90;
-            };
-            "qwen3.5-4b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.5-4B-Q8_0.gguf -ngl -1 -c 81920";
-              ttl = 90;
-            };
             "qwen3.6-35b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q8_0 -ctv q8_0 -c 32768";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q4_0 -ctv q4_0 -c 32768";
               ttl = 10;
             };
             "qwen3.8-27b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.8-27B-UD-IQ4_XS.gguf -ngl 999 --fit off -fa 1 -ctk q4_0 -ctv q4_0 -c 49152 --parallel 1 --spec-type draft-mtp --spec-draft-n-max 2 --jinja --reasoning-budget 4096 --reasoning-format deepseek --temp 0.6 --top-p 0.95";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.8-27B-UD-IQ4_XS.gguf -ngl -1 -fa 1 -ctk q4_0 -ctv q4_0 -c 49152 --jinja";
               ttl = 10;
             };
           };
