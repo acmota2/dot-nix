@@ -129,12 +129,16 @@ lib.mkMerge [
               cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/gemma-4-31B-it-IQ4_XS.gguf -ngl -1 --jinja -ctk q4_0 -ctv q4_0 -c 32768";
               ttl = 10;
             };
-            "qwen3.6-35b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q4_0 -ctv q4_0 -c 32768";
+            "qwen3.6-27b" = {
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 -fa 1 -ctk q4_0 -ctv q4_0 -c 61200 --jinja";
               ttl = 10;
             };
             "qwen3.8-27b" = {
-              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.8-27B-UD-IQ4_XS.gguf -ngl -1 -fa 1 -ctk q4_0 -ctv q4_0 -c 49152 --jinja";
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.8-27B-UD-IQ4_XS.gguf -ngl -1 -fa 1 -ctk q4_0 -ctv q4_0 -c 61200 --jinja";
+              ttl = 10;
+            };
+            "qwen3.6-35b" = {
+              cmd = "${llama-pkg}/bin/llama-server --port \${PORT} -m /var/lib/llama-models/Qwen3.6-35B-A3B-UD-IQ4_XS.gguf -ngl -1 --jinja -ctk q4_0 -ctv q4_0 -c 32768";
               ttl = 10;
             };
           };
@@ -160,7 +164,7 @@ lib.mkMerge [
 
       tmpfiles.rules = [
         "d /var/lib/llama-models 0775 ${username} root - -"
-        "d /var/lib/librechat 0770 ${username} root - -"
+        "d /var/lib/librechat 0770 librechat librechat - -"
       ];
     };
 
@@ -189,14 +193,17 @@ lib.mkMerge [
             apiKey = "sk-no-key-required";
           };
           models = {
+            "gemma4-26b" = {
+              name = "Gemma 4 26B (Local)";
+            };
+            "qwen3.6-27b" = {
+              name = "Qwen 3.6 27B (Local)";
+            };
             "qwen3.8-27b" = {
               name = "Qwen 3.8 27B (Local)";
             };
             "qwen3.6-35b" = {
               name = "Qwen 3.6 35B (Local)";
-            };
-            "gemma4-26b" = {
-              name = "Gemma 4 26B (Local)";
             };
           };
         };
